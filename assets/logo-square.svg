@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="BIMaghreb engineering">
+  <g fill="none" stroke="#ED7D31" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 200 60 L 280 105 L 200 150 L 120 105 Z" stroke-width="6"/>
+    <line x1="280" y1="105" x2="280" y2="195" stroke-width="6"/>
+    <line x1="200" y1="150" x2="200" y2="240" stroke-width="6"/>
+    <line x1="120" y1="105" x2="120" y2="195" stroke-width="6"/>
+    <line x1="280" y1="195" x2="200" y2="240" stroke-width="6"/>
+    <line x1="120" y1="195" x2="200" y2="240" stroke-width="6"/>
+    <path d="M 280 150 L 200 195 L 120 150" stroke-width="3.5" opacity="0.75"/>
+    <line x1="200" y1="60" x2="200" y2="150" stroke-width="2.5" opacity="0.35" stroke-dasharray="5 5"/>
+  </g>
+  <g fill="#ED7D31" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">
+    <text x="200" y="318" font-size="56" letter-spacing="-1">
+      <tspan font-weight="800">BIM</tspan><tspan font-weight="400" letter-spacing="0">aghreb</tspan>
+    </text>
+    <text x="200" y="352" font-size="15" font-weight="600" letter-spacing="8">ENGINEERING</text>
+  </g>
+</svg>
