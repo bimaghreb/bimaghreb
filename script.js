@@ -96,7 +96,7 @@
         }
       } catch (err) {
         setStatus(
-          "Envoi impossible pour le moment. Écrivez-moi directement à bimaghreb@outlook.com.",
+          "Envoi impossible pour le moment. Contactez BIMaghreb directement à bimaghreb@outlook.com.",
           'error'
         );
         formSubmit.disabled = false;
