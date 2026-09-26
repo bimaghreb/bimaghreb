@@ -1,0 +1,876 @@
+/* ============================================================
+   BIMaghreb — feuille de style
+   ------------------------------------------------------------
+   Toute valeur de couleur, d'espace, de rayon, d'ombre ou de duree
+   passe par un jeton de :root. Une valeur tapee a la main dans une
+   regle est une erreur : elle echappe a l'echelle et finit par
+   jurer avec ses voisines.
+   ============================================================ */
+
+/* IBM Plex Sans — SIL Open Font License 1.1, servie depuis ce site.
+   Dessinee par IBM pour la documentation technique : chiffres de largeur
+   constante, lettres nettes aux petites tailles. font-display: swap affiche
+   le texte avant la police : rien n'attend son chargement. */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('assets/polices/ibm-plex-sans-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('assets/polices/ibm-plex-sans-600.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('assets/polices/ibm-plex-sans-700.woff2') format('woff2');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* --- Couleurs ------------------------------------------------------------
+     L'accent se depense comme une monnaie : il ne marque que les ACTIONS
+     (boutons) et les ETATS (element courant, focus, progression). Tout le
+     reste est neutre, sinon l'accent partout ne distingue plus rien.
+     --orange        : marque, decor, fonds sombres (6,28:1 sur le hero)
+     --orange-texte  : tout texte, bouton ou indicateur sur fond clair.
+                       Meme teinte (24 deg), assombrie : 4,90:1 sur blanc.
+                       L'orange de marque n'y fait que 2,77:1 (4,5 exige). */
+  --orange: #ED7D31;
+  --orange-texte: #B75410;
+  --orange-texte-survol: #95430C;
+  --succes: #2E7D32;             /* 5,13:1 sur blanc */
+  --ink: #1A1A1A;
+  --text: #333333;
+  --text-soft: #666666;          /* 5,74:1 sur blanc, 5,38:1 sur creme */
+  --line: #E5E5E5;
+  --bg: #FFFFFF;
+  --bg-alt: #FAF7F4;
+  --bg-dark: #1A1A1A;
+  --bg-pied: #0F0F0F;
+
+  /* --- Espacements : echelle de 4 px ---------------------------------------
+     Numerotee et non libellee par sa valeur : --e-4 reste juste si l'echelle
+     change, « --espace-16 » deviendrait un mensonge. */
+  --e-1: 4px;   --e-2: 8px;   --e-3: 12px;  --e-4: 16px;
+  --e-5: 20px;  --e-6: 24px;  --e-8: 32px;  --e-10: 40px;
+  --e-12: 48px; --e-16: 64px; --e-20: 80px; --e-24: 96px; --e-30: 120px;
+
+  /* --- Rayons : 4 · 8 · 12 -------------------------------------------------
+     Petits et nets : un bureau d'etudes se veut serieux, et les grands rayons
+     ou les pilules se lisent comme ludiques. Un element imbrique prend le
+     rayon de son parent MOINS la marge qui les separe. */
+  --r-s: 4px;   /* etiquettes, onglets du menu de calcul */
+  --r-m: 8px;   /* champs, boutons, lignes de resultat */
+  --r-l: 12px;  /* cartes, panneaux, cadre des maquettes */
+
+  /* --- Ombres : superposees, jamais une seule -------------------------------
+     Une ombre de contact ancre l'objet, une ombre ample l'eleve. La plus forte
+     est reservee a ce qui compte le plus : les maquettes. */
+  --ombre-contact: 0 1px 2px rgba(26,26,26,.06);
+  --ombre-posee: 0 1px 2px rgba(26,26,26,.06),
+                 0 4px 12px rgba(26,26,26,.05),
+                 0 16px 32px rgba(26,26,26,.06);
+  --lueur-bouton: 0 6px 16px rgba(183,84,16,.28);
+
+  /* --- Mouvement -------------------------------------------------------------
+     Survol sous 150 ms, appui sous 100 ms, entree entre 200 et 300 ms. Une
+     sortie est ~40 % plus rapide que l'entree : ce qui s'en va ne doit pas
+     trainer. Deceleration a l'entree, acceleration a la sortie. */
+  --survol: 150ms;
+  --appui: 80ms;
+  --entree-duree: 300ms;
+  --entree: cubic-bezier(.16, 1, .3, 1);   /* ease-out : arrive vite, se pose */
+  --deplacer: cubic-bezier(.4, 0, .2, 1);  /* ease-in-out : pour ce qui se deplace */
+
+  --max: 1200px;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+/* Transition entre les deux pages ; ignoree sans dommage ailleurs. */
+@view-transition { navigation: auto; }
+
+/* La barre du haut est collante : sans cette marge, une ancre amene la
+   section juste dessous, et la barre en masque le titre. */
+section[id] { scroll-margin-top: var(--e-20); }
+
+body {
+  margin: 0;
+  font-family: 'IBM Plex Sans', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-decoration: none; }
+
+/* Hierarchie : le titre fait environ deux fois le texte courant, et le
+   resserrement des lettres aux grandes tailles lui donne sa densite. */
+h1, h2, h3 { color: var(--ink); line-height: 1.2; margin: 0 0 .4em; }
+h1 { font-size: clamp(2rem, 4.4vw, 2.9rem); font-weight: 700; letter-spacing: -.03em; }
+h2 { font-size: clamp(1.7rem, 3.8vw, 2.6rem); font-weight: 700; letter-spacing: -.025em; }
+h3 { font-size: 1.25rem; font-weight: 700; letter-spacing: -.01em; }
+p  { margin: 0 0 1em; }
+
+/* Focus clavier : 2 px, decale, contraste au-dela de 3:1 sur tous les fonds.
+   :focus-visible ne s'allume qu'au clavier, jamais au clic. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+model-viewer:focus-visible {
+  outline: 2px solid var(--orange-texte);
+  outline-offset: 3px;
+  border-radius: var(--r-s);
+}
+.hero a:focus-visible,
+.section-dark a:focus-visible,
+.footer a:focus-visible { outline-color: var(--orange); }
+
+/* Lien d'evitement : premier element focalisable, invisible jusqu'au clavier. */
+.evitement {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  padding: var(--e-3) var(--e-5);
+  background: var(--orange-texte); color: #fff; font-weight: 600;
+  border-radius: 0 0 var(--r-m) 0;
+}
+.evitement:focus { left: 0; }
+
+/* ============================================================
+   NAVIGATION — ordinateur
+   Le logo ouvre, l'action principale ferme : on retient le debut et la
+   fin d'une suite, on oublie le milieu.
+   ============================================================ */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--survol) var(--deplacer),
+              box-shadow var(--survol) var(--deplacer);
+}
+.nav.scrolled { border-bottom-color: var(--line); box-shadow: var(--ombre-contact); }
+
+.nav-inner {
+  max-width: var(--max); margin: 0 auto;
+  padding: var(--e-3) var(--e-6);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--e-6);
+}
+.nav-logo img { height: 36px; width: auto; }
+
+.nav-links {
+  display: flex; align-items: center; gap: var(--e-8);
+  font-size: .95rem;
+}
+
+.nav-links a {
+  position: relative;
+  color: var(--text);
+  padding-bottom: var(--e-1);
+  transition: color var(--survol) var(--deplacer);
+}
+/* Le soulignement indique la position, pas seulement le survol. */
+.nav-links a::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--orange);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--survol) var(--deplacer);
+}
+.nav-links a:focus-visible::after,
+.nav-links a[aria-current]::after { transform: scaleX(1); }
+.nav-links a[aria-current] { color: var(--ink); font-weight: 600; }
+
+/* L'entree qui mene a une AUTRE page se detache des ancres : filet vertical
+   et forme de bouton. Le geste differe, cela doit se voir avant le clic. */
+.nav-links .nav-cta {
+  margin-left: var(--e-2);
+  padding: var(--e-2) var(--e-4);
+  border-radius: var(--r-m);
+  background: var(--orange-texte);
+  color: #fff;
+  font-weight: 600; font-size: .9rem;
+  transition: background var(--survol) var(--deplacer),
+              transform var(--appui) var(--deplacer),
+              box-shadow var(--survol) var(--deplacer);
+}
+.nav-links .nav-cta::after { content: none; }
+.nav-links .nav-cta::before {
+  content: "";
+  position: absolute; left: calc(-1 * var(--e-5)); top: 50%;
+  transform: translateY(-50%);
+  width: 1px; height: 20px;
+  background: var(--line);
+}
+.nav-links .nav-cta[aria-current] { background: var(--ink); color: #fff; }
+.nav-links .nav-cta:active { transform: scale(.98); }
+
+/* « Articles » mene aussi a une autre page : le filet vertical passe devant
+   lui, et le bouton qui le suit n'en a plus besoin. */
+.nav-links .nav-page { margin-left: var(--e-2); }
+.nav-links .nav-page::before {
+  content: "";
+  position: absolute; left: calc(-1 * var(--e-5)); top: 50%;
+  transform: translateY(-50%);
+  width: 1px; height: 20px;
+  background: var(--line);
+}
+.nav-links .nav-page + .nav-cta { margin-left: 0; }
+.nav-links .nav-page + .nav-cta::before { content: none; }
+
+/* Barre de lecture : progression dans la page, en CSS pur. Les navigateurs
+   qui ne connaissent pas les chronologies de defilement ne l'affichent pas. */
+@supports (animation-timeline: scroll()) {
+  .nav::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: -1px;
+    height: 2px;
+    background: var(--orange);
+    transform: scaleX(0); transform-origin: 0 50%;
+    animation: lecture linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes lecture { to { transform: scaleX(1); } }
+
+/* ============================================================
+   NAVIGATION — telephone : barre d'onglets
+   Sous le pouce, toujours visible. Un menu hamburger cache les
+   destinations principales, et l'engagement chute de 40 %.
+   ============================================================ */
+.onglets { display: none; }
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-inner { padding: var(--e-3) var(--e-5); }
+
+  body { padding-bottom: calc(57px + env(safe-area-inset-bottom)); }
+
+  .onglets {
+    display: grid;
+    grid-auto-flow: column; grid-auto-columns: 1fr;   /* autant de colonnes que d'entrees */
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 100;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+  }
+  .onglets a {
+    position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: var(--e-1);
+    min-height: 56px;
+    padding: var(--e-2) var(--e-1) 6px;
+    font-size: .75rem;
+    color: var(--text-soft);
+    -webkit-tap-highlight-color: transparent;
+    transition: color var(--survol) var(--deplacer),
+                transform var(--appui) var(--deplacer);
+  }
+  .onglets svg {
+    width: 22px; height: 22px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  /* L'onglet courant : couleur ET trait, jamais la couleur seule. */
+  .onglets a[aria-current] { color: var(--orange-texte); font-weight: 600; }
+  .onglets a[aria-current]::before {
+    content: "";
+    position: absolute; top: 0; left: 25%; right: 25%;
+    height: 2px; border-radius: 0 0 2px 2px;
+    background: var(--orange-texte);
+  }
+  .onglets a:active { transform: scale(.96); }
+
+  section[id] { scroll-margin-top: var(--e-16); }
+}
+
+/* ============================================================
+   BOUTONS ET LIENS D'ACTION
+   Une seule action pleine par vue ; la seconde devient un lien fleche.
+   Deux boutons egaux partagent le clic a 50/50 ; ici, 90/10.
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px;
+  padding: var(--e-3) var(--e-6);
+  border-radius: var(--r-m);
+  font-weight: 600; font-size: .95rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--survol) var(--deplacer),
+              box-shadow var(--survol) var(--deplacer),
+              transform var(--appui) var(--deplacer);
+}
+.btn-primary { background: var(--orange-texte); color: #fff; }
+.btn:active { transform: scale(.98); }
+
+.lien-fleche {
+  display: inline-flex; align-items: center; gap: var(--e-2);
+  min-height: 44px;
+  color: #fff; font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(255,255,255,.4);
+  text-underline-offset: 5px;
+  transition: text-decoration-color var(--survol) var(--deplacer);
+}
+.lien-fleche::after {
+  content: "→";
+  transition: transform var(--survol) var(--deplacer);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  isolation: isolate;          /* ses calques de fond restent chez lui */
+  background: var(--bg-dark);
+  color: #fff;
+  overflow: hidden;
+  padding: var(--e-24) var(--e-6) var(--e-30);
+}
+/* Lueur d'ambiance, une seule teinte : un degrade qui traverse la roue des
+   couleurs passe par un gris boueux. Grain de 4 % par-dessus, contre les
+   aplats en escalier des ecrans bon marche. */
+.hero-bg {
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(ellipse at 80% 10%, rgba(237,125,49,.20), transparent 55%),
+    radial-gradient(ellipse at 10% 90%, rgba(237,125,49,.10), transparent 50%),
+    linear-gradient(180deg, #1F1F1F, #141414);
+}
+.hero-bg::before {
+  content: ""; position: absolute; inset: 0;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+.hero-inner { max-width: var(--max); margin: 0 auto; }
+
+.hero-mark { margin: 0 0 var(--e-6); opacity: .9; }
+.hero h1 { color: #fff; margin-bottom: var(--e-5); }
+.hero-line { white-space: nowrap; }
+.hero-accent { color: var(--orange); }
+.hero-sub {
+  max-width: 620px;
+  margin: 0 0 var(--e-8);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: rgba(255,255,255,.78);
+}
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-6); }
+
+@media (max-width: 720px) {
+  .hero-line { white-space: normal; }
+}
+
+/* ============================================================
+   SECTIONS
+   Tout s'aligne a gauche, sur un seul axe : un titre centre au-dessus
+   d'un texte cale a gauche oblige l'oeil a sauter d'un axe a l'autre.
+   ============================================================ */
+.section { padding: var(--e-24) var(--e-6); }
+.section-alt { background: var(--bg-alt); }
+.section-dark { background: var(--bg-dark); color: #fff; }
+.section-dark h2 { color: #fff; }
+.section-inner { max-width: var(--max); margin: 0 auto; }
+
+.section-head { max-width: 760px; margin: 0 0 var(--e-12); }
+.eyebrow {
+  display: inline-block;
+  margin-bottom: var(--e-3);
+  font-size: .78rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-soft);
+}
+.eyebrow-light { color: rgba(255,255,255,.6); }
+.section-lead { margin: var(--e-3) 0 0; font-size: 1.05rem; color: var(--text-soft); }
+
+/* Apparitions : 300 ms, deceleration, et cascade de 50 ms dans un groupe.
+   --rang est pose par le script selon la place de l'element parmi ses freres. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--entree-duree) var(--entree),
+              transform var(--entree-duree) var(--entree);
+  transition-delay: calc(var(--rang, 0) * 50ms);
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ============================================================
+   TRAVAUX
+   Pres = lie, loin = separe : le titre colle a sa ligne de contexte,
+   les projets s'ecartent nettement les uns des autres.
+   ============================================================ */
+.work { padding: var(--e-12) 0; border-top: 1px solid var(--line); }
+.work:first-of-type { border-top: 0; padding-top: 0; }
+
+.work-head { margin-bottom: var(--e-4); }
+.work-head h3 { font-size: 1.35rem; margin-bottom: var(--e-1); }
+.work-meta { margin: 0; font-size: .86rem; line-height: 1.5; color: var(--text-soft); }
+.work-content > p { max-width: 62ch; margin: 0; color: var(--text); }
+
+/* Proportion d'or : 38 % au texte, 62 % a la maquette, qui est la preuve. */
+.work-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 38fr) minmax(0, 62fr);
+  gap: var(--e-10);
+  align-items: center;
+}
+/* Zigzag : un projet sur deux place la maquette a gauche. Trois blocs cales
+   pareil se lisent en diagonale ; l'alternance rend chacun distinct. */
+.work-3d:nth-of-type(even) .work-layout { grid-template-columns: minmax(0, 62fr) minmax(0, 38fr); }
+.work-3d:nth-of-type(even) .work-content { order: 2; }
+.work-3d:nth-of-type(even) .work-visual { order: 1; }
+
+@media (max-width: 900px) {
+  .work-layout,
+  .work-3d:nth-of-type(even) .work-layout { grid-template-columns: 1fr; gap: var(--e-5); }
+  /* en colonne unique, on lit avant de voir */
+  .work-3d:nth-of-type(even) .work-content,
+  .work-3d:nth-of-type(even) .work-visual { order: 0; }
+}
+@media (max-width: 640px) {
+  .work { padding: var(--e-8) 0; }
+  .work-head h3 { font-size: 1.15rem; }
+}
+
+/* --- Maquettes 3D ---------------------------------------------------------
+   Pendant le chargement, le composant affiche sa barre de progression dans
+   le cadre deja dessine : rien ne saute, rien n'est vide. */
+.viewer { margin: 0; }
+.viewer model-viewer {
+  display: block;
+  width: 100%;
+  /* le composant impose height:150px ; sans height:auto, aspect-ratio est ignore */
+  height: auto;
+  aspect-ratio: 16 / 10;
+  min-height: 320px;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+  box-shadow: var(--ombre-posee);
+  --poster-color: var(--bg-alt);
+  --progress-bar-color: var(--orange);
+  --progress-bar-height: 3px;
+}
+.viewer-erreur { margin-top: var(--e-3); font-size: .86rem; color: var(--orange-texte); }
+
+/* min-height + aspect-ratio imposent une LARGEUR : 320 x 4/3 = 427 px, plus
+   que l'ecran d'un iPhone. En etroit, on libere le plancher. */
+@media (max-width: 640px) {
+  .viewer model-viewer { aspect-ratio: 4 / 3; min-height: 0; }
+}
+
+/* ============================================================
+   DEMARCHE
+   ============================================================ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--e-8) var(--e-10);
+}
+.why-num {
+  display: block;
+  margin-bottom: var(--e-3);
+  font-size: .85rem; font-weight: 600;
+  letter-spacing: .08em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-soft);
+}
+.why-item h3 { margin-bottom: var(--e-2); }
+.why-item p { margin: 0; font-size: .95rem; color: var(--text-soft); }
+
+/* --- Ouvrages traites : deux domaines -------------------------------------- */
+.domaines {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--e-6);
+}
+.domaine {
+  padding: var(--e-8);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+}
+.domaine h3 { margin-bottom: var(--e-2); font-size: 1.15rem; }
+.domaine p { margin: 0; color: var(--text-soft); }
+
+/* ============================================================
+   CONTACT
+   Une seule action mise en avant — le courriel. Ce qui ne se clique
+   pas ne prend pas l'allure d'un bouton.
+   ============================================================ */
+.contact-grid { display: grid; grid-template-columns: 1fr; max-width: 680px; }
+.contact-text h2 { color: #fff; margin-bottom: var(--e-8); }
+
+.contact-info { display: flex; flex-direction: column; gap: var(--e-3); }
+.contact-row {
+  display: flex; align-items: center; gap: var(--e-4);
+  min-height: 56px;
+  padding: var(--e-4) var(--e-5);
+  color: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r-m);
+  transition: background var(--survol) var(--deplacer),
+              border-color var(--survol) var(--deplacer);
+}
+.contact-principal {
+  color: #fff; font-weight: 600;
+  background: rgba(237,125,49,.10);
+  border-color: var(--orange);
+}
+.contact-lieu {
+  display: flex; align-items: center; gap: var(--e-4);
+  margin: var(--e-6) 0 0;
+  padding: 0 calc(var(--e-5) + 1px);
+  color: rgba(255,255,255,.6);
+}
+
+/* ============================================================
+   PIED DE PAGE
+   Les gris sur fond sombre sont la ou se cachent les echecs de
+   contraste : tous passent ici 4,5:1.
+   ============================================================ */
+.footer {
+  background: var(--bg-pied);
+  color: rgba(255,255,255,.7);
+  padding: var(--e-12) var(--e-6) var(--e-8);
+  font-size: .9rem;
+}
+.footer-inner {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+  gap: var(--e-8); align-items: start;
+}
+.footer-brand img { filter: brightness(1.1); margin-bottom: var(--e-3); }
+.footer-brand p { margin: 0; font-size: .85rem; color: rgba(255,255,255,.65); }
+.footer-links { display: flex; flex-direction: column; gap: var(--e-3); }
+.footer-links a { color: rgba(255,255,255,.75); transition: color var(--survol) var(--deplacer); }
+.footer-meta { text-align: right; font-size: .82rem; color: rgba(255,255,255,.6); }
+
+@media (max-width: 760px) {
+  .footer-inner { grid-template-columns: 1fr; gap: var(--e-6); }
+  .footer-meta { text-align: left; }
+}
+
+/* ============================================================
+   CALCULATEUR RDM
+   Libelles a gauche, nombres a droite, rien de centre.
+   ============================================================ */
+.calculateur {
+  display: grid;
+  grid-template-columns: 272px 1fr;
+  gap: var(--e-6);
+  align-items: start;
+}
+
+/* Rayons concentriques : panneau 12 px, marge 8 px, onglets 4 px. */
+.calc-menu {
+  position: sticky; top: var(--e-24);
+  padding: var(--e-2);
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+}
+.calc-groupe {
+  margin: var(--e-3) var(--e-3) var(--e-2);
+  font-size: .8rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-soft);
+}
+.calc-menu ul { margin: 0 0 var(--e-3); padding: 0; list-style: none; }
+.calc-menu ul:last-child { margin-bottom: 0; }
+.calc-menu button {
+  display: block; width: 100%;
+  min-height: 40px;
+  margin-bottom: 2px;
+  padding: var(--e-2) var(--e-3);
+  font: inherit; font-size: .88rem; text-align: left;
+  color: var(--text);
+  background: transparent;
+  border: 0; border-left: 3px solid transparent;
+  border-radius: var(--r-s);
+  cursor: pointer;
+  transition: background var(--survol) var(--deplacer),
+              color var(--survol) var(--deplacer);
+}
+.calc-menu button[aria-current="true"] {
+  background: #fff;
+  border-left-color: var(--orange);
+  color: var(--ink); font-weight: 600;
+}
+
+/* La profondeur vient des valeurs de fond et d'un filet, pas d'une ombre. */
+.calc-panneau {
+  min-height: 380px;
+  padding: var(--e-8);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+}
+.calc-entete {
+  padding-bottom: var(--e-4);
+  margin-bottom: var(--e-6);
+  border-bottom: 1px solid var(--line);
+}
+.calc-entete h3 { margin: 0; font-size: 1.2rem; }
+
+.calc-grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--e-8);
+}
+.calc-grille h4 {
+  margin: 0 0 var(--e-4);
+  font-size: .76rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* Libelle 8 px au-dessus du champ, champs espaces de 16 px : l'ecart dans
+   un groupe reste plus petit que l'ecart entre les groupes. */
+.calc-champ { margin-bottom: var(--e-4); }
+.calc-champ label {
+  display: flex; align-items: baseline; gap: var(--e-2);
+  margin-bottom: var(--e-2);
+  font-size: .86rem; line-height: 1.4;
+}
+.calc-libelle { color: var(--text); }
+.calc-unite {
+  margin-left: auto;
+  padding: 2px var(--e-2);
+  border-radius: var(--r-s);
+  background: var(--bg-alt);
+  font-size: .76rem;
+  color: var(--text-soft);
+  white-space: nowrap;
+}
+
+/* Les etats d'un champ : repos, focus, erreur, confirme. */
+.calc-champ input {
+  width: 100%;
+  padding: var(--e-3);
+  font: inherit; font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-m);
+  transition: border-color var(--survol) var(--deplacer),
+              box-shadow var(--survol) var(--deplacer);
+}
+.calc-champ input:focus { border-color: var(--orange-texte); }
+.calc-champ input:focus-visible { outline-offset: 1px; }
+/* double le trait sans changer l'epaisseur de bordure : rien ne bouge */
+.calc-champ input.en-faute {
+  border-color: var(--orange-texte);
+  box-shadow: inset 0 0 0 1px var(--orange-texte);
+  background: #FFF8F4;
+}
+.calc-champ input.confirme {
+  border-color: var(--succes);
+  padding-right: var(--e-10);
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232E7D32' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5 10 17 19 7'/%3E%3C/svg%3E") no-repeat right var(--e-3) center / 18px;
+}
+
+/* Une erreur = couleur + icone + message : la couleur seule echappe a
+   environ 8 % des visiteurs, qui distinguent mal les teintes. */
+.calc-alerte {
+  display: flex; align-items: center; gap: 6px;
+  min-height: 1.2em;
+  margin: var(--e-1) 0 0;
+  font-size: .8rem;
+  color: var(--orange-texte);
+}
+.calc-alerte:not(:empty)::before {
+  content: "!";
+  flex: none;
+  display: grid; place-items: center;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--orange-texte);
+  color: #fff;
+  font-size: .7rem; font-weight: 700; line-height: 1;
+}
+
+.calc-zone { display: grid; gap: 2px; }
+.calc-ligne {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--e-4);
+  padding: var(--e-3) var(--e-4);
+  background: var(--bg-alt);
+  border-radius: var(--r-m);
+}
+.calc-ligne:nth-child(odd) { background: #FCFAF8; }
+.calc-nom { font-size: .84rem; line-height: 1.35; color: var(--text-soft); }
+.calc-valeur {
+  font-size: 1.02rem; font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.calc-valeur small { margin-left: var(--e-1); font-size: .76rem; font-weight: 400; color: var(--text-soft); }
+.calc-vide { margin: 0; padding: var(--e-5) 0; font-size: .9rem; font-style: italic; color: var(--text-soft); }
+
+@media (max-width: 900px) {
+  .calculateur { grid-template-columns: 1fr; }
+  .calc-menu { position: static; }
+  .calc-panneau { padding: var(--e-6) var(--e-4); }
+}
+
+/* Au doigt, chaque cible atteint 44 px ; a la souris, on garde la densite. */
+@media (pointer: coarse) {
+  .calc-menu button { min-height: 44px; }
+}
+
+/* ============================================================
+   ARTICLES — liste et page d'article
+   Mesure de lecture : 68 caracteres environ (38em a 16 px). Au-dela,
+   l'oeil perd la ligne suivante au retour.
+   ============================================================ */
+.billets { list-style: none; margin: 0; padding: 0; max-width: 760px; }
+.billets-flux { margin: var(--e-4) 0 0; font-size: .9rem; }
+.billets-flux a { display: inline-flex; align-items: center; min-height: 44px; color: var(--text-soft);
+  text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
+.billet { border-top: 1px solid var(--line); }
+.billet:last-child { border-bottom: 1px solid var(--line); }
+.billet a { display: block; padding: var(--e-8) 0; }
+.billet time { font-size: .85rem; color: var(--text-soft); }
+.billet h2 { margin: var(--e-2) 0 var(--e-2); font-size: clamp(1.3rem, 2.6vw, 1.6rem); letter-spacing: -.02em; }
+.billet p { margin: 0 0 var(--e-2); color: var(--text-soft); }
+.billet .lien-fleche { min-height: 0; color: var(--orange-texte);
+  text-decoration-color: rgba(183,84,16,.35); }
+
+.billet-page { padding-top: var(--e-12); }
+.billet-inner { max-width: 38em; margin: 0 auto; }
+.billet-retour { display: inline-flex; align-items: center; gap: var(--e-2); min-height: 44px;
+  font-size: .9rem; color: var(--text-soft); }
+.billet-retour::before { content: "←"; }
+.billet-tete { margin: var(--e-4) 0 var(--e-10); }
+.billet-tete h1 { margin-bottom: var(--e-3); }
+.billet-meta { margin: 0; font-size: .9rem; color: var(--text-soft); }
+
+.prose { font-size: 1.0625rem; line-height: 1.7; }
+.prose > * { margin: 0 0 var(--e-5); }
+.prose h2 { margin: var(--e-12) 0 var(--e-4); font-size: 1.5rem; letter-spacing: -.02em; }
+.prose h3 { margin: var(--e-8) 0 var(--e-3); }
+.prose ul, .prose ol { padding-left: var(--e-6); }
+.prose li { margin-bottom: var(--e-2); }
+.prose strong { color: var(--ink); }
+.prose a:not(.btn) { color: var(--orange-texte); text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: rgba(183,84,16,.35); }
+/* une capture d'ecran garde sa taille : l'agrandir la rendrait floue */
+.prose img { height: auto; margin: var(--e-2) 0; border: 1px solid var(--line);
+  border-radius: var(--r-s); box-shadow: var(--ombre-contact); }
+.prose blockquote { margin-left: 0; padding: var(--e-4) var(--e-5);
+  background: var(--bg-alt); border-left: 3px solid var(--line); border-radius: 0 var(--r-m) var(--r-m) 0; }
+.prose blockquote p { margin: 0; }
+.prose code { font-family: Consolas, 'Courier New', monospace; font-size: .92em;
+  padding: 1px 5px; background: var(--bg-alt); border: 1px solid var(--line); border-radius: var(--r-s); }
+.prose pre { overflow-x: auto; padding: var(--e-4); background: var(--bg-alt);
+  border: 1px solid var(--line); border-radius: var(--r-m); }
+.prose pre code { padding: 0; border: 0; background: none; }
+.prose table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.prose th, .prose td { padding: var(--e-2) var(--e-3); border-bottom: 1px solid var(--line); text-align: left; }
+
+.billet-pied { margin-top: var(--e-16); padding-top: var(--e-8); border-top: 1px solid var(--line); }
+
+/* Bouton secondaire : contour seulement. Une seule action pleine par vue. */
+.btn-secondaire { background: #fff; color: var(--orange-texte); border-color: var(--orange-texte); }
+
+/* Newsletter (formulaire Brevo, apparence du site) */
+.newsletter { max-width: 760px; margin-top: var(--e-12); padding: var(--e-8); background: var(--bg-alt);
+  border: 1px solid var(--line); border-radius: var(--r-l); }
+.billet-inner .newsletter { max-width: none; }
+.newsletter h2 { margin: 0 0 var(--e-2); font-size: 1.3rem; letter-spacing: -.02em; }
+.newsletter-texte { margin: 0 0 var(--e-5); color: var(--text-soft); }
+.newsletter-form label { display: block; margin-bottom: var(--e-2); font-size: .9rem; font-weight: 600; color: var(--ink); }
+.newsletter-ligne { display: flex; gap: var(--e-3); flex-wrap: wrap; }
+.newsletter-ligne input { flex: 1 1 220px; min-height: 44px; padding: var(--e-2) var(--e-3); font: inherit;
+  color: var(--ink); background: #fff; border: 1px solid #C9C9C9; border-radius: var(--r-m); }
+.newsletter-ligne input:focus-visible { outline: 2px solid var(--orange-texte); outline-offset: 1px; }
+.nl-piege { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.nl-cible { display: none; }
+.newsletter-etat { margin: var(--e-3) 0 0; min-height: 1.5em; font-size: .95rem; }
+.newsletter-etat.ok { color: var(--succes); font-weight: 600; }
+.newsletter-etat.ok::before { content: "✓ "; }
+.newsletter-etat.erreur { color: #B3261E; }
+.newsletter-etat.erreur::before { content: "! "; font-weight: 700; }
+.billet-pied p { margin: 0 0 var(--e-4); font-weight: 600; color: var(--ink); }
+
+/* ============================================================
+   SURVOLS — reserves aux appareils qui savent survoler
+   Sur un ecran tactile, un survol se colle au premier toucher et
+   gele l'element. On interroge le pointeur, jamais le modele d'appareil.
+   ============================================================ */
+@media (hover: hover) {
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-links .nav-cta:hover { background: var(--orange-texte-survol); color: #fff; box-shadow: var(--lueur-bouton); }
+  .btn-primary:hover { background: var(--orange-texte-survol); box-shadow: var(--lueur-bouton); }
+  .btn-secondaire:hover { background: var(--orange-texte); color: #fff; }
+  .lien-fleche:hover { text-decoration-color: #fff; }
+  .billet a:hover h2 { color: var(--orange-texte); }
+  .billet a:hover .lien-fleche { text-decoration-color: var(--orange-texte); }
+  .billet-retour:hover { color: var(--ink); }
+  .prose a:not(.btn):hover { text-decoration-color: var(--orange-texte); }
+  .lien-fleche:hover::after { transform: translateX(3px); }
+  a.contact-row:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.3); }
+  a.contact-principal:hover { background: rgba(237,125,49,.18); border-color: var(--orange); }
+  .footer-links a:hover { color: #fff; }
+  .calc-menu button:hover { background: #fff; color: var(--ink); }
+}
+
+/* ============================================================
+   PETITS ECRANS
+   ============================================================ */
+@media (max-width: 600px) {
+  .hero { padding: var(--e-16) var(--e-5) var(--e-20); }
+  .section { padding: var(--e-16) var(--e-5); }
+  .section-head { margin-bottom: var(--e-10); }
+}
+
+/* ============================================================
+   MOUVEMENT REDUIT — reglage systeme du visiteur
+   Certaines personnes ressentent un vertige reel devant une page qui
+   bouge : on coupe tout. La rotation des maquettes est arretee par le
+   script.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+  .nav::after { display: none; }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}

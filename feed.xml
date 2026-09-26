@@ -1,0 +1,19 @@
+---
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+  <title>Articles — BIMaghreb</title>
+  <link>https://bimaghreb.com/blog/</link>
+  <description>{{ site.description | xml_escape }}</description>
+  <language>fr</language>
+  <atom:link href="https://bimaghreb.com/feed.xml" rel="self" type="application/rss+xml"/>
+{% for post in site.posts %}  <item>
+    <title>{{ post.title | xml_escape }}</title>
+    <link>https://bimaghreb.com{{ post.url }}</link>
+    <guid isPermaLink="true">https://bimaghreb.com{{ post.url }}</guid>
+    <dc:creator>{{ site.author | xml_escape }}</dc:creator>
+    <description>{{ post.description | xml_escape }}</description>
+  </item>
+{% endfor %}</channel>
+</rss>

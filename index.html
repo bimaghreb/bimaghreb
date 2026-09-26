@@ -1,0 +1,324 @@
+<!-- FICHIER GENERE le 2026-09-26 par construire.py — NE PAS MODIFIER ICI.
+     Le texte de cette page se trouve dans site_source/pages/accueil.html
+     La navigation et le pied de page sont dans site_source/gabarit.html -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Securite (GitHub Pages n'envoie pas d'en-tetes : la politique passe par
+     une balise). Tout vient du site ; seuls le formulaire de newsletter et sa
+     reponse vont chez Brevo. blob: et data: servent a la visionneuse 3D
+     (workers, textures). 'unsafe-inline' sur les styles : les feuilles internes
+     de model-viewer, jamais des styles ecrits dans les pages. 'wasm-unsafe-eval' :
+     la visionneuse compile un module WebAssembly ; eval() reste interdit. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' data: blob:; worker-src 'self' blob:; frame-src https://*.sibforms.com; form-action https://*.sibforms.com; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>BIMaghreb — Calcul de structures et modélisation BIM</title>
+<meta name="description" content="Calcul de structures en béton armé et en charpente métallique, modélisation BIM : ouvrages étudiés, démarche, outils de calcul et articles techniques.">
+<meta name="author" content="Mohamed Bennani">
+<meta name="theme-color" content="#ED7D31">
+<link rel="canonical" href="https://bimaghreb.com/">
+<link rel="alternate" type="application/rss+xml" title="Articles — BIMaghreb" href="https://bimaghreb.com/feed.xml">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BIMaghreb">
+<meta property="og:title" content="BIMaghreb — Calcul de structures et modélisation BIM">
+<meta property="og:description" content="Calcul de structures en béton armé et en charpente métallique, modélisation BIM : ouvrages étudiés, démarche, outils de calcul et articles techniques.">
+<meta property="og:url" content="https://bimaghreb.com/">
+<meta property="og:image" content="https://bimaghreb.com/assets/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/svg+xml" href="assets/logo-icon.svg">
+<link rel="stylesheet" href="style.css?v=c09a7653">
+</head>
+<body>
+
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="" class="nav-logo" aria-label="BIMaghreb — accueil">
+      <img src="assets/logo-horizontal.svg" alt="BIMaghreb" width="150" height="36">
+    </a>
+    <nav class="nav-links" id="nav-links" aria-label="Navigation principale">
+      <a href="#hero">Accueil</a>
+      <a href="#travaux">Travaux</a>
+      <a href="#demarche">Démarche</a>
+      <a href="#contact">Contact</a>
+      <a href="blog/" class="nav-page">Articles</a>
+      <a href="outils/" class="nav-cta">Outils de calcul</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="onglets" aria-label="Navigation principale (mobile)">
+  <a href="#hero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Accueil</span></a>
+  <a href="#travaux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5Z"/><path d="M4 7.5v9L12 21l8-4.5v-9"/><path d="M12 12v9"/></svg><span>Travaux</span></a>
+  <a href="#demarche"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="12" r="2"/><path d="M8 6h3a3 3 0 0 1 3 3v1"/><path d="M8 18h3a3 3 0 0 0 3-3v-1"/></svg><span>Démarche</span></a>
+  <a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Contact</span></a>
+  <a href="blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg><span>Articles</span></a>
+  <a href="outils/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18.5h4"/></svg><span>Outils</span></a>
+</nav>
+
+<main id="contenu">
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <img src="assets/logo-icon-white.svg" alt="" class="hero-mark" width="120" height="120">
+    <h1>
+      <span class="hero-line">Calcul de structures &amp; modélisation BIM</span><br>
+      <span class="hero-accent">du modèle à la note de calcul.</span>
+    </h1>
+    <p class="hero-sub">
+      Études de structures en béton armé et en charpente métallique :
+      conception, dimensionnement et plans d'exécution, menés sur la maquette BIM.
+    </p>
+    <div class="hero-cta">
+      <a href="#travaux" class="btn btn-primary">Voir les travaux</a>
+      <a href="#contact" class="lien-fleche">Prendre contact</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="travaux">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow">Travaux</span>
+      <h2>Des fondations au plan d'exécution.</h2>
+    </div>
+
+    <article class="work work-3d">
+      <div class="work-layout">
+        <div class="work-content">
+          <div class="work-head">
+            <h3>Complexe résidentiel</h3>
+            <p class="work-meta">Habitat collectif · près de 1 100 m² au sol · jusqu'à R+5</p>
+          </div>
+          <p>Ossatures en béton armé de deux immeubles d'habitation mitoyens, l'un en R+4, l'autre en R+5 avec mezzanine, chacun sur sous‑sol.</p>
+        </div>
+
+        <div class="work-visual">
+          <figure class="viewer">
+            <model-viewer
+                src="assets/models/complexe-residentiel.glb?v=ae9e3838"
+                alt="Maquette de l&#x27;ossature de deux immeubles d&#x27;habitation mitoyens : trames de poteaux et de poutres, planchers et voiles de sous‑sol."
+                camera-controls
+                auto-rotate
+                camera-orbit="45deg 65deg auto"
+                touch-action="pan-y"
+                shadow-intensity="1"
+                shadow-softness="0.75"
+                exposure="0.95"
+                environment-image="neutral"
+                loading="eager"
+                reveal="auto"></model-viewer>
+          </figure>
+        </div>
+      </div>
+    </article>
+
+    <article class="work work-3d">
+      <div class="work-layout">
+        <div class="work-content">
+          <div class="work-head">
+            <h3>Équipement public</h3>
+            <p class="work-meta">Établissement recevant du public · près de 900 m² au sol · trois niveaux</p>
+          </div>
+          <p>Ossature en béton armé d'un bâtiment public de près de cinquante mètres de long, en R+1 sur sous‑sol.</p>
+        </div>
+
+        <div class="work-visual">
+          <figure class="viewer">
+            <model-viewer
+                src="assets/models/centre-culturel.glb?v=87485bd0"
+                alt="Maquette de l&#x27;ossature d&#x27;un équipement public : bâtiment allongé en R+1 sur sous‑sol."
+                camera-controls
+                auto-rotate
+                camera-orbit="45deg 65deg auto"
+                touch-action="pan-y"
+                shadow-intensity="1"
+                shadow-softness="0.75"
+                exposure="0.95"
+                environment-image="neutral"
+                loading="eager"
+                reveal="auto"></model-viewer>
+          </figure>
+        </div>
+      </div>
+    </article>
+
+    <article class="work work-3d">
+      <div class="work-layout">
+        <div class="work-content">
+          <div class="work-head">
+            <h3>Mosquée avec minaret</h3>
+            <p class="work-meta">Lieu de culte · environ 500 m² au sol · minaret de près de 20 m</p>
+          </div>
+          <p>Ossature en béton armé d'une mosquée sur trois niveaux, dont un sous‑sol, couronnée d'une coupole, et d'un minaret culminant à près de vingt mètres.</p>
+        </div>
+
+        <div class="work-visual">
+          <figure class="viewer">
+            <model-viewer
+                src="assets/models/mosquee.glb?v=db122eb0"
+                alt="Maquette de l&#x27;ossature d&#x27;une mosquée : trame de poteaux et de poutres, coupole et minaret."
+                camera-controls
+                auto-rotate
+                camera-orbit="45deg 65deg auto"
+                touch-action="pan-y"
+                shadow-intensity="1"
+                shadow-softness="0.75"
+                exposure="0.95"
+                environment-image="neutral"
+                loading="eager"
+                reveal="auto"></model-viewer>
+          </figure>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section section-alt" id="demarche">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow">Démarche</span>
+      <h2>Le calcul et le dessin traités comme une seule chaîne.</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-num">01</div>
+        <h3>Maquette et calcul menés ensemble</h3>
+        <p>
+          La maquette et la note de calcul procèdent des mêmes données. Cette
+          base commune écarte le décalage entre le modèle, le calcul et le plan
+          transmis au chantier.
+        </p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">02</div>
+        <h3>La clause citée, toujours</h3>
+        <p>
+          Chaque vérification porte la référence de l'article qui la fonde.
+          Une note de calcul doit pouvoir être relue et contestée article par
+          article.
+        </p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">03</div>
+        <h3>Hypothèses explicites</h3>
+        <p>
+          Contrainte de sol, classe de béton, enrobage, catégorie sismique :
+          les hypothèses figurent en tête de note.
+        </p>
+      </div>
+      <div class="why-item">
+        <div class="why-num">04</div>
+        <h3>Traçabilité</h3>
+        <p>
+          Versions datées, hypothèses conservées, feuilles de calcul lisibles.
+          Un calcul que l'on ne peut pas reprendre six mois plus tard n'a
+          aucune valeur.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="elements">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow">Ouvrages traités</span>
+      <h2>Béton armé et charpente métallique.</h2>
+    </div>
+
+    <div class="domaines">
+      <div class="domaine">
+        <h3>Béton armé</h3>
+        <p>
+          Bâtiments d'habitation et immeubles de bureaux, équipements publics
+          et lieux de culte, ouvrages enterrés et réservoirs. Du sous-sol à la
+          terrasse, fondations comprises.
+        </p>
+      </div>
+      <div class="domaine">
+        <h3>Charpente métallique</h3>
+        <p>
+          Halls industriels, hangars et couvertures de grande portée, ainsi que
+          les ouvrages mixtes associant une ossature métallique à une structure
+          en béton.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid contact-single">
+      <div class="contact-text">
+        <span class="eyebrow eyebrow-light">Contact</span>
+        <h2>Prendre contact.</h2>
+
+        <div class="contact-info">
+          <a href="mailto:bimaghreb@outlook.com" class="contact-row contact-principal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"/>
+              <path d="m3 7 9 6 9-6"/>
+            </svg>
+            <span>bimaghreb@outlook.com</span>
+          </a>
+          <a href="https://www.linkedin.com/company/bimaghrebengineering/" class="contact-row" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M8 11v5"/>
+              <path d="M8 8v.01"/>
+              <path d="M12 16v-5"/>
+              <path d="M12 13a2.5 2.5 0 0 1 5 0v3"/>
+            </svg>
+            <span>BIMaghreb sur LinkedIn</span>
+          </a>
+        </div>
+
+        <p class="contact-lieu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Maroc</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="assets/logo-horizontal.svg" alt="" width="133" height="32">
+      <p>Calcul de structures &amp; modélisation BIM — Maroc.</p>
+    </div>
+    <nav class="footer-links" aria-label="Navigation de pied de page">
+      <a href="#hero">Accueil</a>
+      <a href="#travaux">Travaux</a>
+      <a href="#demarche">Démarche</a>
+      <a href="#contact">Contact</a>
+      <a href="blog/">Articles</a>
+      <a href="outils/">Outils de calcul</a>
+    </nav>
+    <div class="footer-meta">
+      <span>&copy; 2026 BIMaghreb.</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/model-viewer.min.js?v=283b0672"></script>
+<script src="script.js?v=24675bf2"></script>
+</body>
+</html>

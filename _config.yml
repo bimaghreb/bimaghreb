@@ -1,0 +1,16 @@
+# FICHIER GENERE par construire.py — ne pas modifier sur GitHub.
+# Les articles du dossier _posts sont publies sous /blog/<nom-du-fichier>/.
+title: BIMaghreb
+description: "Notes de pratique sur la modélisation BIM et le calcul de structures."
+author: Mohamed Bennani
+url: https://bimaghreb.com
+lang: fr
+timezone: Africa/Casablanca
+permalink: /blog/:title/
+markdown: kramdown
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: article
