@@ -132,3 +132,65 @@
     });
   });
 })();
+
+/* Articles : chaque capture devient une figure legendee (legende = son texte
+   alternatif) et un lien vers l'image en taille reelle ; le sommaire de la
+   marge droite est construit a partir des intertitres et suit la lecture.
+   Sans JavaScript, l'article reste complet et lisible. */
+(function () {
+  var prose = document.querySelector(".billet-page .prose");
+  if (!prose) return;
+
+  prose.querySelectorAll("p > img:only-child").forEach(function (img) {
+    var p = img.parentNode;
+    if (p.textContent.trim() !== "") return;
+    var fig = document.createElement("figure");
+    var lien = document.createElement("a");
+    lien.href = img.getAttribute("src");
+    lien.target = "_blank";
+    lien.rel = "noopener";
+    lien.setAttribute("aria-label", "Ouvrir en taille réelle : " + (img.alt || "image"));
+    lien.appendChild(img);
+    fig.appendChild(lien);
+    if (img.alt) {
+      var leg = document.createElement("figcaption");
+      leg.textContent = img.alt;
+      fig.appendChild(leg);
+    }
+    p.parentNode.replaceChild(fig, p);
+  });
+
+  var nav = document.querySelector(".billet-sommaire");
+  var titres = prose.querySelectorAll("h2");
+  if (!nav || titres.length < 2) return;
+  var liste = nav.querySelector("ol");
+  var liens = [];
+  titres.forEach(function (h, i) {
+    if (!h.id) h.id = "partie-" + (i + 1);
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = "#" + h.id;
+    a.textContent = h.textContent;
+    li.appendChild(a);
+    liste.appendChild(li);
+    liens.push(a);
+  });
+  nav.hidden = false;
+
+  // partie en cours = le dernier intertitre passe sous le haut de l'ecran
+  // (sous la barre de navigation) ; avant le premier, aucune.
+  var attente = false;
+  function suivre() {
+    attente = false;
+    var seuil = window.innerHeight * 0.3, courant = -1;
+    titres.forEach(function (h, i) { if (h.getBoundingClientRect().top <= seuil) courant = i; });
+    liens.forEach(function (a, i) {
+      if (i === courant) a.setAttribute("aria-current", "true");
+      else a.removeAttribute("aria-current");
+    });
+  }
+  window.addEventListener("scroll", function () {
+    if (!attente) { attente = true; requestAnimationFrame(suivre); }
+  }, { passive: true });
+  suivre();
+})();

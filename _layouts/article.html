@@ -32,7 +32,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="../../assets/logo-icon.svg">
-<link rel="stylesheet" href="../../style.css?v=c09a7653">
+<link rel="stylesheet" href="../../style.css?v=22ab1b87">
 </head>
 <body>
 
@@ -65,23 +65,25 @@
 
 <main id="contenu">
 <article class="section billet-page">
-  <div class="billet-inner">
-    <a class="billet-retour" href="../../blog/">Tous les articles</a>
-    <header class="billet-tete">
-      <h1>{{ page.title }}</h1>
-      <p class="billet-meta">
-        Par {{ site.author }}
-      </p>
-    </header>
+  <!-- Aligne a gauche sur la marge du site ; sur grand ecran, le sommaire
+       (construit par script.js a partir des intertitres) occupe la marge droite. -->
+  <div class="section-inner billet-grille">
+    <div class="billet-inner">
+      <a class="billet-retour" href="../../blog/">Tous les articles</a>
+      <header class="billet-tete">
+        <h1>{{ page.title }}</h1>
+        <p class="billet-chapo">{{ page.description }}</p>
+        <p class="billet-meta">Par {{ site.author }}</p>
+      </header>
 
-    <div class="prose">
+      <div class="prose">
 {{ content }}
-    </div>
+      </div>
 
-    <footer class="billet-pied">
-      <p>Une question sur ce sujet, ou un ouvrage à étudier&nbsp;?</p>
-      <a class="btn btn-primary" href="mailto:bimaghreb@outlook.com">Écrire à BIMaghreb</a>
-    </footer>
+      <footer class="billet-pied">
+        <p>Une question sur ce sujet, ou un ouvrage à étudier&nbsp;?</p>
+        <a class="btn btn-primary" href="mailto:bimaghreb@outlook.com">Écrire à BIMaghreb</a>
+      </footer>
 
 <aside class="newsletter" aria-labelledby="nl-titre">
   <h2 id="nl-titre">Recevoir les prochains articles</h2>
@@ -104,6 +106,12 @@
     <p class="newsletter-etat" role="status" aria-live="polite"></p>
   </form>
 </aside>
+    </div>
+
+    <nav class="billet-sommaire" aria-label="Sommaire de l’article" hidden>
+      <p class="billet-sommaire-titre">Dans cet article</p>
+      <ol></ol>
+    </nav>
   </div>
 </article>
 </main>
@@ -129,6 +137,6 @@
 </footer>
 
 
-<script src="../../script.js?v=24675bf2"></script>
+<script src="../../script.js?v=e455522f"></script>
 </body>
 </html>

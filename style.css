@@ -751,7 +751,22 @@ model-viewer:focus-visible {
    Mesure de lecture : 68 caracteres environ (38em a 16 px). Au-dela,
    l'oeil perd la ligne suivante au retour.
    ============================================================ */
-.billets { list-style: none; margin: 0; padding: 0; max-width: 760px; }
+/* Page Articles : partage 38/62 comme les Travaux. Sur telephone, la colonne
+   de gauche « se dissout » (display: contents) pour que l'ordre devienne
+   titre, liste, newsletter. */
+.blog-grille { display: flex; flex-direction: column; }
+.blog-cote { display: contents; }
+.blog-tete { order: 1; }
+.billets { order: 2; }
+.blog-nl { order: 3; }
+@media (min-width: 900px) {
+  .blog-grille { display: grid; grid-template-columns: 38fr 62fr; column-gap: var(--e-16); align-items: start; }
+  .blog-cote { display: block; position: sticky; top: var(--e-24); }
+  .blog-tete { margin-bottom: 0; }
+  .blog-nl .newsletter { margin-top: var(--e-10); padding: var(--e-6); }
+}
+.billets { list-style: none; margin: 0; padding: 0; }
+.billet-vide p { padding: var(--e-8) 0; color: var(--text-soft); }
 .billets-flux { margin: var(--e-4) 0 0; font-size: .9rem; }
 .billets-flux a { display: inline-flex; align-items: center; min-height: 44px; color: var(--text-soft);
   text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line); }
@@ -765,12 +780,31 @@ model-viewer:focus-visible {
   text-decoration-color: rgba(183,84,16,.35); }
 
 .billet-page { padding-top: var(--e-12); }
-.billet-inner { max-width: 38em; margin: 0 auto; }
+/* Aligne a gauche, sur la marge du site (et non centre) ; le sommaire prend
+   la marge droite sur grand ecran. */
+.billet-inner { max-width: 40em; min-width: 0; }
+@media (min-width: 1100px) {
+  .billet-grille { display: grid; grid-template-columns: minmax(0, 40em) minmax(200px, 260px); column-gap: var(--e-16); align-items: start; }
+}
+.billet-sommaire { display: none; }
+@media (min-width: 1100px) {
+  .billet-sommaire:not([hidden]) { display: block; position: sticky; top: var(--e-24); margin-top: var(--e-24);
+    padding-left: var(--e-5); border-left: 1px solid var(--line); font-size: .9rem; }
+}
+.billet-sommaire-titre { margin: 0 0 var(--e-3); font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-soft); }
+.billet-sommaire ol { list-style: none; margin: 0; padding: 0; }
+.billet-sommaire li { margin: 0 0 var(--e-2); }
+.billet-sommaire a { display: block; padding: var(--e-1) 0; color: var(--text-soft); line-height: 1.4;
+  transition: color var(--survol) var(--deplacer); }
+/* la partie en cours de lecture : un ETAT, donc l'accent (couleur ET graisse) */
+.billet-sommaire a[aria-current] { color: var(--orange-texte); font-weight: 600; }
 .billet-retour { display: inline-flex; align-items: center; gap: var(--e-2); min-height: 44px;
   font-size: .9rem; color: var(--text-soft); }
 .billet-retour::before { content: "←"; }
 .billet-tete { margin: var(--e-4) 0 var(--e-10); }
-.billet-tete h1 { margin-bottom: var(--e-3); }
+.billet-tete h1 { margin-bottom: var(--e-4); font-size: clamp(1.8rem, 3.4vw, 2.4rem); }
+.billet-chapo { margin: 0 0 var(--e-4); font-size: 1.1rem; line-height: 1.55; color: var(--text); }
 .billet-meta { margin: 0; font-size: .9rem; color: var(--text-soft); }
 
 .prose { font-size: 1.0625rem; line-height: 1.7; }
@@ -785,6 +819,12 @@ model-viewer:focus-visible {
 /* une capture d'ecran garde sa taille : l'agrandir la rendrait floue */
 .prose img { height: auto; margin: var(--e-2) 0; border: 1px solid var(--line);
   border-radius: var(--r-s); box-shadow: var(--ombre-contact); }
+/* captures legendees (legende = texte alternatif, ajoutee par script.js) ;
+   un clic ouvre l'image en taille reelle */
+.prose figure { margin: var(--e-2) 0 var(--e-8); }
+.prose figure img { margin: 0; }
+.prose figure a { display: block; cursor: zoom-in; }
+.prose figcaption { margin-top: var(--e-2); font-size: .85rem; line-height: 1.45; color: var(--text-soft); }
 .prose blockquote { margin-left: 0; padding: var(--e-4) var(--e-5);
   background: var(--bg-alt); border-left: 3px solid var(--line); border-radius: 0 var(--r-m) var(--r-m) 0; }
 .prose blockquote p { margin: 0; }
@@ -836,6 +876,7 @@ model-viewer:focus-visible {
   .billet a:hover h2 { color: var(--orange-texte); }
   .billet a:hover .lien-fleche { text-decoration-color: var(--orange-texte); }
   .billet-retour:hover { color: var(--ink); }
+  .billet-sommaire a:hover { color: var(--ink); }
   .prose a:not(.btn):hover { text-decoration-color: var(--orange-texte); }
   .lien-fleche:hover::after { transform: translateX(3px); }
   a.contact-row:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.3); }

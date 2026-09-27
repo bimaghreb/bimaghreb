@@ -35,7 +35,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="../assets/logo-icon.svg">
-<link rel="stylesheet" href="../style.css?v=c09a7653">
+<link rel="stylesheet" href="../style.css?v=22ab1b87">
 </head>
 <body>
 
@@ -68,34 +68,20 @@
 
 <main id="contenu">
 <section class="section" id="articles">
-  <div class="section-inner">
-    <div class="section-head">
-      <span class="eyebrow">Articles</span>
-      <h1>Notes de pratique.</h1>
-      <p class="section-lead">
-        Méthodes, outils et retours d’expérience sur la modélisation BIM et le
-        calcul de structures.
-      </p>
-    </div>
-
-    <!-- Liste construite par GitHub (Jekyll) a partir du dossier _posts du depot.
-         Les articles s'ecrivent directement sur github.com : voir
-         « PUBLIER UN ARTICLE.md ». -->
-    <ol class="billets">
-{% for post in site.posts %}
-      <li class="billet">
-        <a href="{{ post.url }}">
-          <h2>{{ post.title }}</h2>
-          <p>{{ post.description }}</p>
-          <span class="lien-fleche">Lire l’article</span>
-        </a>
-      </li>
-{% endfor %}
-    </ol>
-{% if site.posts.size == 0 %}
-    <p class="section-lead">Les premiers articles paraissent prochainement.</p>
-{% endif %}
-
+  <!-- Partage 38/62, comme les Travaux : a gauche le titre et la newsletter
+       (qui restent visibles au defilement), a droite la liste. Sur telephone :
+       titre, liste, puis newsletter. -->
+  <div class="section-inner blog-grille">
+    <div class="blog-cote">
+      <div class="section-head blog-tete">
+        <span class="eyebrow">Articles</span>
+        <h1>Notes de pratique.</h1>
+        <p class="section-lead">
+          Méthodes, outils et retours d’expérience sur la modélisation BIM et le
+          calcul de structures.
+        </p>
+      </div>
+      <div class="blog-nl">
 <aside class="newsletter" aria-labelledby="nl-titre">
   <h2 id="nl-titre">Recevoir les prochains articles</h2>
   <p class="newsletter-texte">Un courriel à chaque nouvel article. Votre adresse ne sert qu'à cet envoi, et vous pouvez vous désinscrire à tout moment.</p>
@@ -117,6 +103,26 @@
     <p class="newsletter-etat" role="status" aria-live="polite"></p>
   </form>
 </aside>
+      </div>
+    </div>
+
+    <!-- Liste construite par GitHub (Jekyll) a partir du dossier _posts du depot.
+         Les articles s'ecrivent directement sur github.com : voir
+         « PUBLIER UN ARTICLE.md ». -->
+    <ol class="billets">
+{% for post in site.posts %}
+      <li class="billet">
+        <a href="{{ post.url }}">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.description }}</p>
+          <span class="lien-fleche">Lire l’article</span>
+        </a>
+      </li>
+{% endfor %}
+{% if site.posts.size == 0 %}
+      <li class="billet billet-vide"><p>Les premiers articles paraissent prochainement.</p></li>
+{% endif %}
+    </ol>
   </div>
 </section>
 </main>
@@ -142,6 +148,6 @@
 </footer>
 
 
-<script src="../script.js?v=24675bf2"></script>
+<script src="../script.js?v=e455522f"></script>
 </body>
 </html>
