@@ -603,7 +603,7 @@ model-viewer:focus-visible {
 }
 .calc-menu ul { margin: 0 0 var(--e-3); padding: 0; list-style: none; }
 .calc-menu ul:last-child { margin-bottom: 0; }
-.calc-menu button {
+.calc-menu a {
   display: block; width: 100%;
   min-height: 40px;
   margin-bottom: 2px;
@@ -617,7 +617,7 @@ model-viewer:focus-visible {
   transition: background var(--survol) var(--deplacer),
               color var(--survol) var(--deplacer);
 }
-.calc-menu button[aria-current="true"] {
+.calc-menu a[aria-current] {
   background: #fff;
   border-left-color: var(--orange);
   color: var(--ink); font-weight: 600;
@@ -636,14 +636,14 @@ model-viewer:focus-visible {
   margin-bottom: var(--e-6);
   border-bottom: 1px solid var(--line);
 }
-.calc-entete h3 { margin: 0; font-size: 1.2rem; }
+.calc-entete h2 { margin: 0; font-size: 1.2rem; }
 
 .calc-grille {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--e-8);
 }
-.calc-grille h4 {
+.calc-grille h2, .calc-grille h3 {
   margin: 0 0 var(--e-4);
   font-size: .76rem; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;
@@ -735,15 +735,41 @@ model-viewer:focus-visible {
 .calc-valeur small { margin-left: var(--e-1); font-size: .76rem; font-weight: 400; color: var(--text-soft); }
 .calc-vide { margin: 0; padding: var(--e-5) 0; font-size: .9rem; font-style: italic; color: var(--text-soft); }
 
+/* Page propre a un calcul : les formules sous le calculateur, la liste des
+   autres calculs a gauche sur toute la hauteur. */
+.calculateur-seul .calc-menu { grid-row: 1 / span 2; }
+.calc-formules { grid-column: 2; padding: var(--e-4) var(--e-2) 0; }
+.calc-formules h2 { margin: var(--e-8) 0 var(--e-4); font-size: 1.2rem; }
+.calc-formules h2:first-child { margin-top: 0; }
+.calc-formules dl { margin: 0; }
+.calc-formules dt { margin-top: var(--e-6); font-weight: 600; color: var(--ink); }
+.calc-formules dd { margin: var(--e-2) 0 0; overflow-x: auto; }
+/* une formule s'aligne sous son titre, et non au centre de la colonne : le
+   navigateur centre toute formule "en bloc", on l'affiche donc en ligne (les
+   fractions gardent leur grande taille, fixee par display="block") */
+/* 1,3 em : un indice d'indice (reduit a ~60 %) reste au-dessus de 12 px */
+.calc-formules math[display="block"] { display: inline math; font-size: 1.3em; }
+/* formules dans une phrase (conditions) : leurs indices, reduits a ~70 % par le
+   navigateur, tombaient a 11 px, sous le plancher de 12 px du site */
+.calc-formules math:not([display="block"]) { font-size: 1.1em; }
+.calc-formules dd:not(.calc-cond) { padding: var(--e-2) 0; }
+.calc-cond { font-size: .9rem; color: var(--text-soft); }
+.calc-notations { margin: 0; padding: 0; list-style: none; }
+.calc-notations li { display: flex; gap: var(--e-3); align-items: baseline; padding: var(--e-1) 0; }
+.calc-notations math { min-width: 2.2em; font-size: 1.1em; }
+
 @media (max-width: 900px) {
   .calculateur { grid-template-columns: 1fr; }
   .calc-menu { position: static; }
   .calc-panneau { padding: var(--e-6) var(--e-4); }
+  /* au telephone : le calcul d'abord, ses formules, puis les autres calculs */
+  .calculateur-seul .calc-menu { grid-row: auto; order: 3; }
+  .calc-formules { grid-column: auto; padding: 0; }
 }
 
 /* Au doigt, chaque cible atteint 44 px ; a la souris, on garde la densite. */
 @media (pointer: coarse) {
-  .calc-menu button { min-height: 44px; }
+  .calc-menu a { min-height: 44px; }
 }
 
 /* ============================================================
@@ -774,7 +800,10 @@ model-viewer:focus-visible {
 .billet:last-child { border-bottom: 1px solid var(--line); }
 .billet a { display: block; padding: var(--e-8) 0; }
 .billet time { font-size: .85rem; color: var(--text-soft); }
-.billet h2 { margin: var(--e-2) 0 var(--e-2); font-size: clamp(1.3rem, 2.6vw, 1.6rem); letter-spacing: -.02em; }
+.billet h2, .billet h3 { margin: var(--e-2) 0 var(--e-2); font-size: clamp(1.3rem, 2.6vw, 1.6rem); letter-spacing: -.02em; }
+/* « A lire aussi », sous un article : memes cartes que la page Articles */
+.billet-suite { margin-top: var(--e-16); }
+.billet-suite-titre { margin: 0 0 var(--e-4); font-size: 1.1rem; }
 .billet p { margin: 0 0 var(--e-2); color: var(--text-soft); }
 .billet .lien-fleche { min-height: 0; color: var(--orange-texte);
   text-decoration-color: rgba(183,84,16,.35); }
@@ -873,7 +902,7 @@ model-viewer:focus-visible {
   .btn-primary:hover { background: var(--orange-texte-survol); box-shadow: var(--lueur-bouton); }
   .btn-secondaire:hover { background: var(--orange-texte); color: #fff; }
   .lien-fleche:hover { text-decoration-color: #fff; }
-  .billet a:hover h2 { color: var(--orange-texte); }
+  .billet a:hover h2, .billet a:hover h3 { color: var(--orange-texte); }
   .billet a:hover .lien-fleche { text-decoration-color: var(--orange-texte); }
   .billet-retour:hover { color: var(--ink); }
   .billet-sommaire a:hover { color: var(--ink); }
@@ -882,7 +911,7 @@ model-viewer:focus-visible {
   a.contact-row:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.3); }
   a.contact-principal:hover { background: rgba(237,125,49,.18); border-color: var(--orange); }
   .footer-links a:hover { color: #fff; }
-  .calc-menu button:hover { background: #fff; color: var(--ink); }
+  .calc-menu a:hover { background: #fff; color: var(--ink); }
 }
 
 /* ============================================================

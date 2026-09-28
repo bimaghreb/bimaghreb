@@ -1,4 +1,4 @@
-<!-- FICHIER GENERE le 2026-09-27 par construire.py — NE PAS MODIFIER ICI.
+<!-- FICHIER GENERE le 2026-09-29 par construire.py — NE PAS MODIFIER ICI.
      Le texte de cette page se trouve dans site_source/pages/outils.html
      La navigation et le pied de page sont dans site_source/gabarit.html -->
 <!doctype html>
@@ -14,7 +14,7 @@
      la visionneuse compile un module WebAssembly ; eval() reste interdit. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' data: blob:; worker-src 'self' blob:; frame-src https://*.sibforms.com; form-action https://*.sibforms.com; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Outils de calcul — BIMaghreb</title>
+<title>Calculs RDM en ligne : poutres et sections — BIMaghreb</title>
 <meta name="description" content="Quatorze calculs de résistance des matériaux utilisables en ligne : poutres isostatiques et hyperstatiques, caractéristiques de sections.">
 <meta name="author" content="Mohamed Bennani">
 <meta name="theme-color" content="#ED7D31">
@@ -23,7 +23,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BIMaghreb">
-<meta property="og:title" content="Outils de calcul — BIMaghreb">
+<meta property="og:title" content="Calculs RDM en ligne : poutres et sections — BIMaghreb">
 <meta property="og:description" content="Quatorze calculs de résistance des matériaux utilisables en ligne : poutres isostatiques et hyperstatiques, caractéristiques de sections.">
 <meta property="og:url" content="https://bimaghreb.com/outils/">
 <meta property="og:image" content="https://bimaghreb.com/assets/partage.png">
@@ -33,7 +33,8 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="../assets/logo-icon.svg">
-<link rel="stylesheet" href="../style.css?v=22ab1b87">
+<link rel="stylesheet" href="../style.css?v=4a12c425">
+
 </head>
 <body>
 
@@ -80,23 +81,23 @@
 <nav class="calc-menu" id="calc-menu" aria-label="Modules de calcul">
   <p class="calc-groupe">Poutres</p>
   <ul>
-    <li><button type="button" data-module="rdm_poutres_poutre_rotule_rotule_charge_repartie">Bi-articulée · charge répartie</button></li>
-    <li><button type="button" data-module="rdm_poutres_poutre_rotule_rotule_charge_ponctuelle">Bi-articulée · charge ponctuelle</button></li>
-    <li><button type="button" data-module="rdm_poutres_poutre_encastrement_rotule_charge_repartie">Encastrée-articulée · répartie</button></li>
-    <li><button type="button" data-module="rdm_poutres_poutre_encastrement_rotule_charge_ponctuelle">Encastrée-articulée · ponctuelle</button></li>
-    <li><button type="button" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_repartie">Bi-encastrée · charge répartie</button></li>
-    <li><button type="button" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_ponctuelle">Bi-encastrée · charge ponctuelle</button></li>
-    <li><button type="button" data-module="rdm_poutres_poutre_encastrement_libre_charge_repartie">Console · charge répartie</button></li>
-    <li><button type="button" data-module="rdm_poutres_poutre_encastrement_libre_charge_ponctuelle">Console · charge ponctuelle</button></li>
+    <li><a href="../outils/poutre-bi-articulee-charge-repartie/" data-module="rdm_poutres_poutre_rotule_rotule_charge_repartie">Bi-articulée · charge répartie</a></li>
+    <li><a href="../outils/poutre-bi-articulee-charge-ponctuelle/" data-module="rdm_poutres_poutre_rotule_rotule_charge_ponctuelle">Bi-articulée · charge ponctuelle</a></li>
+    <li><a href="../outils/poutre-encastree-articulee-charge-repartie/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_repartie">Encastrée-articulée · répartie</a></li>
+    <li><a href="../outils/poutre-encastree-articulee-charge-ponctuelle/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_ponctuelle">Encastrée-articulée · ponctuelle</a></li>
+    <li><a href="../outils/poutre-bi-encastree-charge-repartie/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_repartie">Bi-encastrée · charge répartie</a></li>
+    <li><a href="../outils/poutre-bi-encastree-charge-ponctuelle/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_ponctuelle">Bi-encastrée · charge ponctuelle</a></li>
+    <li><a href="../outils/console-charge-repartie/" data-module="rdm_poutres_poutre_encastrement_libre_charge_repartie">Console · charge répartie</a></li>
+    <li><a href="../outils/console-charge-ponctuelle/" data-module="rdm_poutres_poutre_encastrement_libre_charge_ponctuelle">Console · charge ponctuelle</a></li>
   </ul>
   <p class="calc-groupe">Sections</p>
   <ul>
-    <li><button type="button" data-module="rdm_sections_section_rectangulaire">Rectangle plein</button></li>
-    <li><button type="button" data-module="rdm_sections_section_circulaire">Rond plein</button></li>
-    <li><button type="button" data-module="rdm_sections_section_I">Profil en I</button></li>
-    <li><button type="button" data-module="rdm_sections_section_U">Profil en U</button></li>
-    <li><button type="button" data-module="rdm_sections_tube_rectangulaire">Tube rectangulaire</button></li>
-    <li><button type="button" data-module="rdm_sections_tube_circulaire">Tube circulaire</button></li>
+    <li><a href="../outils/section-rectangulaire/" data-module="rdm_sections_section_rectangulaire">Rectangle plein</a></li>
+    <li><a href="../outils/section-circulaire/" data-module="rdm_sections_section_circulaire">Rond plein</a></li>
+    <li><a href="../outils/profil-en-i/" data-module="rdm_sections_section_I">Profil en I</a></li>
+    <li><a href="../outils/profil-en-u/" data-module="rdm_sections_section_U">Profil en U</a></li>
+    <li><a href="../outils/tube-rectangulaire/" data-module="rdm_sections_tube_rectangulaire">Tube rectangulaire</a></li>
+    <li><a href="../outils/tube-circulaire/" data-module="rdm_sections_tube_circulaire">Tube circulaire</a></li>
   </ul>
 </nav>
       <div class="calc-panneau" id="calc-panneau">
@@ -127,8 +128,8 @@
   </div>
 </footer>
 
-<script src="../calculs-rdm.js?v=8903506a"></script>
-<script src="../calculateur.js?v=945f1b2b"></script>
+<script src="../calculs-rdm.js?v=cbcd41cc"></script>
+<script src="../calculateur.js?v=d044b475"></script>
 <script src="../script.js?v=e455522f"></script>
 </body>
 </html>

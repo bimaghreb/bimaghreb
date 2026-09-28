@@ -11,7 +11,7 @@ const CALCULS_RDM = {
   "rdm_poutres_poutre_rotule_rotule_charge_repartie": {
     groupe: "Poutres",
     court: "Bi-articulée · charge répartie",
-    titre: "Poutre bi-rotulée sous charge répartie",
+    titre: "Poutre bi-articulée sous charge répartie",
     entrees: [
       { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
       { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
@@ -40,7 +40,7 @@ const CALCULS_RDM = {
   "rdm_poutres_poutre_rotule_rotule_charge_ponctuelle": {
     groupe: "Poutres",
     court: "Bi-articulée · charge ponctuelle",
-    titre: "Poutre bi-rotulée sous charge ponctuelle",
+    titre: "Poutre bi-articulée sous charge ponctuelle",
     entrees: [
       { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
       { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
@@ -75,7 +75,7 @@ const CALCULS_RDM = {
   "rdm_poutres_poutre_encastrement_rotule_charge_repartie": {
     groupe: "Poutres",
     court: "Encastrée-articulée · répartie",
-    titre: "Poutre encastrée-rotulée sous charge répartie",
+    titre: "Poutre encastrée-articulée sous charge répartie",
     entrees: [
       { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
       { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
@@ -106,7 +106,7 @@ const CALCULS_RDM = {
   "rdm_poutres_poutre_encastrement_rotule_charge_ponctuelle": {
     groupe: "Poutres",
     court: "Encastrée-articulée · ponctuelle",
-    titre: "Poutre encastrée-rotulée sous charge ponctuelle",
+    titre: "Poutre encastrée-articulée sous charge ponctuelle",
     entrees: [
       { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
       { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
@@ -211,7 +211,7 @@ const CALCULS_RDM = {
   "rdm_poutres_poutre_encastrement_libre_charge_repartie": {
     groupe: "Poutres",
     court: "Console · charge répartie",
-    titre: "Poutre encastrée sous charge répartie",
+    titre: "Poutre console sous charge répartie",
     entrees: [
       { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
       { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "16270", min: 0.0, max: null },
@@ -238,7 +238,7 @@ const CALCULS_RDM = {
   "rdm_poutres_poutre_encastrement_libre_charge_ponctuelle": {
     groupe: "Poutres",
     court: "Console · charge ponctuelle",
-    titre: "Poutre encastrée sous charge ponctuelle",
+    titre: "Poutre console sous charge ponctuelle",
     entrees: [
       { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
       { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "16270", min: 0.0, max: null },
@@ -267,7 +267,7 @@ const CALCULS_RDM = {
   "rdm_sections_section_rectangulaire": {
     groupe: "Sections",
     court: "Rectangle plein",
-    titre: "Propriétés d'une section rectangulaire",
+    titre: "Section rectangulaire pleine",
     entrees: [
       { cle: "h", libelle: "Hauteur de la section : h", symbole: "h", unite: "mm", defaut: "80", min: 0.0, max: null },
       { cle: "b", libelle: "Largeur de la section : b", symbole: "b", unite: "mm", defaut: "50", min: 0.0, max: null }
@@ -300,7 +300,7 @@ const CALCULS_RDM = {
   "rdm_sections_section_circulaire": {
     groupe: "Sections",
     court: "Rond plein",
-    titre: "Propriétés d'une section circulaire",
+    titre: "Section circulaire pleine",
     entrees: [
       { cle: "d", libelle: "Diamètre : d", symbole: "d", unite: "mm", defaut: "55", min: 0.0, max: null }
     ],
@@ -325,7 +325,7 @@ const CALCULS_RDM = {
   "rdm_sections_section_I": {
     groupe: "Sections",
     court: "Profil en I",
-    titre: "Propriétés d'une section en I",
+    titre: "Profil en I",
     entrees: [
       { cle: "h", libelle: "Hauteur de la section : h", symbole: "h", unite: "mm", defaut: "200", min: 0.0, max: null },
       { cle: "b", libelle: "Largeur de la section : b", symbole: "b", unite: "mm", defaut: "100", min: 0.0, max: null },
@@ -364,7 +364,7 @@ const CALCULS_RDM = {
   "rdm_sections_section_U": {
     groupe: "Sections",
     court: "Profil en U",
-    titre: "Propriétés d'une section en U",
+    titre: "Profil en U",
     entrees: [
       { cle: "h", libelle: "Hauteur de la section : h", symbole: "h", unite: "mm", defaut: "200", min: 0.0, max: null },
       { cle: "b", libelle: "Largeur de la section : b", symbole: "b", unite: "mm", defaut: "80", min: 0.0, max: null },
@@ -408,7 +408,7 @@ const CALCULS_RDM = {
   "rdm_sections_tube_rectangulaire": {
     groupe: "Sections",
     court: "Tube rectangulaire",
-    titre: "Propriétés d'un tube rectangulaire",
+    titre: "Tube rectangulaire",
     entrees: [
       { cle: "h", libelle: "Hauteur de la section : h", symbole: "h", unite: "mm", defaut: "200", min: 0.0, max: null },
       { cle: "b", libelle: "Largeur de la section : b", symbole: "b", unite: "mm", defaut: "100", min: 0.0, max: null },
@@ -445,7 +445,7 @@ const CALCULS_RDM = {
   "rdm_sections_tube_circulaire": {
     groupe: "Sections",
     court: "Tube circulaire",
-    titre: "Propriétés d'un tube circulaire",
+    titre: "Tube circulaire",
     entrees: [
       { cle: "d", libelle: "Diamètre : d", symbole: "d", unite: "mm", defaut: "508", min: 0.0, max: null },
       { cle: "t", libelle: "Épaisseur : t", symbole: "t", unite: "mm", defaut: "6.3", min: 0.0, max: null }

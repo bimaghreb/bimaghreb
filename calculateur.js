@@ -52,16 +52,22 @@
 
     panneau.textContent = '';
 
-    var entete = elt('div', 'calc-entete');
-    entete.appendChild(elt('h3', null, module.titre));
-    panneau.appendChild(entete);
+    // sur la page propre a un calcul, le titre de la page le nomme deja
+    if (!panneau.hasAttribute('data-module')) {
+      var entete = elt('div', 'calc-entete');
+      entete.appendChild(elt('h2', null, module.titre));
+      panneau.appendChild(entete);
+    }
 
     var grille = elt('div', 'calc-grille');
     panneau.appendChild(grille);
 
     // --- colonne de saisie ---
     var bloc = elt('div', 'calc-saisie');
-    bloc.appendChild(elt('h4', null, 'Données'));
+    // titres sans saut de niveau : sous le h1 de la page d'un calcul, ou sous
+    // le h2 du calcul sur la page Outils
+    var niveau = panneau.hasAttribute('data-module') ? 'h2' : 'h3';
+    bloc.appendChild(elt(niveau, null, 'Données'));
     var form = elt('form');
     form.setAttribute('novalidate', '');
     bloc.appendChild(form);
@@ -99,7 +105,7 @@
 
     // --- colonne de résultats ---
     var droite = elt('div', 'calc-resultats');
-    droite.appendChild(elt('h4', null, 'Résultats'));
+    droite.appendChild(elt(niveau, null, 'Résultats'));
     var zone = elt('div', 'calc-zone');
     zone.setAttribute('aria-live', 'polite');
     droite.appendChild(zone);
@@ -173,21 +179,17 @@
   }
 
   // --- menu ---
-  menu.addEventListener('click', function (e) {
-    var bouton = e.target.closest('button[data-module]');
-    if (!bouton) return;
-    menu.querySelectorAll('button[data-module]').forEach(function (b) {
-      b.setAttribute('aria-current', b === bouton ? 'true' : 'false');
-    });
-    construire(bouton.getAttribute('data-module'));
-    if (window.matchMedia('(max-width: 900px)').matches) {
-      panneau.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // Chaque entree est un lien vers la page du calcul (/outils/<calcul>/). La
+  // page d'un calcul porte son module dans data-module ; la page Outils, qui
+  // n'en porte pas, ouvre le premier de la liste.
+  var liens = menu.querySelectorAll('a[data-module]');
+  var cle = panneau.getAttribute('data-module')
+    || (liens.length ? liens[0].getAttribute('data-module') : null);
+  var dediee = panneau.hasAttribute('data-module');
+  liens.forEach(function (a) {
+    if (a.getAttribute('data-module') === cle) {
+      a.setAttribute('aria-current', dediee ? 'page' : 'true');
     }
   });
-
-  var premier = menu.querySelector('button[data-module]');
-  if (premier) {
-    premier.setAttribute('aria-current', 'true');
-    construire(premier.getAttribute('data-module'));
-  }
+  if (cle) construire(cle);
 })();

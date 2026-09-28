@@ -1,4 +1,4 @@
-<!-- FICHIER GENERE le 2026-09-27 par construire.py — NE PAS MODIFIER ICI.
+<!-- FICHIER GENERE le 2026-09-29 par construire.py — NE PAS MODIFIER ICI.
      Mise en page de TOUS les articles : site_source/blog/article.html -->
 <!doctype html>
 <html lang="fr">
@@ -20,7 +20,7 @@
 <link rel="canonical" href="https://bimaghreb.com{{ page.url }}">
 <link rel="alternate" type="application/rss+xml" title="Articles — BIMaghreb" href="https://bimaghreb.com/feed.xml">
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="BIMaghreb">
 <meta property="og:title" content="{{ page.title }} — BIMaghreb">
 <meta property="og:description" content="{{ page.description }}">
@@ -32,7 +32,21 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="../../assets/logo-icon.svg">
-<link rel="stylesheet" href="../../style.css?v=22ab1b87">
+<link rel="stylesheet" href="../../style.css?v=4a12c425">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BlogPosting",
+ "headline": {{ page.title | jsonify }},
+ "description": {{ page.description | jsonify }},
+ "url": "https://bimaghreb.com{{ page.url }}",
+ "mainEntityOfPage": "https://bimaghreb.com{{ page.url }}",
+ "image": "https://bimaghreb.com/assets/partage.png",
+ "inLanguage": "fr",
+ "author": {"@type": "Person", "name": {{ site.author | jsonify }}},
+ "publisher": {"@type": "Organization", "name": "BIMaghreb", "url": "https://bimaghreb.com/", "logo": "https://bimaghreb.com/assets/logo-icon.svg"}
+}
+</script>
 </head>
 <body>
 
@@ -84,6 +98,25 @@
         <p>Une question sur ce sujet, ou un ouvrage à étudier&nbsp;?</p>
         <a class="btn btn-primary" href="mailto:bimaghreb@outlook.com">Écrire à BIMaghreb</a>
       </footer>
+
+      <!-- Liens entre articles : sans eux, un article n'est relie qu'a la page
+           Articles, et Google le juge isole. Construit par Jekyll. -->
+{% if site.posts.size > 1 %}
+      <section class="billet-suite" aria-labelledby="a-lire-aussi">
+        <h2 id="a-lire-aussi" class="billet-suite-titre">À lire aussi</h2>
+        <ol class="billets">
+{% for post in site.posts %}{% unless post.url == page.url %}
+          <li class="billet">
+            <a href="{{ post.url }}">
+              <h3>{{ post.title }}</h3>
+              <p>{{ post.description }}</p>
+              <span class="lien-fleche">Lire l’article</span>
+            </a>
+          </li>
+{% endunless %}{% endfor %}
+        </ol>
+      </section>
+{% endif %}
 
 <aside class="newsletter" aria-labelledby="nl-titre">
   <h2 id="nl-titre">Recevoir les prochains articles</h2>

@@ -1,0 +1,159 @@
+<!-- FICHIER GENERE le 2026-09-29 par construire.py — NE PAS MODIFIER ICI.
+     Le texte de cette page se trouve dans site_source/calculs/section-rectangulaire.html
+     La navigation et le pied de page sont dans site_source/gabarit.html -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Securite (GitHub Pages n'envoie pas d'en-tetes : la politique passe par
+     une balise). Tout vient du site ; seuls le formulaire de newsletter et sa
+     reponse vont chez Brevo. blob: et data: servent a la visionneuse 3D
+     (workers, textures). 'unsafe-inline' sur les styles : les feuilles internes
+     de model-viewer, jamais des styles ecrits dans les pages. 'wasm-unsafe-eval' :
+     la visionneuse compile un module WebAssembly ; eval() reste interdit. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' data: blob:; worker-src 'self' blob:; frame-src https://*.sibforms.com; form-action https://*.sibforms.com; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Section rectangulaire pleine : calcul en ligne — BIMaghreb</title>
+<meta name="description" content="Calcul en ligne — section rectangulaire pleine : aire de la section, moment d'inertie de flexion, module élastique de flexion, module plastique de flexion et aire de cisaillement. Formules détaillées.">
+<meta name="author" content="Mohamed Bennani">
+<meta name="theme-color" content="#ED7D31">
+<link rel="canonical" href="https://bimaghreb.com/outils/section-rectangulaire/">
+<link rel="alternate" type="application/rss+xml" title="Articles — BIMaghreb" href="https://bimaghreb.com/feed.xml">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BIMaghreb">
+<meta property="og:title" content="Section rectangulaire pleine : calcul en ligne — BIMaghreb">
+<meta property="og:description" content="Calcul en ligne — section rectangulaire pleine : aire de la section, moment d'inertie de flexion, module élastique de flexion, module plastique de flexion et aire de cisaillement. Formules détaillées.">
+<meta property="og:url" content="https://bimaghreb.com/outils/section-rectangulaire/">
+<meta property="og:image" content="https://bimaghreb.com/assets/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/logo-icon.svg">
+<link rel="stylesheet" href="../../style.css?v=4a12c425">
+
+</head>
+<body>
+
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../../" class="nav-logo" aria-label="BIMaghreb — accueil">
+      <img src="../../assets/logo-horizontal.svg" alt="BIMaghreb" width="150" height="36">
+    </a>
+    <nav class="nav-links" id="nav-links" aria-label="Navigation principale">
+      <a href="../../#hero">Accueil</a>
+      <a href="../../#travaux">Travaux</a>
+      <a href="../../#demarche">Démarche</a>
+      <a href="../../#contact">Contact</a>
+      <a href="../../blog/" class="nav-page">Articles</a>
+      <a href="../../outils/" class="nav-cta" aria-current="page">Outils de calcul</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="onglets" aria-label="Navigation principale (mobile)">
+  <a href="../../#hero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Accueil</span></a>
+  <a href="../../#travaux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5Z"/><path d="M4 7.5v9L12 21l8-4.5v-9"/><path d="M12 12v9"/></svg><span>Travaux</span></a>
+  <a href="../../#demarche"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="12" r="2"/><path d="M8 6h3a3 3 0 0 1 3 3v1"/><path d="M8 18h3a3 3 0 0 0 3-3v-1"/></svg><span>Démarche</span></a>
+  <a href="../../#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Contact</span></a>
+  <a href="../../blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg><span>Articles</span></a>
+  <a href="../../outils/" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18.5h4"/></svg><span>Outils</span></a>
+</nav>
+
+<main id="contenu">
+<section class="section" id="calculateur">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow">Outils de calcul · Sections</span>
+      <h1>Section rectangulaire pleine</h1>
+      <p class="section-lead">Résultats immédiats : aire de la section, moment d'inertie de flexion, module élastique de flexion, module plastique de flexion et aire de cisaillement. Les formules utilisées figurent sous le calculateur.</p>
+    </div>
+
+    <div class="calculateur calculateur-seul">
+<nav class="calc-menu" id="calc-menu" aria-label="Modules de calcul">
+  <p class="calc-groupe">Poutres</p>
+  <ul>
+    <li><a href="../../outils/poutre-bi-articulee-charge-repartie/" data-module="rdm_poutres_poutre_rotule_rotule_charge_repartie">Bi-articulée · charge répartie</a></li>
+    <li><a href="../../outils/poutre-bi-articulee-charge-ponctuelle/" data-module="rdm_poutres_poutre_rotule_rotule_charge_ponctuelle">Bi-articulée · charge ponctuelle</a></li>
+    <li><a href="../../outils/poutre-encastree-articulee-charge-repartie/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_repartie">Encastrée-articulée · répartie</a></li>
+    <li><a href="../../outils/poutre-encastree-articulee-charge-ponctuelle/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_ponctuelle">Encastrée-articulée · ponctuelle</a></li>
+    <li><a href="../../outils/poutre-bi-encastree-charge-repartie/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_repartie">Bi-encastrée · charge répartie</a></li>
+    <li><a href="../../outils/poutre-bi-encastree-charge-ponctuelle/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_ponctuelle">Bi-encastrée · charge ponctuelle</a></li>
+    <li><a href="../../outils/console-charge-repartie/" data-module="rdm_poutres_poutre_encastrement_libre_charge_repartie">Console · charge répartie</a></li>
+    <li><a href="../../outils/console-charge-ponctuelle/" data-module="rdm_poutres_poutre_encastrement_libre_charge_ponctuelle">Console · charge ponctuelle</a></li>
+  </ul>
+  <p class="calc-groupe">Sections</p>
+  <ul>
+    <li><a href="../../outils/section-rectangulaire/" data-module="rdm_sections_section_rectangulaire">Rectangle plein</a></li>
+    <li><a href="../../outils/section-circulaire/" data-module="rdm_sections_section_circulaire">Rond plein</a></li>
+    <li><a href="../../outils/profil-en-i/" data-module="rdm_sections_section_I">Profil en I</a></li>
+    <li><a href="../../outils/profil-en-u/" data-module="rdm_sections_section_U">Profil en U</a></li>
+    <li><a href="../../outils/tube-rectangulaire/" data-module="rdm_sections_tube_rectangulaire">Tube rectangulaire</a></li>
+    <li><a href="../../outils/tube-circulaire/" data-module="rdm_sections_tube_circulaire">Tube circulaire</a></li>
+  </ul>
+</nav>
+      <div class="calc-panneau" id="calc-panneau" data-module="rdm_sections_section_rectangulaire">
+        <p class="calc-vide">Le calculateur a besoin de JavaScript. Les formules figurent ci-dessous.</p>
+      </div>
+
+      <div class="calc-formules">
+        <h2>Formules</h2>
+        <dl>
+        <dt>Aire de la section</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>A</mi><mo>=</mo><mi>b</mi><mtext> </mtext><mi>h</mi></mrow><annotation encoding="application/x-tex">A = b\ h</annotation></semantics></math></dd>
+        <dt>Moment d'inertie de flexion par rapport à l'axe y-y</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>I</mi><mi>y</mi></msub><mo>=</mo><mfrac><mrow><mi>b</mi><mtext> </mtext><msup><mi>h</mi><mn>3</mn></msup></mrow><mn>12</mn></mfrac></mrow><annotation encoding="application/x-tex">I_y = \frac{b\ h^3}{12}</annotation></semantics></math></dd>
+        <dt>Moment d'inertie de flexion par rapport à l'axe z-z</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>I</mi><mi>z</mi></msub><mo>=</mo><mfrac><mrow><mi>h</mi><mtext> </mtext><msup><mi>b</mi><mn>3</mn></msup></mrow><mn>12</mn></mfrac></mrow><annotation encoding="application/x-tex">I_z = \frac{h\ b^3}{12}</annotation></semantics></math></dd>
+        <dt>Module élastique de flexion par rapport à l'axe y-y</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mrow><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow><mo separator="true">,</mo><mi>y</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>b</mi><mtext> </mtext><msup><mi>h</mi><mn>2</mn></msup></mrow><mn>6</mn></mfrac></mrow><annotation encoding="application/x-tex">W_{\mathrm{el},y} = \frac{b\ h^2}{6}</annotation></semantics></math></dd>
+        <dt>Module élastique de flexion par rapport à l'axe z-z</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mrow><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi></mrow><mo separator="true">,</mo><mi>z</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>h</mi><mtext> </mtext><msup><mi>b</mi><mn>2</mn></msup></mrow><mn>6</mn></mfrac></mrow><annotation encoding="application/x-tex">W_{\mathrm{el},z} = \frac{h\ b^2}{6}</annotation></semantics></math></dd>
+        <dt>Module plastique de flexion par rapport à l'axe y-y</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mrow><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">l</mi></mrow><mo separator="true">,</mo><mi>y</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>b</mi><mtext> </mtext><msup><mi>h</mi><mn>2</mn></msup></mrow><mn>4</mn></mfrac></mrow><annotation encoding="application/x-tex">W_{\mathrm{pl},y} = \frac{b\ h^2}{4}</annotation></semantics></math></dd>
+        <dt>Module plastique de flexion par rapport à l'axe z-z</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>W</mi><mrow><mrow><mi mathvariant="normal">p</mi><mi mathvariant="normal">l</mi></mrow><mo separator="true">,</mo><mi>z</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>h</mi><mtext> </mtext><msup><mi>b</mi><mn>2</mn></msup></mrow><mn>4</mn></mfrac></mrow><annotation encoding="application/x-tex">W_{\mathrm{pl},z} = \frac{h\ b^2}{4}</annotation></semantics></math></dd>
+        <dt>Aire de cisaillement</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>A</mi><mi>v</mi></msub><mo>=</mo><mi>b</mi><mtext> </mtext><mi>h</mi></mrow><annotation encoding="application/x-tex">A_v = b\ h</annotation></semantics></math></dd>
+        </dl>
+        <h2>Notations</h2>
+        <ul class="calc-notations">
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math><span>hauteur de la section, en mm</span></li>
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi></mrow><annotation encoding="application/x-tex">b</annotation></semantics></math><span>largeur de la section, en mm</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../../assets/logo-horizontal.svg" alt="" width="133" height="32">
+      <p>Calcul de structures &amp; modélisation BIM — Maroc.</p>
+    </div>
+    <nav class="footer-links" aria-label="Navigation de pied de page">
+      <a href="../../#hero">Accueil</a>
+      <a href="../../#travaux">Travaux</a>
+      <a href="../../#demarche">Démarche</a>
+      <a href="../../#contact">Contact</a>
+      <a href="../../blog/">Articles</a>
+      <a href="../../outils/">Outils de calcul</a>
+    </nav>
+    <div class="footer-meta">
+      <span>&copy; 2026 BIMaghreb.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../../calculs-rdm.js?v=cbcd41cc"></script>
+<script src="../../calculateur.js?v=d044b475"></script>
+<script src="../../script.js?v=e455522f"></script>
+</body>
+</html>
