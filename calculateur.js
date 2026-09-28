@@ -31,6 +31,40 @@
     return n;
   }
 
+  /* Les fiches écrivent les symboles en texte brut (« I_y », « W_el,y »,
+     « cm^4 ») : on les compose ici comme dans une note de calcul. Une lettre
+     reste en italique, un mot en indice (el, pl, max) en romain. */
+  var EXPOSANTS = { '2': '\u00b2', '3': '\u00b3', '4': '\u2074' };
+
+  function unite(texte) {
+    return texte.replace(/\^([234])/g, function (m, n) { return EXPOSANTS[n]; });
+  }
+
+  function morceaux(parent, texte) {
+    texte.split(/([A-Za-z\u0370-\u03ff]+)/).forEach(function (bout) {
+      if (!bout) return;
+      if (/^[A-Za-z\u0370-\u03ff]$/.test(bout)) parent.appendChild(elt('var', null, bout));
+      else parent.appendChild(document.createTextNode(bout));
+    });
+  }
+
+  function libelle(classe, texte) {
+    var n = elt('span', classe);
+    var m = /^(.*\s:\s)(\S+)$/.exec(texte);
+    if (!m) { n.textContent = texte; return n; }
+    n.appendChild(document.createTextNode(m[1]));
+    var symbole = elt('span', 'calc-symbole');
+    var parts = m[2].split('_');
+    morceaux(symbole, parts[0]);
+    if (parts[1]) {
+      var bas = elt('sub');
+      morceaux(bas, parts.slice(1).join('_'));
+      symbole.appendChild(bas);
+    }
+    n.appendChild(symbole);
+    return n;
+  }
+
   /* Un champ hors de son domaine rend le résultat inutilisable : on refuse
      de calculer plutôt que d'afficher un nombre qui aurait l'air valable. */
   function controle(champ, valeur) {
@@ -80,8 +114,8 @@
 
       var etiquette = elt('label');
       etiquette.setAttribute('for', id);
-      etiquette.appendChild(elt('span', 'calc-libelle', champ.libelle));
-      if (champ.unite) etiquette.appendChild(elt('span', 'calc-unite', champ.unite));
+      etiquette.appendChild(libelle('calc-libelle', champ.libelle));
+      if (champ.unite) etiquette.appendChild(elt('span', 'calc-unite', unite(champ.unite)));
       groupe.appendChild(etiquette);
 
       var saisie = document.createElement('input');
@@ -155,10 +189,10 @@
 
       module.sorties.forEach(function (s) {
         var ligne = elt('div', 'calc-ligne');
-        ligne.appendChild(elt('span', 'calc-nom', s.libelle));
+        ligne.appendChild(libelle('calc-nom', s.libelle));
         var val = elt('span', 'calc-valeur');
         val.appendChild(document.createTextNode(formate(sortie[s.cle], s.decimales)));
-        if (s.unite) val.appendChild(elt('small', null, s.unite));
+        if (s.unite) val.appendChild(elt('small', null, unite(s.unite)));
         ligne.appendChild(val);
         zone.appendChild(ligne);
       });

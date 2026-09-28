@@ -726,6 +726,10 @@ model-viewer:focus-visible {
 }
 .calc-ligne:nth-child(odd) { background: #FCFAF8; }
 .calc-nom { font-size: .84rem; line-height: 1.35; color: var(--text-soft); }
+/* symboles composes par calculateur.js ; l'indice ne descend pas sous 12 px */
+.calc-symbole { white-space: nowrap; }
+.calc-symbole var { font-style: italic; }
+.calc-symbole sub { font-size: max(12px, .75em); line-height: 0; }
 .calc-valeur {
   font-size: 1.02rem; font-weight: 700;
   font-variant-numeric: tabular-nums;
@@ -751,7 +755,7 @@ model-viewer:focus-visible {
 .calc-formules math[display="block"] { display: inline math; font-size: 1.3em; }
 /* formules dans une phrase (conditions) : leurs indices, reduits a ~70 % par le
    navigateur, tombaient a 11 px, sous le plancher de 12 px du site */
-.calc-formules math:not([display="block"]) { font-size: 1.1em; }
+.calc-formules math:not([display="block"]) { font-size: 1.15em; }
 .calc-formules dd:not(.calc-cond) { padding: var(--e-2) 0; }
 .calc-cond { font-size: .9rem; color: var(--text-soft); }
 .calc-notations { margin: 0; padding: 0; list-style: none; }
