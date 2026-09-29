@@ -449,6 +449,17 @@ model-viewer:focus-visible {
 .work-head h3 { font-size: 1.35rem; margin-bottom: var(--e-1); }
 .work-meta { margin: 0; font-size: .86rem; line-height: 1.5; color: var(--text-soft); }
 .work-content > p { max-width: 62ch; margin: 0; color: var(--text); }
+/* Mission : le role tenu sur l'ouvrage, sous sa description ; discret */
+.work-content > .work-mission {
+  margin-top: var(--e-5); padding-top: var(--e-4);
+  border-top: 1px solid var(--line);
+  font-size: .9rem; line-height: 1.55; color: var(--text-soft);
+}
+.work-mission-titre {
+  display: block; margin-bottom: var(--e-1);
+  font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text);
+}
 
 /* Proportion d'or : 38 % au texte, 62 % a la maquette, qui est la preuve. */
 .work-layout {
@@ -507,7 +518,8 @@ model-viewer:focus-visible {
    ============================================================ */
 .why-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /* cinq points : 3 + 2 sur grand ecran (a 260 px on tombait a 4 + 1) */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--e-8) var(--e-10);
 }
 .why-num {
