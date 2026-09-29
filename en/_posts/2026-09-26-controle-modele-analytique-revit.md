@@ -4,7 +4,7 @@ description: "Two checks to find and fix disconnected analytical nodes before se
 date: 2026-09-26 10:00:00 +0100
 ---
 
-A disconnected analytical node cannot be seen in an ordinary Revit view. It shows up at the analysis stage: members supported by nothing, instability warnings, results to redo. It is better to find it before the export.
+A disconnected analytical node cannot be seen in an ordinary Revit view. It shows up at the analysis stage: bars supported by nothing, instability warnings, results to redo. It is better to find it before the export.
 
 Here are the two checks I use to do so. The screenshots come from the French version of Revit; the commands are in the same place in the English version.
 
