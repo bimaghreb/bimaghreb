@@ -632,40 +632,6 @@ model-viewer:focus-visible {
   border-radius: var(--r-l);
 }
 
-/* Page Outils = sommaire : un lien par calcul, ce qu'il rend dessous.
-   Deux colonnes (poutres, sections) sur grand ecran, une sur telephone. */
-.calc-sommaire { display: grid; grid-template-columns: 1fr; gap: var(--e-10); }
-@media (min-width: 900px) {
-  .calc-sommaire { grid-template-columns: 1fr 1fr; column-gap: var(--e-16); align-items: start; }
-}
-.calc-sommaire-groupe h2 {
-  margin: 0 0 var(--e-3);
-  font-size: .8rem; font-weight: 700;
-  letter-spacing: .08em; text-transform: uppercase;
-  color: var(--text-soft);
-}
-.calc-sommaire ul { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
-.calc-sommaire li { border-bottom: 1px solid var(--line); }
-.calc-sommaire a {
-  position: relative; display: block;
-  min-height: 44px;
-  padding: var(--e-4) var(--e-10) var(--e-4) 0;
-  color: var(--ink);
-  transition: color var(--survol) var(--deplacer);
-}
-.calc-sommaire a::after {
-  content: "→";
-  position: absolute; right: var(--e-2); top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-soft);
-  transition: transform var(--survol) var(--deplacer), color var(--survol) var(--deplacer);
-}
-.calc-sommaire-nom { display: block; font-weight: 600; }
-.calc-sommaire-rend { display: block; margin-top: 2px; font-size: .9rem; color: var(--text-soft); }
-.calc-sommaire a:hover .calc-sommaire-nom,
-.calc-sommaire a:focus-visible .calc-sommaire-nom { color: var(--orange-texte); }
-.calc-sommaire a:hover::after,
-.calc-sommaire a:focus-visible::after { color: var(--orange-texte); transform: translate(4px, -50%); }
 
 .calc-grille {
   display: grid;
