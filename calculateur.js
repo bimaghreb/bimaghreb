@@ -135,6 +135,14 @@
     var zone = elt('div', 'calc-zone');
     zone.setAttribute('aria-live', 'polite');
     droite.appendChild(zone);
+
+    // note de calcul : le navigateur imprime ou enregistre en PDF ; la mise
+    // en page d'impression est dans style.css (@media print). Inactif tant
+    // que les données ne donnent pas de résultat : rien à imprimer.
+    var imprimer = elt('button', 'btn btn-secondaire calc-imprimer', 'Imprimer la note de calcul');
+    imprimer.type = 'button';
+    imprimer.addEventListener('click', function () { window.print(); });
+    droite.appendChild(imprimer);
     grille.appendChild(droite);
 
     function recalcule() {
@@ -165,6 +173,7 @@
       });
 
       zone.textContent = '';
+      imprimer.disabled = true;
       if (refus) {
         zone.appendChild(elt('p', 'calc-vide',
           'Complétez les données pour obtenir les résultats.'));
@@ -188,6 +197,7 @@
         ligne.appendChild(val);
         zone.appendChild(ligne);
       });
+      imprimer.disabled = false;
     }
 
     champs.forEach(function (c) {
@@ -204,13 +214,49 @@
     recalcule();
   }
 
+  // --- en-tête et pied de la note imprimée (cachés à l'écran) ---
+  // La date est celle de l'impression : une page restée ouverte la veille ne
+  // doit pas dater la note de la veille.
+  function notePapier() {
+    var section = document.querySelector('#calculateur .section-inner');
+    var logo = document.querySelector('.nav-logo img');
+    if (!section) return;
+
+    var entete = elt('div', 'note-entete');
+    if (logo) {
+      var image = logo.cloneNode(false);
+      image.removeAttribute('width');
+      image.removeAttribute('height');
+      entete.appendChild(image);
+    }
+    var date = elt('span', 'note-date');
+    entete.appendChild(date);
+    section.insertBefore(entete, section.firstChild);
+
+    var pied = elt('p', 'note-pied');
+    pied.appendChild(document.createTextNode('Calcul effectué sur ' +
+      location.host + location.pathname +
+      '. Document indicatif : il ne remplace pas la vérification par un ingénieur.'));
+    section.appendChild(pied);
+
+    function dater() {
+      date.textContent = 'Note de calcul — ' + new Intl.DateTimeFormat('fr-FR',
+        { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
+    }
+    dater();
+    window.addEventListener('beforeprint', dater);
+  }
+
   // --- menu ---
   // Chaque entree est un lien vers la page du calcul (/outils/<calcul>/) ; la
-  // page d'un calcul porte son module dans data-module. La page Outils n'a
-  // plus de calculateur (29/09/2026) : c'est le sommaire des calculs.
+  // page d'un calcul porte son module dans data-module. Le menu du site mene
+  // au premier calcul (29/09/2026) : il n'y a plus de page Outils a part.
   var cle = panneau.getAttribute('data-module');
   menu.querySelectorAll('a[data-module]').forEach(function (a) {
     if (a.getAttribute('data-module') === cle) a.setAttribute('aria-current', 'page');
   });
-  if (cle) construire(cle);
+  if (cle) {
+    construire(cle);
+    notePapier();
+  }
 })();
