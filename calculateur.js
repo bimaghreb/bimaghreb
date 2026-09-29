@@ -86,21 +86,13 @@
 
     panneau.textContent = '';
 
-    // sur la page propre a un calcul, le titre de la page le nomme deja
-    if (!panneau.hasAttribute('data-module')) {
-      var entete = elt('div', 'calc-entete');
-      entete.appendChild(elt('h2', null, module.titre));
-      panneau.appendChild(entete);
-    }
-
     var grille = elt('div', 'calc-grille');
     panneau.appendChild(grille);
 
     // --- colonne de saisie ---
     var bloc = elt('div', 'calc-saisie');
-    // titres sans saut de niveau : sous le h1 de la page d'un calcul, ou sous
-    // le h2 du calcul sur la page Outils
-    var niveau = panneau.hasAttribute('data-module') ? 'h2' : 'h3';
+    // sous le h1 de la page, qui nomme deja le calcul
+    var niveau = 'h2';
     bloc.appendChild(elt(niveau, null, 'Données'));
     var form = elt('form');
     form.setAttribute('novalidate', '');
@@ -213,17 +205,12 @@
   }
 
   // --- menu ---
-  // Chaque entree est un lien vers la page du calcul (/outils/<calcul>/). La
-  // page d'un calcul porte son module dans data-module ; la page Outils, qui
-  // n'en porte pas, ouvre le premier de la liste.
-  var liens = menu.querySelectorAll('a[data-module]');
-  var cle = panneau.getAttribute('data-module')
-    || (liens.length ? liens[0].getAttribute('data-module') : null);
-  var dediee = panneau.hasAttribute('data-module');
-  liens.forEach(function (a) {
-    if (a.getAttribute('data-module') === cle) {
-      a.setAttribute('aria-current', dediee ? 'page' : 'true');
-    }
+  // Chaque entree est un lien vers la page du calcul (/outils/<calcul>/) ; la
+  // page d'un calcul porte son module dans data-module. La page Outils n'a
+  // plus de calculateur (29/09/2026) : c'est le sommaire des calculs.
+  var cle = panneau.getAttribute('data-module');
+  menu.querySelectorAll('a[data-module]').forEach(function (a) {
+    if (a.getAttribute('data-module') === cle) a.setAttribute('aria-current', 'page');
   });
   if (cle) construire(cle);
 })();
