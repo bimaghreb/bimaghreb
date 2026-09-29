@@ -195,3 +195,22 @@
   }, { passive: true });
   suivre();
 })();
+
+/* ============================================================
+   Selecteur de langue
+   ============================================================ */
+(function () {
+  // Selecteur de langue (<details>) : se referme au clic ailleurs et sur
+  // Echap ; l'ouverture reste native, elle marche meme sans ce script.
+  document.querySelectorAll('details.langues').forEach((liste) => {
+    document.addEventListener('click', (e) => {
+      if (liste.open && !liste.contains(e.target)) liste.open = false;
+    });
+    liste.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && liste.open) {
+        liste.open = false;
+        liste.querySelector('summary').focus();
+      }
+    });
+  });
+})();
