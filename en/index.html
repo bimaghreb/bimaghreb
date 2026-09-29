@@ -1,8 +1,8 @@
 <!-- FICHIER GENERE le 2026-09-29 par construire.py — NE PAS MODIFIER ICI.
-     Le texte de cette page se trouve dans site_source/pages/accueil.html
+     Le texte de cette page se trouve dans site_source/en/pages/accueil.html
      La navigation et le pied de page sont dans site_source/gabarit.html -->
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -14,29 +14,29 @@
      la visionneuse compile un module WebAssembly ; eval() reste interdit. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' data: blob:; worker-src 'self' blob:; frame-src https://*.sibforms.com; form-action https://*.sibforms.com; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Calcul de structures et modélisation BIM au Maroc — BIMaghreb</title>
-<meta name="description" content="Calcul de structures en béton armé et en charpente métallique au Maroc, modélisation BIM : ouvrages étudiés, démarche, outils de calcul et articles techniques.">
+<title>Structural design and BIM modelling in Morocco — BIMaghreb</title>
+<meta name="description" content="Structural design of reinforced concrete and steel structures in Morocco, BIM modelling: projects, approach, design tools and technical articles.">
 <meta name="author" content="Mohamed Bennani">
 <meta name="theme-color" content="#ED7D31">
-<link rel="canonical" href="https://bimaghreb.com/">
+<link rel="canonical" href="https://bimaghreb.com/en/">
 <link rel="alternate" hreflang="fr" href="https://bimaghreb.com/">
 <link rel="alternate" hreflang="en" href="https://bimaghreb.com/en/">
 <link rel="alternate" hreflang="x-default" href="https://bimaghreb.com/">
-<link rel="alternate" type="application/rss+xml" title="Articles — BIMaghreb" href="https://bimaghreb.com/feed.xml">
+
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BIMaghreb">
-<meta property="og:title" content="Calcul de structures et modélisation BIM au Maroc — BIMaghreb">
-<meta property="og:description" content="Calcul de structures en béton armé et en charpente métallique au Maroc, modélisation BIM : ouvrages étudiés, démarche, outils de calcul et articles techniques.">
-<meta property="og:url" content="https://bimaghreb.com/">
+<meta property="og:title" content="Structural design and BIM modelling in Morocco — BIMaghreb">
+<meta property="og:description" content="Structural design of reinforced concrete and steel structures in Morocco, BIM modelling: projects, approach, design tools and technical articles.">
+<meta property="og:url" content="https://bimaghreb.com/en/">
 <meta property="og:image" content="https://bimaghreb.com/assets/partage.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:locale" content="fr_FR">
+<meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" type="image/svg+xml" href="assets/logo-icon.svg">
-<link rel="stylesheet" href="style.css?v=3d6928dc">
+<link rel="icon" type="image/svg+xml" href="../assets/logo-icon.svg">
+<link rel="stylesheet" href="../style.css?v=3d6928dc">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -47,10 +47,10 @@
    "name": "BIMaghreb",
    "url": "https://bimaghreb.com/",
    "logo": "https://bimaghreb.com/assets/logo-icon.svg",
-   "description": "Calcul de structures en béton armé et en charpente métallique au Maroc, modélisation BIM : ouvrages étudiés, démarche, outils de calcul et articles techniques.",
+   "description": "Structural design of reinforced concrete and steel structures in Morocco, BIM modelling: projects, approach, design tools and technical articles.",
    "areaServed": {
     "@type": "Country",
-    "name": "Maroc"
+    "name": "Morocco"
    },
    "email": "bimaghreb@outlook.com",
    "sameAs": [
@@ -60,10 +60,10 @@
   },
   {
    "@type": "WebSite",
-   "@id": "https://bimaghreb.com/#site",
-   "url": "https://bimaghreb.com/",
+   "@id": "https://bimaghreb.com/en/#site",
+   "url": "https://bimaghreb.com/en/",
    "name": "BIMaghreb",
-   "inLanguage": "fr",
+   "inLanguage": "en",
    "publisher": {
     "@id": "https://bimaghreb.com/#organisation"
    }
@@ -74,50 +74,50 @@
 </head>
 <body>
 
-<a class="evitement" href="#contenu">Aller au contenu</a>
+<a class="evitement" href="#contenu">Skip to content</a>
 
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="" class="nav-logo" aria-label="BIMaghreb — accueil">
-      <img src="assets/logo-horizontal.svg" alt="BIMaghreb" width="150" height="36">
+    <a href="../en/" class="nav-logo" aria-label="BIMaghreb — home">
+      <img src="../assets/logo-horizontal.svg" alt="BIMaghreb" width="150" height="36">
     </a>
-    <nav class="nav-links" id="nav-links" aria-label="Navigation principale">
-      <a href="#hero">Accueil</a>
-      <a href="#travaux">Travaux</a>
-      <a href="#demarche">Démarche</a>
+    <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+      <a href="#hero">Home</a>
+      <a href="#travaux">Projects</a>
+      <a href="#demarche">Approach</a>
       <a href="#contact">Contact</a>
-      <a href="blog/" class="nav-page">Articles</a>
-      <a href="outils/poutre-bi-articulee-charge-repartie/" class="nav-cta">Outils de calcul</a>
+      <a href="../en/blog/" class="nav-page">Articles</a>
+      <a href="../en/tools/simply-supported-beam-distributed-load/" class="nav-cta">Design tools</a>
     </nav>
-    <div class="langues" role="group" aria-label="Langue du site"><a href="./" hreflang="fr" lang="fr" aria-current="true">FR</a><a href="en/" hreflang="en" lang="en">EN</a></div>
+    <div class="langues" role="group" aria-label="Site language"><a href="../" hreflang="fr" lang="fr">FR</a><a href="../en/" hreflang="en" lang="en" aria-current="true">EN</a></div>
   </div>
 </header>
 
-<nav class="onglets" aria-label="Navigation principale (mobile)">
-  <a href="#hero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Accueil</span></a>
-  <a href="#travaux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5Z"/><path d="M4 7.5v9L12 21l8-4.5v-9"/><path d="M12 12v9"/></svg><span>Travaux</span></a>
-  <a href="#demarche"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="12" r="2"/><path d="M8 6h3a3 3 0 0 1 3 3v1"/><path d="M8 18h3a3 3 0 0 0 3-3v-1"/></svg><span>Démarche</span></a>
+<nav class="onglets" aria-label="Main navigation (mobile)">
+  <a href="#hero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Home</span></a>
+  <a href="#travaux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5Z"/><path d="M4 7.5v9L12 21l8-4.5v-9"/><path d="M12 12v9"/></svg><span>Projects</span></a>
+  <a href="#demarche"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="12" r="2"/><path d="M8 6h3a3 3 0 0 1 3 3v1"/><path d="M8 18h3a3 3 0 0 0 3-3v-1"/></svg><span>Approach</span></a>
   <a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Contact</span></a>
-  <a href="blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg><span>Articles</span></a>
-  <a href="outils/poutre-bi-articulee-charge-repartie/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18.5h4"/></svg><span>Outils</span></a>
+  <a href="../en/blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg><span>Articles</span></a>
+  <a href="../en/tools/simply-supported-beam-distributed-load/"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18.5h4"/></svg><span>Tools</span></a>
 </nav>
 
 <main id="contenu">
 <section class="hero" id="hero">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-inner">
-    <img src="assets/logo-icon-white.svg" alt="" class="hero-mark" width="120" height="120">
+    <img src="../assets/logo-icon-white.svg" alt="" class="hero-mark" width="120" height="120">
     <h1>
-      <span class="hero-line">Calcul de structures &amp; modélisation BIM</span><br>
-      <span class="hero-accent">du modèle à la note de calcul.</span>
+      <span class="hero-line">Structural design &amp; BIM modelling</span><br>
+      <span class="hero-accent">from the model to the calculation report.</span>
     </h1>
     <p class="hero-sub">
-      Études de structures en béton armé et en charpente métallique :
-      conception, dimensionnement et plans d'exécution, menés sur la maquette BIM.
+      Structural engineering for reinforced concrete and steel buildings:
+      design, member sizing and construction drawings, all developed on the BIM model.
     </p>
     <div class="hero-cta">
-      <a href="#travaux" class="btn btn-primary">Voir les travaux</a>
-      <a href="#contact" class="lien-fleche">Prendre contact</a>
+      <a href="#travaux" class="btn btn-primary">View projects</a>
+      <a href="#contact" class="lien-fleche">Get in touch</a>
     </div>
   </div>
 </section>
@@ -125,24 +125,24 @@
 <section class="section" id="travaux">
   <div class="section-inner">
     <div class="section-head">
-      <span class="eyebrow">Travaux</span>
-      <h2>Des fondations au plan d'exécution.</h2>
+      <span class="eyebrow">Projects</span>
+      <h2>From foundations to construction drawings.</h2>
     </div>
     <article class="work work-3d">
       <div class="work-layout">
         <div class="work-content">
           <div class="work-head">
-            <h3>Complexe résidentiel</h3>
-            <p class="work-meta">Habitat collectif · près de 1 100 m² au sol · jusqu'à R+5</p>
+            <h3>Residential complex</h3>
+            <p class="work-meta">Multi-family housing · nearly 1,100 m² footprint · up to G+5</p>
           </div>
-          <p>Ossatures en béton armé de deux immeubles d'habitation mitoyens, l'un en R+4, l'autre en R+5 avec mezzanine, chacun sur sous‑sol.</p>
+          <p>Reinforced concrete frames of two adjoining apartment buildings, one G+4, the other G+5 with a mezzanine, each over a basement.</p>
         </div>
 
         <div class="work-visual">
           <figure class="viewer">
             <model-viewer
-                src="assets/models/complexe-residentiel.glb?v=b9e52754"
-                alt="Maquette de l&#x27;ossature de deux immeubles d&#x27;habitation mitoyens : trames de poteaux et de poutres, planchers et voiles de sous‑sol."
+                src="../assets/models/complexe-residentiel.glb?v=b9e52754"
+                alt="Model of the structural frame of two adjoining apartment buildings: column and beam grids, floor slabs and basement walls."
                 camera-controls
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
@@ -162,17 +162,17 @@
       <div class="work-layout">
         <div class="work-content">
           <div class="work-head">
-            <h3>Hangar métallique</h3>
-            <p class="work-meta">Bâtiment industriel · plus de 800 m² au sol · 20 m de portée</p>
+            <h3>Steel hangar</h3>
+            <p class="work-meta">Industrial building · over 800 m² footprint · 20 m span</p>
           </div>
-          <p>Charpente métallique d'un hangar de vingt mètres de portée sur une quarantaine de mètres de long, à sept mètres au faîtage : portiques, contreventements et assemblages boulonnés, jusqu'aux pieds de poteaux.</p>
+          <p>Steel structure of a hangar spanning twenty metres, some forty metres long and seven metres high at the ridge: portal frames, bracing and bolted connections, down to the column bases.</p>
         </div>
 
         <div class="work-visual">
           <figure class="viewer">
             <model-viewer
-                src="assets/models/hangar-metallique.glb?v=26dc8944"
-                alt="Maquette de la charpente d&#x27;un hangar métallique : portiques, contreventements et assemblages boulonnés."
+                src="../assets/models/hangar-metallique.glb?v=26dc8944"
+                alt="Model of the steel frame of a hangar: portal frames, bracing and bolted connections."
                 camera-controls
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
@@ -192,17 +192,17 @@
       <div class="work-layout">
         <div class="work-content">
           <div class="work-head">
-            <h3>Équipement public</h3>
-            <p class="work-meta">Établissement recevant du public · près de 900 m² au sol · trois niveaux</p>
+            <h3>Public building</h3>
+            <p class="work-meta">Building open to the public · nearly 900 m² footprint · three levels</p>
           </div>
-          <p>Ossature en béton armé d'un bâtiment public de près de cinquante mètres de long, en R+2.</p>
+          <p>Reinforced concrete frame of a public building nearly fifty metres long, G+2.</p>
         </div>
 
         <div class="work-visual">
           <figure class="viewer">
             <model-viewer
-                src="assets/models/centre-culturel.glb?v=cd95b7cd"
-                alt="Maquette de l&#x27;ossature d&#x27;un équipement public : bâtiment allongé en R+2."
+                src="../assets/models/centre-culturel.glb?v=cd95b7cd"
+                alt="Model of the structural frame of a public building: an elongated G+2 building."
                 camera-controls
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
@@ -222,17 +222,17 @@
       <div class="work-layout">
         <div class="work-content">
           <div class="work-head">
-            <h3>Mosquée avec minaret</h3>
-            <p class="work-meta">Lieu de culte · environ 500 m² au sol · minaret de près de 20 m</p>
+            <h3>Mosque with minaret</h3>
+            <p class="work-meta">Place of worship · about 500 m² footprint · minaret nearly 20 m high</p>
           </div>
-          <p>Ossature en béton armé d'une mosquée sur trois niveaux, dont un sous‑sol, couronnée d'une coupole, et d'un minaret culminant à près de vingt mètres.</p>
+          <p>Reinforced concrete frame of a mosque on three levels, including a basement, crowned by a dome, together with a minaret rising to nearly twenty metres.</p>
         </div>
 
         <div class="work-visual">
           <figure class="viewer">
             <model-viewer
-                src="assets/models/mosquee.glb?v=fc5600ba"
-                alt="Maquette de l&#x27;ossature d&#x27;une mosquée : trame de poteaux et de poutres, coupole et minaret."
+                src="../assets/models/mosquee.glb?v=fc5600ba"
+                alt="Model of the structural frame of a mosque: column and beam grid, dome and minaret."
                 camera-controls
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
@@ -253,44 +253,44 @@
 <section class="section section-alt" id="demarche">
   <div class="section-inner">
     <div class="section-head">
-      <span class="eyebrow">Démarche</span>
-      <h2>Le calcul et le dessin traités comme une seule chaîne.</h2>
+      <span class="eyebrow">Approach</span>
+      <h2>Calculation and drawing handled as one workflow.</h2>
     </div>
 
     <div class="why-grid">
       <div class="why-item">
         <div class="why-num">01</div>
-        <h3>Maquette et calcul menés ensemble</h3>
+        <h3>Model and calculations developed together</h3>
         <p>
-          La maquette et la note de calcul procèdent des mêmes données. Cette
-          base commune écarte le décalage entre le modèle, le calcul et le plan
-          transmis au chantier.
+          The BIM model and the calculation report draw on the same data. This
+          common basis removes any gap between the model, the calculations and
+          the drawings issued to site.
         </p>
       </div>
       <div class="why-item">
         <div class="why-num">02</div>
-        <h3>La clause citée, toujours</h3>
+        <h3>The clause, always cited</h3>
         <p>
-          Chaque vérification porte la référence de l'article qui la fonde.
-          Une note de calcul doit pouvoir être relue et contestée article par
-          article.
+          Every check carries the reference of the clause it relies on. A
+          calculation report must be open to review and challenge, clause by
+          clause.
         </p>
       </div>
       <div class="why-item">
         <div class="why-num">03</div>
-        <h3>Hypothèses explicites</h3>
+        <h3>Explicit assumptions</h3>
         <p>
-          Contrainte de sol, classe de béton, enrobage, catégorie sismique :
-          les hypothèses figurent en tête de note.
+          Allowable bearing pressure, concrete class, cover, seismic category:
+          the assumptions are stated at the top of the report.
         </p>
       </div>
       <div class="why-item">
         <div class="why-num">04</div>
-        <h3>Traçabilité</h3>
+        <h3>Traceability</h3>
         <p>
-          Versions datées, hypothèses conservées, feuilles de calcul lisibles.
-          Un calcul que l'on ne peut pas reprendre six mois plus tard n'a
-          aucune valeur.
+          Dated revisions, recorded assumptions, readable calculation sheets.
+          A calculation that cannot be picked up again six months later has
+          no value.
         </p>
       </div>
     </div>
@@ -300,25 +300,24 @@
 <section class="section" id="elements">
   <div class="section-inner">
     <div class="section-head">
-      <span class="eyebrow">Ouvrages traités</span>
-      <h2>Béton armé et charpente métallique.</h2>
+      <span class="eyebrow">Scope</span>
+      <h2>Reinforced concrete and structural steelwork.</h2>
     </div>
 
     <div class="domaines">
       <div class="domaine">
-        <h3>Béton armé</h3>
+        <h3>Reinforced concrete</h3>
         <p>
-          Bâtiments d'habitation et immeubles de bureaux, équipements publics
-          et lieux de culte, ouvrages enterrés et réservoirs. Du sous-sol à la
-          terrasse, fondations comprises.
+          Residential and office buildings, public facilities and places of
+          worship, underground structures and tanks. From basement to roof,
+          foundations included.
         </p>
       </div>
       <div class="domaine">
-        <h3>Charpente métallique</h3>
+        <h3>Structural steelwork</h3>
         <p>
-          Halls industriels, hangars et couvertures de grande portée, ainsi que
-          les ouvrages mixtes associant une ossature métallique à une structure
-          en béton.
+          Industrial halls, hangars and long-span roofs, as well as hybrid
+          structures combining a steel frame with a concrete structure.
         </p>
       </div>
     </div>
@@ -330,7 +329,7 @@
     <div class="contact-grid contact-single">
       <div class="contact-text">
         <span class="eyebrow eyebrow-light">Contact</span>
-        <h2>Prendre contact.</h2>
+        <h2>Get in touch.</h2>
 
         <div class="contact-info">
           <a href="mailto:bimaghreb@outlook.com" class="contact-row contact-principal">
@@ -348,7 +347,7 @@
               <path d="M12 16v-5"/>
               <path d="M12 13a2.5 2.5 0 0 1 5 0v3"/>
             </svg>
-            <span>BIMaghreb sur LinkedIn</span>
+            <span>BIMaghreb on LinkedIn</span>
           </a>
           <a href="https://www.instagram.com/bimaghreb/" class="contact-row" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
@@ -356,7 +355,7 @@
               <circle cx="12" cy="12" r="4"/>
               <path d="M17.5 6.5v.01"/>
             </svg>
-            <span>BIMaghreb sur Instagram</span>
+            <span>BIMaghreb on Instagram</span>
           </a>
         </div>
 
@@ -365,7 +364,7 @@
             <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
             <circle cx="12" cy="10" r="3"/>
           </svg>
-          <span>Maroc</span>
+          <span>Morocco</span>
         </p>
       </div>
     </div>
@@ -376,16 +375,16 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <img src="assets/logo-horizontal.svg" alt="" width="133" height="32">
-      <p>Calcul de structures &amp; modélisation BIM — Maroc.</p>
+      <img src="../assets/logo-horizontal.svg" alt="" width="133" height="32">
+      <p>Structural design &amp; BIM modelling — Morocco.</p>
     </div>
-    <nav class="footer-links" aria-label="Navigation de pied de page">
-      <a href="#hero">Accueil</a>
-      <a href="#travaux">Travaux</a>
-      <a href="#demarche">Démarche</a>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#hero">Home</a>
+      <a href="#travaux">Projects</a>
+      <a href="#demarche">Approach</a>
       <a href="#contact">Contact</a>
-      <a href="blog/">Articles</a>
-      <a href="outils/poutre-bi-articulee-charge-repartie/">Outils de calcul</a>
+      <a href="../en/blog/">Articles</a>
+      <a href="../en/tools/simply-supported-beam-distributed-load/">Design tools</a>
     </nav>
     <div class="footer-meta">
       <span>&copy; 2026 BIMaghreb.</span>
@@ -393,7 +392,7 @@
   </div>
 </footer>
 
-<script type="module" src="assets/model-viewer.min.js?v=283b0672"></script>
-<script src="script.js?v=86cf0770"></script>
+<script type="module" src="../assets/model-viewer.min.js?v=283b0672"></script>
+<script src="../script.js?v=86cf0770"></script>
 </body>
 </html>

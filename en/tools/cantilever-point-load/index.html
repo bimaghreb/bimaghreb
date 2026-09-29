@@ -1,0 +1,156 @@
+<!-- FICHIER GENERE le 2026-09-29 par construire.py — NE PAS MODIFIER ICI.
+     Le texte de cette page se trouve dans site_source/en/calculs/cantilever-point-load.html
+     La navigation et le pied de page sont dans site_source/gabarit.html -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Securite (GitHub Pages n'envoie pas d'en-tetes : la politique passe par
+     une balise). Tout vient du site ; seuls le formulaire de newsletter et sa
+     reponse vont chez Brevo. blob: et data: servent a la visionneuse 3D
+     (workers, textures). 'unsafe-inline' sur les styles : les feuilles internes
+     de model-viewer, jamais des styles ecrits dans les pages. 'wasm-unsafe-eval' :
+     la visionneuse compile un module WebAssembly ; eval() reste interdit. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' data: blob:; worker-src 'self' blob:; frame-src https://*.sibforms.com; form-action https://*.sibforms.com; base-uri 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Cantilever beam under point load: online calculator — BIMaghreb</title>
+<meta name="description" content="Cantilever beam under point load — online calculator: deflection, bending moment and shear force. Detailed formulas.">
+<meta name="author" content="Mohamed Bennani">
+<meta name="theme-color" content="#ED7D31">
+<link rel="canonical" href="https://bimaghreb.com/en/tools/cantilever-point-load/">
+<link rel="alternate" hreflang="fr" href="https://bimaghreb.com/outils/console-charge-ponctuelle/">
+<link rel="alternate" hreflang="en" href="https://bimaghreb.com/en/tools/cantilever-point-load/">
+<link rel="alternate" hreflang="x-default" href="https://bimaghreb.com/outils/console-charge-ponctuelle/">
+
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BIMaghreb">
+<meta property="og:title" content="Cantilever beam under point load: online calculator — BIMaghreb">
+<meta property="og:description" content="Cantilever beam under point load — online calculator: deflection, bending moment and shear force. Detailed formulas.">
+<meta property="og:url" content="https://bimaghreb.com/en/tools/cantilever-point-load/">
+<meta property="og:image" content="https://bimaghreb.com/assets/partage.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/logo-icon.svg">
+<link rel="stylesheet" href="../../../style.css?v=3d6928dc">
+
+</head>
+<body>
+
+<a class="evitement" href="#contenu">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../../../en/" class="nav-logo" aria-label="BIMaghreb — home">
+      <img src="../../../assets/logo-horizontal.svg" alt="BIMaghreb" width="150" height="36">
+    </a>
+    <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+      <a href="../../../en/#hero">Home</a>
+      <a href="../../../en/#travaux">Projects</a>
+      <a href="../../../en/#demarche">Approach</a>
+      <a href="../../../en/#contact">Contact</a>
+      <a href="../../../en/blog/" class="nav-page">Articles</a>
+      <a href="../../../en/tools/simply-supported-beam-distributed-load/" class="nav-cta" aria-current="page">Design tools</a>
+    </nav>
+    <div class="langues" role="group" aria-label="Site language"><a href="../../../outils/console-charge-ponctuelle/" hreflang="fr" lang="fr">FR</a><a href="../../../en/tools/cantilever-point-load/" hreflang="en" lang="en" aria-current="true">EN</a></div>
+  </div>
+</header>
+
+<nav class="onglets" aria-label="Main navigation (mobile)">
+  <a href="../../../en/#hero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Home</span></a>
+  <a href="../../../en/#travaux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5Z"/><path d="M4 7.5v9L12 21l8-4.5v-9"/><path d="M12 12v9"/></svg><span>Projects</span></a>
+  <a href="../../../en/#demarche"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="12" r="2"/><path d="M8 6h3a3 3 0 0 1 3 3v1"/><path d="M8 18h3a3 3 0 0 0 3-3v-1"/></svg><span>Approach</span></a>
+  <a href="../../../en/#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Contact</span></a>
+  <a href="../../../en/blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg><span>Articles</span></a>
+  <a href="../../../en/tools/simply-supported-beam-distributed-load/" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18.5h4"/></svg><span>Tools</span></a>
+</nav>
+
+<main id="contenu">
+<section class="section" id="calculateur">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="eyebrow">Design tools · Beams</span>
+      <h1>Cantilever beam under point load</h1>
+      <p class="section-lead">Instant results: deflection, bending moment and shear force. The formulas used are given below the calculator.</p>
+    </div>
+
+    <div class="calculateur calculateur-seul">
+<nav class="calc-menu" id="calc-menu" aria-label="Calculations">
+  <p class="calc-groupe">Beams</p>
+  <ul>
+    <li><a href="../../../en/tools/simply-supported-beam-distributed-load/" data-module="rdm_poutres_poutre_rotule_rotule_charge_repartie">Simply supported · distributed</a></li>
+    <li><a href="../../../en/tools/simply-supported-beam-point-load/" data-module="rdm_poutres_poutre_rotule_rotule_charge_ponctuelle">Simply supported · point load</a></li>
+    <li><a href="../../../en/tools/fixed-pinned-beam-distributed-load/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_repartie">Fixed-pinned · distributed</a></li>
+    <li><a href="../../../en/tools/fixed-pinned-beam-point-load/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_ponctuelle">Fixed-pinned · point load</a></li>
+    <li><a href="../../../en/tools/fixed-fixed-beam-distributed-load/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_repartie">Fixed-fixed · distributed</a></li>
+    <li><a href="../../../en/tools/fixed-fixed-beam-point-load/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_ponctuelle">Fixed-fixed · point load</a></li>
+    <li><a href="../../../en/tools/cantilever-distributed-load/" data-module="rdm_poutres_poutre_encastrement_libre_charge_repartie">Cantilever · distributed</a></li>
+    <li><a href="../../../en/tools/cantilever-point-load/" data-module="rdm_poutres_poutre_encastrement_libre_charge_ponctuelle">Cantilever · point load</a></li>
+  </ul>
+  <p class="calc-groupe">Sections</p>
+  <ul>
+    <li><a href="../../../en/tools/rectangular-section/" data-module="rdm_sections_section_rectangulaire">Solid rectangle</a></li>
+    <li><a href="../../../en/tools/circular-section/" data-module="rdm_sections_section_circulaire">Solid circle</a></li>
+    <li><a href="../../../en/tools/i-section/" data-module="rdm_sections_section_I">I-section</a></li>
+    <li><a href="../../../en/tools/channel-section/" data-module="rdm_sections_section_U">Channel (U)</a></li>
+    <li><a href="../../../en/tools/rectangular-hollow-section/" data-module="rdm_sections_tube_rectangulaire">Rectangular hollow</a></li>
+    <li><a href="../../../en/tools/circular-hollow-section/" data-module="rdm_sections_tube_circulaire">Circular hollow</a></li>
+  </ul>
+</nav>
+      <div class="calc-panneau" id="calc-panneau" data-module="rdm_poutres_poutre_encastrement_libre_charge_ponctuelle">
+        <p class="calc-vide">The calculator needs JavaScript. The formulas are given below.</p>
+      </div>
+
+      <div class="calc-formules">
+        <h2>Formulas</h2>
+        <dl>
+        <dt>Maximum deflection</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>δ</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><msup><mi>α</mi><mn>2</mn></msup><mtext> </mtext><mo stretchy="false">(</mo><mn>3</mn><mtext> </mtext><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mrow><mn>6</mn><mtext> </mtext><mi>E</mi><mtext> </mtext><mi>I</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\delta_{\mathrm{max}} = \frac{P\ \alpha^2\ (3\ L - \alpha)}{6\ E\ I}</annotation></semantics></math></dd>
+        <dt>Maximum bending moment</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>M</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mo>=</mo><mi>P</mi><mtext> </mtext><mi>α</mi></mrow><annotation encoding="application/x-tex">M_{\mathrm{max}} = P\ \alpha</annotation></semantics></math></dd>
+        <dt>Maximum shear force</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>V</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mo>=</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">V_{\mathrm{max}} = P</annotation></semantics></math></dd>
+        </dl>
+        <h2>Notations</h2>
+        <ul class="calc-notations">
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math><span>modulus of elasticity, in GPa</span></li>
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math><span>second moment of area of the cross-section, in cm⁴</span></li>
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math><span>effective span, in cm</span></li>
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha </annotation></semantics></math><span>position of the point load, in cm</span></li>
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math><span>point load, in kN</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="../../../assets/logo-horizontal.svg" alt="" width="133" height="32">
+      <p>Structural design &amp; BIM modelling — Morocco.</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="../../../en/#hero">Home</a>
+      <a href="../../../en/#travaux">Projects</a>
+      <a href="../../../en/#demarche">Approach</a>
+      <a href="../../../en/#contact">Contact</a>
+      <a href="../../../en/blog/">Articles</a>
+      <a href="../../../en/tools/simply-supported-beam-distributed-load/">Design tools</a>
+    </nav>
+    <div class="footer-meta">
+      <span>&copy; 2026 BIMaghreb.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="../../../calculs-rdm.js?v=10d78097"></script>
+<script src="../../../calculateur.js?v=a785dc95"></script>
+<script src="../../../script.js?v=86cf0770"></script>
+</body>
+</html>

@@ -13,12 +13,49 @@
   var panneau = document.getElementById('calc-panneau');
   if (!menu || !panneau) return;
 
+  // Langue de la page (<html lang>) : textes, format des nombres, libellés.
+  // Les libellés anglais viennent de calculs-rdm.js (libelle_en), fabriqué
+  // avec leur traduction par faire_calculateur.py.
+  var EN = document.documentElement.lang === 'en';
+  var LOCALE = EN ? 'en-GB' : 'fr-FR';
+  var T = EN ? {
+    donnees: 'Input',
+    resultats: 'Results',
+    vide: 'Enter a value.',
+    nombre: 'Enter a number, for example 12.5.',
+    superieur: 'Enter a value greater than ',
+    auPlus: 'Enter a value no greater than ',
+    completez: 'Complete the input to get the results.',
+    echec: 'The calculation fails with these values: check the input.',
+    imprimer: 'Print the calculation sheet',
+    note: 'Calculation sheet — ',
+    pied1: 'Calculated on ',
+    pied2: '. For guidance only: it does not replace a check by an engineer.'
+  } : {
+    donnees: 'Données',
+    resultats: 'Résultats',
+    vide: 'Saisissez une valeur.',
+    nombre: 'Saisissez un nombre, par exemple 12,5.',
+    superieur: 'Saisissez une valeur supérieure à ',
+    auPlus: 'Saisissez une valeur au plus égale à ',
+    completez: 'Complétez les données pour obtenir les résultats.',
+    echec: "Le calcul n'aboutit pas avec ces valeurs : vérifiez les données saisies.",
+    imprimer: 'Imprimer la note de calcul',
+    note: 'Note de calcul — ',
+    pied1: 'Calcul effectué sur ',
+    pied2: '. Document indicatif : il ne remplace pas la vérification par un ingénieur.'
+  };
+
+  function texteLibelle(champ) {
+    return EN ? champ.libelle_en : champ.libelle;
+  }
+
   // Les nombres s'écrivent en français : virgule décimale, espace insécable
   // fine pour les milliers. Un point décimal sur une note de calcul française
   // se lit comme une erreur.
   function formate(valeur, decimales) {
     if (typeof valeur !== 'number' || !isFinite(valeur)) return '—';
-    return new Intl.NumberFormat('fr-FR', {
+    return new Intl.NumberFormat(LOCALE, {
       minimumFractionDigits: decimales,
       maximumFractionDigits: decimales
     }).format(valeur);
@@ -50,7 +87,7 @@
 
   function libelle(classe, texte) {
     var n = elt('span', classe);
-    var m = /^(.*\s:\s)(\S+)$/.exec(texte);
+    var m = /^(.*\s?:\s)(\S+)$/.exec(texte);
     if (!m) { n.textContent = texte; return n; }
     n.appendChild(document.createTextNode(m[1]));
     var symbole = elt('span', 'calc-symbole');
@@ -68,14 +105,14 @@
   /* Un champ hors de son domaine rend le résultat inutilisable : on refuse
      de calculer plutôt que d'afficher un nombre qui aurait l'air valable. */
   function controle(champ, valeur) {
-    if (valeur === '' || valeur === null) return 'Saisissez une valeur.';
+    if (valeur === '' || valeur === null) return T.vide;
     var x = Number(String(valeur).replace(',', '.'));
-    if (!isFinite(x)) return 'Saisissez un nombre, par exemple 12,5.';
+    if (!isFinite(x)) return T.nombre;
     if (champ.min !== null && champ.min !== undefined && x <= champ.min) {
-      return 'Saisissez une valeur supérieure à ' + formate(champ.min, 0) + '.';
+      return T.superieur + formate(champ.min, 0) + '.';
     }
     if (champ.max !== null && champ.max !== undefined && x > champ.max) {
-      return 'Saisissez une valeur au plus égale à ' + formate(champ.max, 0) + '.';
+      return T.auPlus + formate(champ.max, 0) + '.';
     }
     return null;
   }
@@ -93,7 +130,7 @@
     var bloc = elt('div', 'calc-saisie');
     // sous le h1 de la page, qui nomme deja le calcul
     var niveau = 'h2';
-    bloc.appendChild(elt(niveau, null, 'Données'));
+    bloc.appendChild(elt(niveau, null, T.donnees));
     var form = elt('form');
     form.setAttribute('novalidate', '');
     bloc.appendChild(form);
@@ -106,7 +143,7 @@
 
       var etiquette = elt('label');
       etiquette.setAttribute('for', id);
-      etiquette.appendChild(libelle('calc-libelle', champ.libelle));
+      etiquette.appendChild(libelle('calc-libelle', texteLibelle(champ)));
       if (champ.unite) etiquette.appendChild(elt('span', 'calc-unite', unite(champ.unite)));
       groupe.appendChild(etiquette);
 
@@ -114,7 +151,7 @@
       saisie.type = 'text';
       saisie.inputMode = 'decimal';
       saisie.id = id;
-      saisie.value = String(champ.defaut).replace('.', ',');
+      saisie.value = EN ? String(champ.defaut) : String(champ.defaut).replace('.', ',');
       saisie.autocomplete = 'off';
       if (rang === 0) saisie.setAttribute('data-premier', '');
       groupe.appendChild(saisie);
@@ -131,7 +168,7 @@
 
     // --- colonne de résultats ---
     var droite = elt('div', 'calc-resultats');
-    droite.appendChild(elt(niveau, null, 'Résultats'));
+    droite.appendChild(elt(niveau, null, T.resultats));
     var zone = elt('div', 'calc-zone');
     zone.setAttribute('aria-live', 'polite');
     droite.appendChild(zone);
@@ -139,7 +176,7 @@
     // note de calcul : le navigateur imprime ou enregistre en PDF ; la mise
     // en page d'impression est dans style.css (@media print). Inactif tant
     // que les données ne donnent pas de résultat : rien à imprimer.
-    var imprimer = elt('button', 'btn btn-secondaire calc-imprimer', 'Imprimer la note de calcul');
+    var imprimer = elt('button', 'btn btn-secondaire calc-imprimer', T.imprimer);
     imprimer.type = 'button';
     imprimer.addEventListener('click', function () { window.print(); });
     droite.appendChild(imprimer);
@@ -176,7 +213,7 @@
       imprimer.disabled = true;
       if (refus) {
         zone.appendChild(elt('p', 'calc-vide',
-          'Complétez les données pour obtenir les résultats.'));
+          T.completez));
         return;
       }
 
@@ -184,13 +221,13 @@
       try {
         sortie = module.calcule(valeurs);
       } catch (err) {
-        zone.appendChild(elt('p', 'calc-vide', "Le calcul n'aboutit pas avec ces valeurs : vérifiez les données saisies."));
+        zone.appendChild(elt('p', 'calc-vide', T.echec));
         return;
       }
 
       module.sorties.forEach(function (s) {
         var ligne = elt('div', 'calc-ligne');
-        ligne.appendChild(libelle('calc-nom', s.libelle));
+        ligne.appendChild(libelle('calc-nom', texteLibelle(s)));
         var val = elt('span', 'calc-valeur');
         val.appendChild(document.createTextNode(formate(sortie[s.cle], s.decimales)));
         if (s.unite) val.appendChild(elt('small', null, unite(s.unite)));
@@ -234,13 +271,13 @@
     section.insertBefore(entete, section.firstChild);
 
     var pied = elt('p', 'note-pied');
-    pied.appendChild(document.createTextNode('Calcul effectué sur ' +
+    pied.appendChild(document.createTextNode(T.pied1 +
       location.host + location.pathname +
-      '. Document indicatif : il ne remplace pas la vérification par un ingénieur.'));
+      T.pied2));
     section.appendChild(pied);
 
     function dater() {
-      date.textContent = 'Note de calcul — ' + new Intl.DateTimeFormat('fr-FR',
+      date.textContent = T.note + new Intl.DateTimeFormat(LOCALE,
         { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
     }
     dater();

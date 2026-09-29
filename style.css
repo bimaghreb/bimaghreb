@@ -168,6 +168,23 @@ model-viewer:focus-visible {
   gap: var(--e-6);
 }
 .nav-logo img { height: 36px; width: auto; }
+/* FR | EN : a l'extreme droite ; sur telephone, face au logo (le menu y est
+   remplace par les onglets du bas). La langue courante est la plus foncee. */
+.nav-inner > .nav-links { margin-left: auto; }
+.langues { display: flex; align-items: center; font-size: .8rem; font-weight: 600; letter-spacing: .06em; }
+.langues a {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 40px; min-height: 44px; padding: 0 var(--e-1);
+  color: var(--text-soft);
+  transition: color var(--survol) var(--deplacer);
+}
+.langues a + a::before {
+  content: ""; position: absolute; left: 0; top: 34%; bottom: 34%;
+  border-left: 1px solid var(--line);
+}
+.langues a[aria-current] { color: var(--ink); }
+.langues a:hover { color: var(--orange-texte); }
 
 .nav-links {
   display: flex; align-items: center; gap: var(--e-8);
@@ -380,6 +397,8 @@ model-viewer:focus-visible {
   color: rgba(255,255,255,.78);
 }
 .hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e-6); }
+.introuvable-en { margin: var(--e-10) 0 0; color: var(--text-soft); }
+.introuvable-en a { color: var(--orange-texte); text-decoration: underline; text-underline-offset: 3px; }
 
 @media (max-width: 720px) {
   .hero-line { white-space: normal; }

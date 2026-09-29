@@ -149,7 +149,8 @@
     lien.href = img.getAttribute("src");
     lien.target = "_blank";
     lien.rel = "noopener";
-    lien.setAttribute("aria-label", "Ouvrir en taille réelle : " + (img.alt || "image"));
+    lien.setAttribute("aria-label", (document.documentElement.lang === "en"
+      ? "Open full size: " : "Ouvrir en taille réelle : ") + (img.alt || "image"));
     lien.appendChild(img);
     fig.appendChild(lien);
     if (img.alt) {

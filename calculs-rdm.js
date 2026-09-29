@@ -13,16 +13,16 @@ const CALCULS_RDM = {
     court: "Bi-articulée · charge répartie",
     titre: "Poutre bi-articulée sous charge répartie",
     entrees: [
-      { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
-      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
-      { cle: "l", libelle: "Portée de calcul : L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
-      { cle: "q", libelle: "Charge répartie : q", symbole: "q", unite: "kN/m", defaut: "46.45", min: 0.0, max: null }
+      { cle: "e", libelle: "Module d'élasticité longitudinale : E", libelle_en: "Modulus of elasticity: E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
+      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", libelle_en: "Second moment of area of the cross-section: I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
+      { cle: "l", libelle: "Portée de calcul : L", libelle_en: "Effective span: L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
+      { cle: "q", libelle: "Charge répartie : q", libelle_en: "Uniformly distributed load: q", symbole: "q", unite: "kN/m", defaut: "46.45", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "delta_max", libelle: "Flèche maximale : δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
-      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
-      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", symbole: "V_max", unite: "kN", decimales: 2 },
-      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", symbole: "V_min", unite: "kN", decimales: 2 }
+      { cle: "delta_max", libelle: "Flèche maximale : δ_max", libelle_en: "Maximum deflection: δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
+      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", libelle_en: "Minimum bending moment: M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
+      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", libelle_en: "Maximum shear force: V_max", symbole: "V_max", unite: "kN", decimales: 2 },
+      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", libelle_en: "Minimum shear force: V_min", symbole: "V_min", unite: "kN", decimales: 2 }
     ],
     calcule: function (saisie) {
       let E, I, L, q, delta_max, m_min, v_max, v_min;
@@ -42,17 +42,17 @@ const CALCULS_RDM = {
     court: "Bi-articulée · charge ponctuelle",
     titre: "Poutre bi-articulée sous charge ponctuelle",
     entrees: [
-      { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
-      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
-      { cle: "l", libelle: "Portée de calcul : L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
-      { cle: "alpha", libelle: "Position de la charge ponctuelle : α", symbole: "α", unite: "cm", defaut: "240", min: 0.0, max: null },
-      { cle: "p", libelle: "Charge ponctuelle : P", symbole: "P", unite: "kN", defaut: "148.64", min: 0.0, max: null }
+      { cle: "e", libelle: "Module d'élasticité longitudinale : E", libelle_en: "Modulus of elasticity: E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
+      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", libelle_en: "Second moment of area of the cross-section: I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
+      { cle: "l", libelle: "Portée de calcul : L", libelle_en: "Effective span: L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
+      { cle: "alpha", libelle: "Position de la charge ponctuelle : α", libelle_en: "Position of the point load: α", symbole: "α", unite: "cm", defaut: "240", min: 0.0, max: null },
+      { cle: "p", libelle: "Charge ponctuelle : P", libelle_en: "Point load: P", symbole: "P", unite: "kN", defaut: "148.64", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "delta_max", libelle: "Flèche maximale : δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
-      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
-      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", symbole: "V_max", unite: "kN", decimales: 2 },
-      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", symbole: "V_min", unite: "kN", decimales: 2 }
+      { cle: "delta_max", libelle: "Flèche maximale : δ_max", libelle_en: "Maximum deflection: δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
+      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", libelle_en: "Minimum bending moment: M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
+      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", libelle_en: "Maximum shear force: V_max", symbole: "V_max", unite: "kN", decimales: 2 },
+      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", libelle_en: "Minimum shear force: V_min", symbole: "V_min", unite: "kN", decimales: 2 }
     ],
     calcule: function (saisie) {
       let ee, i, l, alpha, p, delta_max, m_min, v_max, v_min;
@@ -77,17 +77,17 @@ const CALCULS_RDM = {
     court: "Encastrée-articulée · répartie",
     titre: "Poutre encastrée-articulée sous charge répartie",
     entrees: [
-      { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
-      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
-      { cle: "l", libelle: "Portée de calcul : L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
-      { cle: "q", libelle: "Charge répartie : q", symbole: "q", unite: "kN/m", defaut: "46.45", min: 0.0, max: null }
+      { cle: "e", libelle: "Module d'élasticité longitudinale : E", libelle_en: "Modulus of elasticity: E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
+      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", libelle_en: "Second moment of area of the cross-section: I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
+      { cle: "l", libelle: "Portée de calcul : L", libelle_en: "Effective span: L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
+      { cle: "q", libelle: "Charge répartie : q", libelle_en: "Uniformly distributed load: q", symbole: "q", unite: "kN/m", defaut: "46.45", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "delta_max", libelle: "Flèche maximale : δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
-      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
-      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
-      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", symbole: "V_max", unite: "kN", decimales: 2 },
-      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", symbole: "V_min", unite: "kN", decimales: 2 }
+      { cle: "delta_max", libelle: "Flèche maximale : δ_max", libelle_en: "Maximum deflection: δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
+      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", libelle_en: "Maximum bending moment: M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
+      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", libelle_en: "Minimum bending moment: M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
+      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", libelle_en: "Maximum shear force: V_max", symbole: "V_max", unite: "kN", decimales: 2 },
+      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", libelle_en: "Minimum shear force: V_min", symbole: "V_min", unite: "kN", decimales: 2 }
     ],
     calcule: function (saisie) {
       let ee, i, l, q, delta_max, m_max, m_min, v_max, v_min;
@@ -108,18 +108,18 @@ const CALCULS_RDM = {
     court: "Encastrée-articulée · ponctuelle",
     titre: "Poutre encastrée-articulée sous charge ponctuelle",
     entrees: [
-      { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
-      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
-      { cle: "l", libelle: "Portée de calcul : L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
-      { cle: "alpha", libelle: "Position de la charge ponctuelle : α", symbole: "α", unite: "cm", defaut: "240", min: 0.0, max: null },
-      { cle: "p", libelle: "Charge ponctuelle : P", symbole: "P", unite: "kN", defaut: "148.64", min: 0.0, max: null }
+      { cle: "e", libelle: "Module d'élasticité longitudinale : E", libelle_en: "Modulus of elasticity: E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
+      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", libelle_en: "Second moment of area of the cross-section: I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
+      { cle: "l", libelle: "Portée de calcul : L", libelle_en: "Effective span: L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
+      { cle: "alpha", libelle: "Position de la charge ponctuelle : α", libelle_en: "Position of the point load: α", symbole: "α", unite: "cm", defaut: "240", min: 0.0, max: null },
+      { cle: "p", libelle: "Charge ponctuelle : P", libelle_en: "Point load: P", symbole: "P", unite: "kN", defaut: "148.64", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "delta_max", libelle: "Flèche maximale : δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
-      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
-      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
-      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", symbole: "V_max", unite: "kN", decimales: 2 },
-      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", symbole: "V_min", unite: "kN", decimales: 2 }
+      { cle: "delta_max", libelle: "Flèche maximale : δ_max", libelle_en: "Maximum deflection: δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
+      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", libelle_en: "Maximum bending moment: M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
+      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", libelle_en: "Minimum bending moment: M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
+      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", libelle_en: "Maximum shear force: V_max", symbole: "V_max", unite: "kN", decimales: 2 },
+      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", libelle_en: "Minimum shear force: V_min", symbole: "V_min", unite: "kN", decimales: 2 }
     ],
     calcule: function (saisie) {
       let ee, i, l, alpha, p, delta_max, m_max, m_min, v_max, v_min;
@@ -145,17 +145,17 @@ const CALCULS_RDM = {
     court: "Bi-encastrée · charge répartie",
     titre: "Poutre bi-encastrée sous charge répartie",
     entrees: [
-      { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
-      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
-      { cle: "l", libelle: "Portée de calcul : L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
-      { cle: "q", libelle: "Charge répartie : q", symbole: "q", unite: "kN/m", defaut: "46.45", min: 0.0, max: null }
+      { cle: "e", libelle: "Module d'élasticité longitudinale : E", libelle_en: "Modulus of elasticity: E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
+      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", libelle_en: "Second moment of area of the cross-section: I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
+      { cle: "l", libelle: "Portée de calcul : L", libelle_en: "Effective span: L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
+      { cle: "q", libelle: "Charge répartie : q", libelle_en: "Uniformly distributed load: q", symbole: "q", unite: "kN/m", defaut: "46.45", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "delta_max", libelle: "Flèche maximale : δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
-      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
-      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
-      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", symbole: "V_max", unite: "kN", decimales: 2 },
-      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", symbole: "V_min", unite: "kN", decimales: 2 }
+      { cle: "delta_max", libelle: "Flèche maximale : δ_max", libelle_en: "Maximum deflection: δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
+      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", libelle_en: "Maximum bending moment: M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
+      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", libelle_en: "Minimum bending moment: M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
+      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", libelle_en: "Maximum shear force: V_max", symbole: "V_max", unite: "kN", decimales: 2 },
+      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", libelle_en: "Minimum shear force: V_min", symbole: "V_min", unite: "kN", decimales: 2 }
     ],
     calcule: function (saisie) {
       let module_e, i_maj, portee, q, delta_max, m_max, m_min, v_max, v_min;
@@ -176,18 +176,18 @@ const CALCULS_RDM = {
     court: "Bi-encastrée · charge ponctuelle",
     titre: "Poutre bi-encastrée sous charge ponctuelle",
     entrees: [
-      { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
-      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
-      { cle: "l", libelle: "Portée de calcul : L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
-      { cle: "alpha", libelle: "Position de la charge ponctuelle : α", symbole: "α", unite: "cm", defaut: "240", min: 0.0, max: null },
-      { cle: "p", libelle: "Charge ponctuelle : P", symbole: "P", unite: "kN", defaut: "148.64", min: 0.0, max: null }
+      { cle: "e", libelle: "Module d'élasticité longitudinale : E", libelle_en: "Modulus of elasticity: E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
+      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", libelle_en: "Second moment of area of the cross-section: I", symbole: "I", unite: "cm^4", defaut: "3831", min: 0.0, max: null },
+      { cle: "l", libelle: "Portée de calcul : L", libelle_en: "Effective span: L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
+      { cle: "alpha", libelle: "Position de la charge ponctuelle : α", libelle_en: "Position of the point load: α", symbole: "α", unite: "cm", defaut: "240", min: 0.0, max: null },
+      { cle: "p", libelle: "Charge ponctuelle : P", libelle_en: "Point load: P", symbole: "P", unite: "kN", defaut: "148.64", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "delta_max", libelle: "Flèche maximale : δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
-      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
-      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
-      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", symbole: "V_max", unite: "kN", decimales: 2 },
-      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", symbole: "V_min", unite: "kN", decimales: 2 }
+      { cle: "delta_max", libelle: "Flèche maximale : δ_max", libelle_en: "Maximum deflection: δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
+      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", libelle_en: "Maximum bending moment: M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
+      { cle: "m_min", libelle: "Moment fléchissant minimal : M_min", libelle_en: "Minimum bending moment: M_min", symbole: "M_min", unite: "kN.m", decimales: 2 },
+      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", libelle_en: "Maximum shear force: V_max", symbole: "V_max", unite: "kN", decimales: 2 },
+      { cle: "v_min", libelle: "Effort tranchant minimal : V_min", libelle_en: "Minimum shear force: V_min", symbole: "V_min", unite: "kN", decimales: 2 }
     ],
     calcule: function (saisie) {
       let ee, i, l, alpha, p, delta_max, m_max, m_min, v_max, v_min;
@@ -213,15 +213,15 @@ const CALCULS_RDM = {
     court: "Console · charge répartie",
     titre: "Poutre console sous charge répartie",
     entrees: [
-      { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
-      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "16270", min: 0.0, max: null },
-      { cle: "l", libelle: "Portée de calcul : L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
-      { cle: "q", libelle: "Charge répartie : q", symbole: "q", unite: "kN/m", defaut: "46.45", min: 0.0, max: null }
+      { cle: "e", libelle: "Module d'élasticité longitudinale : E", libelle_en: "Modulus of elasticity: E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
+      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", libelle_en: "Second moment of area of the cross-section: I", symbole: "I", unite: "cm^4", defaut: "16270", min: 0.0, max: null },
+      { cle: "l", libelle: "Portée de calcul : L", libelle_en: "Effective span: L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
+      { cle: "q", libelle: "Charge répartie : q", libelle_en: "Uniformly distributed load: q", symbole: "q", unite: "kN/m", defaut: "46.45", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "delta_max", libelle: "Flèche maximale : δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
-      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
-      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", symbole: "V_max", unite: "kN", decimales: 2 }
+      { cle: "delta_max", libelle: "Flèche maximale : δ_max", libelle_en: "Maximum deflection: δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
+      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", libelle_en: "Maximum bending moment: M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
+      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", libelle_en: "Maximum shear force: V_max", symbole: "V_max", unite: "kN", decimales: 2 }
     ],
     calcule: function (saisie) {
       let ee, i, l, q, delta_max, m_max, v_max;
@@ -240,16 +240,16 @@ const CALCULS_RDM = {
     court: "Console · charge ponctuelle",
     titre: "Poutre console sous charge ponctuelle",
     entrees: [
-      { cle: "e", libelle: "Module d'élasticité longitudinale : E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
-      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", symbole: "I", unite: "cm^4", defaut: "16270", min: 0.0, max: null },
-      { cle: "l", libelle: "Portée de calcul : L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
-      { cle: "alpha", libelle: "Position de la charge ponctuelle : α", symbole: "α", unite: "cm", defaut: "240", min: 0.0, max: null },
-      { cle: "p", libelle: "Charge ponctuelle : P", symbole: "P", unite: "kN", defaut: "148.64", min: 0.0, max: null }
+      { cle: "e", libelle: "Module d'élasticité longitudinale : E", libelle_en: "Modulus of elasticity: E", symbole: "E", unite: "GPa", defaut: "210", min: 0.0, max: null },
+      { cle: "i", libelle: "Moment d'inertie de flexion de la section transversale : I", libelle_en: "Second moment of area of the cross-section: I", symbole: "I", unite: "cm^4", defaut: "16270", min: 0.0, max: null },
+      { cle: "l", libelle: "Portée de calcul : L", libelle_en: "Effective span: L", symbole: "L", unite: "cm", defaut: "320", min: 0.0, max: null },
+      { cle: "alpha", libelle: "Position de la charge ponctuelle : α", libelle_en: "Position of the point load: α", symbole: "α", unite: "cm", defaut: "240", min: 0.0, max: null },
+      { cle: "p", libelle: "Charge ponctuelle : P", libelle_en: "Point load: P", symbole: "P", unite: "kN", defaut: "148.64", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "delta_max", libelle: "Flèche maximale : δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
-      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
-      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", symbole: "V_max", unite: "kN", decimales: 2 }
+      { cle: "delta_max", libelle: "Flèche maximale : δ_max", libelle_en: "Maximum deflection: δ_max", symbole: "δ_max", unite: "mm", decimales: 1 },
+      { cle: "m_max", libelle: "Moment fléchissant maximal : M_max", libelle_en: "Maximum bending moment: M_max", symbole: "M_max", unite: "kN.m", decimales: 2 },
+      { cle: "v_max", libelle: "Effort tranchant maximal : V_max", libelle_en: "Maximum shear force: V_max", symbole: "V_max", unite: "kN", decimales: 2 }
     ],
     calcule: function (saisie) {
       let ee, i, l, alpha, p, delta_max, m_max, v_max;
@@ -269,18 +269,18 @@ const CALCULS_RDM = {
     court: "Rectangle plein",
     titre: "Section rectangulaire pleine",
     entrees: [
-      { cle: "h", libelle: "Hauteur de la section : h", symbole: "h", unite: "mm", defaut: "80", min: 0.0, max: null },
-      { cle: "b", libelle: "Largeur de la section : b", symbole: "b", unite: "mm", defaut: "50", min: 0.0, max: null }
+      { cle: "h", libelle: "Hauteur de la section : h", libelle_en: "Section depth: h", symbole: "h", unite: "mm", defaut: "80", min: 0.0, max: null },
+      { cle: "b", libelle: "Largeur de la section : b", libelle_en: "Section width: b", symbole: "b", unite: "mm", defaut: "50", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "a", libelle: "Aire de la section : A", symbole: "A", unite: "cm²", decimales: 2 },
-      { cle: "iy", libelle: "Moment d'inertie de flexion par rapport à l'axe y-y : I_y", symbole: "I_y", unite: "cm^4", decimales: 2 },
-      { cle: "iz", libelle: "Moment d'inertie de flexion par rapport à l'axe z-z : I_z", symbole: "I_z", unite: "cm^4", decimales: 2 },
-      { cle: "wely", libelle: "Module élastique de flexion par rapport à l'axe y-y : W_el,y", symbole: "W_el,y", unite: "cm³", decimales: 2 },
-      { cle: "welz", libelle: "Module élastique de flexion par rapport à l'axe z-z : W_el,z", symbole: "W_el,z", unite: "cm³", decimales: 2 },
-      { cle: "wply", libelle: "Module plastique de flexion par rapport à l'axe y-y : W_pl,y", symbole: "W_pl,y", unite: "cm³", decimales: 2 },
-      { cle: "wplz", libelle: "Module plastique de flexion par rapport à l'axe z-z : W_pl,z", symbole: "W_pl,z", unite: "cm³", decimales: 2 },
-      { cle: "av", libelle: "Aire de cisaillement : A_v", symbole: "A_v", unite: "cm²", decimales: 2 }
+      { cle: "a", libelle: "Aire de la section : A", libelle_en: "Cross-sectional area: A", symbole: "A", unite: "cm²", decimales: 2 },
+      { cle: "iy", libelle: "Moment d'inertie de flexion par rapport à l'axe y-y : I_y", libelle_en: "Second moment of area about the y-y axis: I_y", symbole: "I_y", unite: "cm^4", decimales: 2 },
+      { cle: "iz", libelle: "Moment d'inertie de flexion par rapport à l'axe z-z : I_z", libelle_en: "Second moment of area about the z-z axis: I_z", symbole: "I_z", unite: "cm^4", decimales: 2 },
+      { cle: "wely", libelle: "Module élastique de flexion par rapport à l'axe y-y : W_el,y", libelle_en: "Elastic section modulus about the y-y axis: W_el,y", symbole: "W_el,y", unite: "cm³", decimales: 2 },
+      { cle: "welz", libelle: "Module élastique de flexion par rapport à l'axe z-z : W_el,z", libelle_en: "Elastic section modulus about the z-z axis: W_el,z", symbole: "W_el,z", unite: "cm³", decimales: 2 },
+      { cle: "wply", libelle: "Module plastique de flexion par rapport à l'axe y-y : W_pl,y", libelle_en: "Plastic section modulus about the y-y axis: W_pl,y", symbole: "W_pl,y", unite: "cm³", decimales: 2 },
+      { cle: "wplz", libelle: "Module plastique de flexion par rapport à l'axe z-z : W_pl,z", libelle_en: "Plastic section modulus about the z-z axis: W_pl,z", symbole: "W_pl,z", unite: "cm³", decimales: 2 },
+      { cle: "av", libelle: "Aire de cisaillement : A_v", libelle_en: "Shear area: A_v", symbole: "A_v", unite: "cm²", decimales: 2 }
     ],
     calcule: function (saisie) {
       let h, b, a, iy, iz, wely, welz, wply, wplz, av;
@@ -302,14 +302,14 @@ const CALCULS_RDM = {
     court: "Rond plein",
     titre: "Section circulaire pleine",
     entrees: [
-      { cle: "d", libelle: "Diamètre : d", symbole: "d", unite: "mm", defaut: "55", min: 0.0, max: null }
+      { cle: "d", libelle: "Diamètre : d", libelle_en: "Diameter: d", symbole: "d", unite: "mm", defaut: "55", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "a", libelle: "Aire de la section : A", symbole: "A", unite: "cm²", decimales: 2 },
-      { cle: "i", libelle: "Moment d'inertie de flexion : I", symbole: "I", unite: "cm^4", decimales: 2 },
-      { cle: "wel", libelle: "Module élastique de flexion : W_el", symbole: "W_el", unite: "cm³", decimales: 2 },
-      { cle: "wpl", libelle: "Module plastique de flexion : W_pl", symbole: "W_pl", unite: "cm³", decimales: 2 },
-      { cle: "av", libelle: "Aire de cisaillement : A_v", symbole: "A_v", unite: "cm²", decimales: 2 }
+      { cle: "a", libelle: "Aire de la section : A", libelle_en: "Cross-sectional area: A", symbole: "A", unite: "cm²", decimales: 2 },
+      { cle: "i", libelle: "Moment d'inertie de flexion : I", libelle_en: "Second moment of area: I", symbole: "I", unite: "cm^4", decimales: 2 },
+      { cle: "wel", libelle: "Module élastique de flexion : W_el", libelle_en: "Elastic section modulus: W_el", symbole: "W_el", unite: "cm³", decimales: 2 },
+      { cle: "wpl", libelle: "Module plastique de flexion : W_pl", libelle_en: "Plastic section modulus: W_pl", symbole: "W_pl", unite: "cm³", decimales: 2 },
+      { cle: "av", libelle: "Aire de cisaillement : A_v", libelle_en: "Shear area: A_v", symbole: "A_v", unite: "cm²", decimales: 2 }
     ],
     calcule: function (saisie) {
       let d, a, i, wel, wpl, av;
@@ -327,21 +327,21 @@ const CALCULS_RDM = {
     court: "Profil en I",
     titre: "Profil en I",
     entrees: [
-      { cle: "h", libelle: "Hauteur de la section : h", symbole: "h", unite: "mm", defaut: "200", min: 0.0, max: null },
-      { cle: "b", libelle: "Largeur de la section : b", symbole: "b", unite: "mm", defaut: "100", min: 0.0, max: null },
-      { cle: "tw", libelle: "Épaisseur d'âme : t_w", symbole: "t_w", unite: "mm", defaut: "5.6", min: 0.0, max: null },
-      { cle: "tf", libelle: "Épaisseur de semelle : t_f", symbole: "t_f", unite: "mm", defaut: "8.5", min: 0.0, max: null }
+      { cle: "h", libelle: "Hauteur de la section : h", libelle_en: "Section depth: h", symbole: "h", unite: "mm", defaut: "200", min: 0.0, max: null },
+      { cle: "b", libelle: "Largeur de la section : b", libelle_en: "Section width: b", symbole: "b", unite: "mm", defaut: "100", min: 0.0, max: null },
+      { cle: "tw", libelle: "Épaisseur d'âme : t_w", libelle_en: "Web thickness: t_w", symbole: "t_w", unite: "mm", defaut: "5.6", min: 0.0, max: null },
+      { cle: "tf", libelle: "Épaisseur de semelle : t_f", libelle_en: "Flange thickness: t_f", symbole: "t_f", unite: "mm", defaut: "8.5", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "a", libelle: "Aire de la section : A", symbole: "A", unite: "cm²", decimales: 2 },
-      { cle: "iy", libelle: "Moment d'inertie de flexion par rapport à l'axe y-y : I_y", symbole: "I_y", unite: "cm^4", decimales: 2 },
-      { cle: "iz", libelle: "Moment d'inertie de flexion par rapport à l'axe z-z : I_z", symbole: "I_z", unite: "cm^4", decimales: 2 },
-      { cle: "wely", libelle: "Module élastique de flexion par rapport à l'axe y-y : W_el,y", symbole: "W_el,y", unite: "cm³", decimales: 2 },
-      { cle: "welz", libelle: "Module élastique de flexion par rapport à l'axe z-z : W_el,z", symbole: "W_el,z", unite: "cm³", decimales: 2 },
-      { cle: "wply", libelle: "Module plastique de flexion par rapport à l'axe y-y : W_pl,y", symbole: "W_pl,y", unite: "cm³", decimales: 2 },
-      { cle: "wplz", libelle: "Module plastique de flexion par rapport à l'axe z-z : W_pl,z", symbole: "W_pl,z", unite: "cm³", decimales: 2 },
-      { cle: "avy", libelle: "Aire de cisaillement le long de l'axe y-y : A_v,y", symbole: "A_v,y", unite: "cm²", decimales: 2 },
-      { cle: "avz", libelle: "Aire de cisaillement le long de l'axe z-z : A_v,z", symbole: "A_v,z", unite: "cm²", decimales: 2 }
+      { cle: "a", libelle: "Aire de la section : A", libelle_en: "Cross-sectional area: A", symbole: "A", unite: "cm²", decimales: 2 },
+      { cle: "iy", libelle: "Moment d'inertie de flexion par rapport à l'axe y-y : I_y", libelle_en: "Second moment of area about the y-y axis: I_y", symbole: "I_y", unite: "cm^4", decimales: 2 },
+      { cle: "iz", libelle: "Moment d'inertie de flexion par rapport à l'axe z-z : I_z", libelle_en: "Second moment of area about the z-z axis: I_z", symbole: "I_z", unite: "cm^4", decimales: 2 },
+      { cle: "wely", libelle: "Module élastique de flexion par rapport à l'axe y-y : W_el,y", libelle_en: "Elastic section modulus about the y-y axis: W_el,y", symbole: "W_el,y", unite: "cm³", decimales: 2 },
+      { cle: "welz", libelle: "Module élastique de flexion par rapport à l'axe z-z : W_el,z", libelle_en: "Elastic section modulus about the z-z axis: W_el,z", symbole: "W_el,z", unite: "cm³", decimales: 2 },
+      { cle: "wply", libelle: "Module plastique de flexion par rapport à l'axe y-y : W_pl,y", libelle_en: "Plastic section modulus about the y-y axis: W_pl,y", symbole: "W_pl,y", unite: "cm³", decimales: 2 },
+      { cle: "wplz", libelle: "Module plastique de flexion par rapport à l'axe z-z : W_pl,z", libelle_en: "Plastic section modulus about the z-z axis: W_pl,z", symbole: "W_pl,z", unite: "cm³", decimales: 2 },
+      { cle: "avy", libelle: "Aire de cisaillement le long de l'axe y-y : A_v,y", libelle_en: "Shear area along the y-y axis: A_v,y", symbole: "A_v,y", unite: "cm²", decimales: 2 },
+      { cle: "avz", libelle: "Aire de cisaillement le long de l'axe z-z : A_v,z", libelle_en: "Shear area along the z-z axis: A_v,z", symbole: "A_v,z", unite: "cm²", decimales: 2 }
     ],
     calcule: function (saisie) {
       let h, b, tw, tf, a, iy, iz, wely, welz, wply, wplz, avy, avz;
@@ -366,21 +366,21 @@ const CALCULS_RDM = {
     court: "Profil en U",
     titre: "Profil en U",
     entrees: [
-      { cle: "h", libelle: "Hauteur de la section : h", symbole: "h", unite: "mm", defaut: "200", min: 0.0, max: null },
-      { cle: "b", libelle: "Largeur de la section : b", symbole: "b", unite: "mm", defaut: "80", min: 0.0, max: null },
-      { cle: "tw", libelle: "Épaisseur d'âme : t_w", symbole: "t_w", unite: "mm", defaut: "6", min: 0.0, max: null },
-      { cle: "tf", libelle: "Épaisseur de semelle : t_f", symbole: "t_f", unite: "mm", defaut: "11", min: 0.0, max: null }
+      { cle: "h", libelle: "Hauteur de la section : h", libelle_en: "Section depth: h", symbole: "h", unite: "mm", defaut: "200", min: 0.0, max: null },
+      { cle: "b", libelle: "Largeur de la section : b", libelle_en: "Section width: b", symbole: "b", unite: "mm", defaut: "80", min: 0.0, max: null },
+      { cle: "tw", libelle: "Épaisseur d'âme : t_w", libelle_en: "Web thickness: t_w", symbole: "t_w", unite: "mm", defaut: "6", min: 0.0, max: null },
+      { cle: "tf", libelle: "Épaisseur de semelle : t_f", libelle_en: "Flange thickness: t_f", symbole: "t_f", unite: "mm", defaut: "11", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "a", libelle: "Aire de la section : A", symbole: "A", unite: "cm²", decimales: 2 },
-      { cle: "iy", libelle: "Moment d'inertie de flexion par rapport à l'axe y-y : I_y", symbole: "I_y", unite: "cm^4", decimales: 2 },
-      { cle: "iz", libelle: "Moment d'inertie de flexion par rapport à l'axe z-z : I_z", symbole: "I_z", unite: "cm^4", decimales: 2 },
-      { cle: "wely", libelle: "Module élastique de flexion par rapport à l'axe y-y : W_el,y", symbole: "W_el,y", unite: "cm³", decimales: 2 },
-      { cle: "welz", libelle: "Module élastique de flexion par rapport à l'axe z-z : W_el,z", symbole: "W_el,z", unite: "cm³", decimales: 2 },
-      { cle: "wply", libelle: "Module plastique de flexion par rapport à l'axe y-y : W_pl,y", symbole: "W_pl,y", unite: "cm³", decimales: 2 },
-      { cle: "wplz", libelle: "Module plastique de flexion par rapport à l'axe z-z : W_pl,z", symbole: "W_pl,z", unite: "cm³", decimales: 2 },
-      { cle: "avy", libelle: "Aire de cisaillement le long de l'axe y-y : A_v,y", symbole: "A_v,y", unite: "cm²", decimales: 2 },
-      { cle: "avz", libelle: "Aire de cisaillement le long de l'axe z-z : A_v,z", symbole: "A_v,z", unite: "cm²", decimales: 2 }
+      { cle: "a", libelle: "Aire de la section : A", libelle_en: "Cross-sectional area: A", symbole: "A", unite: "cm²", decimales: 2 },
+      { cle: "iy", libelle: "Moment d'inertie de flexion par rapport à l'axe y-y : I_y", libelle_en: "Second moment of area about the y-y axis: I_y", symbole: "I_y", unite: "cm^4", decimales: 2 },
+      { cle: "iz", libelle: "Moment d'inertie de flexion par rapport à l'axe z-z : I_z", libelle_en: "Second moment of area about the z-z axis: I_z", symbole: "I_z", unite: "cm^4", decimales: 2 },
+      { cle: "wely", libelle: "Module élastique de flexion par rapport à l'axe y-y : W_el,y", libelle_en: "Elastic section modulus about the y-y axis: W_el,y", symbole: "W_el,y", unite: "cm³", decimales: 2 },
+      { cle: "welz", libelle: "Module élastique de flexion par rapport à l'axe z-z : W_el,z", libelle_en: "Elastic section modulus about the z-z axis: W_el,z", symbole: "W_el,z", unite: "cm³", decimales: 2 },
+      { cle: "wply", libelle: "Module plastique de flexion par rapport à l'axe y-y : W_pl,y", libelle_en: "Plastic section modulus about the y-y axis: W_pl,y", symbole: "W_pl,y", unite: "cm³", decimales: 2 },
+      { cle: "wplz", libelle: "Module plastique de flexion par rapport à l'axe z-z : W_pl,z", libelle_en: "Plastic section modulus about the z-z axis: W_pl,z", symbole: "W_pl,z", unite: "cm³", decimales: 2 },
+      { cle: "avy", libelle: "Aire de cisaillement le long de l'axe y-y : A_v,y", libelle_en: "Shear area along the y-y axis: A_v,y", symbole: "A_v,y", unite: "cm²", decimales: 2 },
+      { cle: "avz", libelle: "Aire de cisaillement le long de l'axe z-z : A_v,z", libelle_en: "Shear area along the z-z axis: A_v,z", symbole: "A_v,z", unite: "cm²", decimales: 2 }
     ],
     calcule: function (saisie) {
       let h, b, tw, tf, a, iy, s, iz, wely, welz, wply, wplz, avy, avz;
@@ -410,20 +410,20 @@ const CALCULS_RDM = {
     court: "Tube rectangulaire",
     titre: "Tube rectangulaire",
     entrees: [
-      { cle: "h", libelle: "Hauteur de la section : h", symbole: "h", unite: "mm", defaut: "200", min: 0.0, max: null },
-      { cle: "b", libelle: "Largeur de la section : b", symbole: "b", unite: "mm", defaut: "100", min: 0.0, max: null },
-      { cle: "t", libelle: "Épaisseur : t", symbole: "t", unite: "mm", defaut: "6", min: 0.0, max: null }
+      { cle: "h", libelle: "Hauteur de la section : h", libelle_en: "Section depth: h", symbole: "h", unite: "mm", defaut: "200", min: 0.0, max: null },
+      { cle: "b", libelle: "Largeur de la section : b", libelle_en: "Section width: b", symbole: "b", unite: "mm", defaut: "100", min: 0.0, max: null },
+      { cle: "t", libelle: "Épaisseur : t", libelle_en: "Thickness: t", symbole: "t", unite: "mm", defaut: "6", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "a", libelle: "Aire de la section : A", symbole: "A", unite: "cm²", decimales: 2 },
-      { cle: "iy", libelle: "Moment d'inertie de flexion par rapport à l'axe y-y : I_y", symbole: "I_y", unite: "cm^4", decimales: 2 },
-      { cle: "iz", libelle: "Moment d'inertie de flexion par rapport à l'axe z-z : I_z", symbole: "I_z", unite: "cm^4", decimales: 2 },
-      { cle: "wely", libelle: "Module élastique de flexion par rapport à l'axe y-y : W_el,y", symbole: "W_el,y", unite: "cm³", decimales: 2 },
-      { cle: "welz", libelle: "Module élastique de flexion par rapport à l'axe z-z : W_el,z", symbole: "W_el,z", unite: "cm³", decimales: 2 },
-      { cle: "wply", libelle: "Module plastique de flexion par rapport à l'axe y-y : W_pl,y", symbole: "W_pl,y", unite: "cm³", decimales: 2 },
-      { cle: "wplz", libelle: "Module plastique de flexion par rapport à l'axe z-z : W_pl,z", symbole: "W_pl,z", unite: "cm³", decimales: 2 },
-      { cle: "avy", libelle: "Aire de cisaillement le long de l'axe y-y : A_v,y", symbole: "A_v,y", unite: "cm²", decimales: 2 },
-      { cle: "avz", libelle: "Aire de cisaillement le long de l'axe z-z : A_v,z", symbole: "A_v,z", unite: "cm²", decimales: 2 }
+      { cle: "a", libelle: "Aire de la section : A", libelle_en: "Cross-sectional area: A", symbole: "A", unite: "cm²", decimales: 2 },
+      { cle: "iy", libelle: "Moment d'inertie de flexion par rapport à l'axe y-y : I_y", libelle_en: "Second moment of area about the y-y axis: I_y", symbole: "I_y", unite: "cm^4", decimales: 2 },
+      { cle: "iz", libelle: "Moment d'inertie de flexion par rapport à l'axe z-z : I_z", libelle_en: "Second moment of area about the z-z axis: I_z", symbole: "I_z", unite: "cm^4", decimales: 2 },
+      { cle: "wely", libelle: "Module élastique de flexion par rapport à l'axe y-y : W_el,y", libelle_en: "Elastic section modulus about the y-y axis: W_el,y", symbole: "W_el,y", unite: "cm³", decimales: 2 },
+      { cle: "welz", libelle: "Module élastique de flexion par rapport à l'axe z-z : W_el,z", libelle_en: "Elastic section modulus about the z-z axis: W_el,z", symbole: "W_el,z", unite: "cm³", decimales: 2 },
+      { cle: "wply", libelle: "Module plastique de flexion par rapport à l'axe y-y : W_pl,y", libelle_en: "Plastic section modulus about the y-y axis: W_pl,y", symbole: "W_pl,y", unite: "cm³", decimales: 2 },
+      { cle: "wplz", libelle: "Module plastique de flexion par rapport à l'axe z-z : W_pl,z", libelle_en: "Plastic section modulus about the z-z axis: W_pl,z", symbole: "W_pl,z", unite: "cm³", decimales: 2 },
+      { cle: "avy", libelle: "Aire de cisaillement le long de l'axe y-y : A_v,y", libelle_en: "Shear area along the y-y axis: A_v,y", symbole: "A_v,y", unite: "cm²", decimales: 2 },
+      { cle: "avz", libelle: "Aire de cisaillement le long de l'axe z-z : A_v,z", libelle_en: "Shear area along the z-z axis: A_v,z", symbole: "A_v,z", unite: "cm²", decimales: 2 }
     ],
     calcule: function (saisie) {
       let h, b, t, a, iy, iz, wely, welz, wply, wplz, avy, avz;
@@ -447,15 +447,15 @@ const CALCULS_RDM = {
     court: "Tube circulaire",
     titre: "Tube circulaire",
     entrees: [
-      { cle: "d", libelle: "Diamètre : d", symbole: "d", unite: "mm", defaut: "508", min: 0.0, max: null },
-      { cle: "t", libelle: "Épaisseur : t", symbole: "t", unite: "mm", defaut: "6.3", min: 0.0, max: null }
+      { cle: "d", libelle: "Diamètre : d", libelle_en: "Diameter: d", symbole: "d", unite: "mm", defaut: "508", min: 0.0, max: null },
+      { cle: "t", libelle: "Épaisseur : t", libelle_en: "Thickness: t", symbole: "t", unite: "mm", defaut: "6.3", min: 0.0, max: null }
     ],
     sorties: [
-      { cle: "a", libelle: "Aire de la section : A", symbole: "A", unite: "cm²", decimales: 2 },
-      { cle: "i", libelle: "Moment d'inertie de flexion : I", symbole: "I", unite: "cm^4", decimales: 2 },
-      { cle: "wel", libelle: "Module élastique de flexion : W_el", symbole: "W_el", unite: "cm³", decimales: 2 },
-      { cle: "wpl", libelle: "Module plastique de flexion : W_pl", symbole: "W_pl", unite: "cm³", decimales: 2 },
-      { cle: "av", libelle: "Aire de cisaillement : A_v", symbole: "A_v", unite: "cm²", decimales: 2 }
+      { cle: "a", libelle: "Aire de la section : A", libelle_en: "Cross-sectional area: A", symbole: "A", unite: "cm²", decimales: 2 },
+      { cle: "i", libelle: "Moment d'inertie de flexion : I", libelle_en: "Second moment of area: I", symbole: "I", unite: "cm^4", decimales: 2 },
+      { cle: "wel", libelle: "Module élastique de flexion : W_el", libelle_en: "Elastic section modulus: W_el", symbole: "W_el", unite: "cm³", decimales: 2 },
+      { cle: "wpl", libelle: "Module plastique de flexion : W_pl", libelle_en: "Plastic section modulus: W_pl", symbole: "W_pl", unite: "cm³", decimales: 2 },
+      { cle: "av", libelle: "Aire de cisaillement : A_v", libelle_en: "Shear area: A_v", symbole: "A_v", unite: "cm²", decimales: 2 }
     ],
     calcule: function (saisie) {
       let d, t, a, i, wel, wpl, av;

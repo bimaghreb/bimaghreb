@@ -1,6 +1,6 @@
 <!-- FICHIER GENERE le 2026-09-29 par construire.py — NE PAS MODIFIER ICI.
-     Mise en page de TOUS les articles : site_source/blog/article.html -->
-<!doctype html>
+     Mise en page de TOUS les articles (fr) : site_source/blog/article.html -->
+{% assign url_autre = "/en" | append: page.url %}{% assign autre = site.posts | where: "url", url_autre | first %}<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -18,6 +18,9 @@
 <meta name="author" content="Mohamed Bennani">
 <meta name="theme-color" content="#ED7D31">
 <link rel="canonical" href="https://bimaghreb.com{{ page.url }}">
+{% if autre %}<link rel="alternate" hreflang="fr" href="https://bimaghreb.com{{ page.url }}">
+<link rel="alternate" hreflang="en" href="https://bimaghreb.com{{ autre.url }}">
+<link rel="alternate" hreflang="x-default" href="https://bimaghreb.com{{ page.url }}">{% endif %}
 <link rel="alternate" type="application/rss+xml" title="Articles — BIMaghreb" href="https://bimaghreb.com/feed.xml">
 
 <meta property="og:type" content="article">
@@ -32,7 +35,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="../../assets/logo-icon.svg">
-<link rel="stylesheet" href="../../style.css?v=4adcf029">
+<link rel="stylesheet" href="../../style.css?v=3d6928dc">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -65,6 +68,7 @@
       <a href="../../blog/" class="nav-page" aria-current="page">Articles</a>
       <a href="../../outils/poutre-bi-articulee-charge-repartie/" class="nav-cta">Outils de calcul</a>
     </nav>
+    <div class="langues" role="group" aria-label="Langue du site"><a href="{{ page.url }}" hreflang="fr" lang="fr" aria-current="true">FR</a><a href="{% if autre %}{{ autre.url }}{% else %}/en/blog/{% endif %}" hreflang="en" lang="en">EN</a></div>
   </div>
 </header>
 
@@ -101,11 +105,11 @@
 
       <!-- Liens entre articles : sans eux, un article n'est relie qu'a la page
            Articles, et Google le juge isole. Construit par Jekyll. -->
-{% if site.posts.size > 1 %}
+{% assign billets = site.posts | where: "lang", "fr" %}{% if billets.size > 1 %}
       <section class="billet-suite" aria-labelledby="a-lire-aussi">
         <h2 id="a-lire-aussi" class="billet-suite-titre">À lire aussi</h2>
         <ol class="billets">
-{% for post in site.posts %}{% unless post.url == page.url %}
+{% for post in billets %}{% unless post.url == page.url %}
           <li class="billet">
             <a href="{{ post.url }}">
               <h3>{{ post.title }}</h3>
@@ -170,6 +174,6 @@
 </footer>
 
 
-<script src="../../script.js?v=e455522f"></script>
+<script src="../../script.js?v=86cf0770"></script>
 </body>
 </html>

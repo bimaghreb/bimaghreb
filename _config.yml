@@ -1,5 +1,7 @@
 # FICHIER GENERE par construire.py — ne pas modifier sur GitHub.
-# Les articles du dossier _posts sont publies sous /blog/<nom-du-fichier>/.
+# Les articles du dossier _posts sont publies sous /blog/<nom-du-fichier>/ ;
+# leur traduction anglaise, dans en/_posts SOUS LE MEME NOM de fichier, sous
+# /en/blog/<nom-du-fichier>/. Un article sans traduction existe en francais seul.
 title: BIMaghreb
 description: "Notes de pratique sur la modélisation BIM et le calcul de structures."
 author: Mohamed Bennani
@@ -14,3 +16,11 @@ defaults:
       type: posts
     values:
       layout: article
+      lang: fr
+  - scope:
+      path: "en"
+      type: posts
+    values:
+      layout: article-en
+      lang: en
+      permalink: /en/blog/:title/

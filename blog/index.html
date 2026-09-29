@@ -21,6 +21,9 @@
 <meta name="author" content="Mohamed Bennani">
 <meta name="theme-color" content="#ED7D31">
 <link rel="canonical" href="https://bimaghreb.com/blog/">
+<link rel="alternate" hreflang="fr" href="https://bimaghreb.com/blog/">
+<link rel="alternate" hreflang="en" href="https://bimaghreb.com/en/blog/">
+<link rel="alternate" hreflang="x-default" href="https://bimaghreb.com/blog/">
 <link rel="alternate" type="application/rss+xml" title="Articles — BIMaghreb" href="https://bimaghreb.com/feed.xml">
 
 <meta property="og:type" content="website">
@@ -35,7 +38,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="../assets/logo-icon.svg">
-<link rel="stylesheet" href="../style.css?v=4adcf029">
+<link rel="stylesheet" href="../style.css?v=3d6928dc">
 
 </head>
 <body>
@@ -55,6 +58,7 @@
       <a href="../blog/" class="nav-page" aria-current="page">Articles</a>
       <a href="../outils/poutre-bi-articulee-charge-repartie/" class="nav-cta">Outils de calcul</a>
     </nav>
+    <div class="langues" role="group" aria-label="Langue du site"><a href="../blog/" hreflang="fr" lang="fr" aria-current="true">FR</a><a href="../en/blog/" hreflang="en" lang="en">EN</a></div>
   </div>
 </header>
 
@@ -111,7 +115,7 @@
          Les articles s'ecrivent directement sur github.com : voir
          « PUBLIER UN ARTICLE.md ». -->
     <ol class="billets">
-{% for post in site.posts %}
+{% assign billets = site.posts | where: "lang", "fr" %}{% for post in billets %}
       <li class="billet">
         <a href="{{ post.url }}">
           <h2>{{ post.title }}</h2>
@@ -120,7 +124,7 @@
         </a>
       </li>
 {% endfor %}
-{% if site.posts.size == 0 %}
+{% if billets.size == 0 %}
       <li class="billet billet-vide"><p>Les premiers articles paraissent prochainement.</p></li>
 {% endif %}
     </ol>
@@ -149,6 +153,6 @@
 </footer>
 
 
-<script src="../script.js?v=e455522f"></script>
+<script src="../script.js?v=86cf0770"></script>
 </body>
 </html>

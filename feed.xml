@@ -8,7 +8,7 @@
   <description>{{ site.description | xml_escape }}</description>
   <language>fr</language>
   <atom:link href="https://bimaghreb.com/feed.xml" rel="self" type="application/rss+xml"/>
-{% for post in site.posts %}  <item>
+{% assign billets = site.posts | where: "lang", "fr" %}{% for post in billets %}  <item>
     <title>{{ post.title | xml_escape }}</title>
     <link>https://bimaghreb.com{{ post.url }}</link>
     <guid isPermaLink="true">https://bimaghreb.com{{ post.url }}</guid>
