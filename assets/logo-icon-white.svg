@@ -1,11 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="BIMaghreb icon">
-  <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M 200 80 L 320 145 L 200 210 L 80 145 Z" stroke-width="9"/>
-    <line x1="320" y1="145" x2="320" y2="280" stroke-width="9"/>
-    <line x1="200" y1="210" x2="200" y2="345" stroke-width="9"/>
-    <line x1="80" y1="145" x2="80" y2="280" stroke-width="9"/>
-    <line x1="320" y1="280" x2="200" y2="345" stroke-width="9"/>
-    <line x1="80" y1="280" x2="200" y2="345" stroke-width="9"/>
-    <path d="M 320 212.5 L 200 277.5 L 80 212.5" stroke-width="6" opacity="0.75"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="BIMaghreb">
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+    <path d="M 200 61.44 L 320 130.72 L 200 200 L 80 130.72 Z"/>
+    <line x1="80" y1="130.72" x2="80" y2="269.28"/>
+    <line x1="200" y1="200" x2="200" y2="338.56"/>
+    <line x1="320" y1="130.72" x2="320" y2="269.28"/>
+    <path d="M 80 269.28 L 200 338.56 L 320 269.28"/>
   </g>
+  <path fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="butt" stroke-linejoin="round" opacity="0.75" d="M 320 200 L 200 269.28 L 80 200"/>
 </svg>
