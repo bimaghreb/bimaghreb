@@ -88,7 +88,7 @@
       note.textContent =
         'Cette page a été ouverte directement depuis le disque : le navigateur '
         + 'interdit alors le chargement de la maquette. Double-cliquez sur '
-        + '« VOIR LE SITE.bat », dans le dossier BIMaghreb_brand, pour la voir '
+        + '« VOIR LE SITE.bat », dans le dossier BIMaghreb, pour la voir '
         + 'tourner. Une fois le site en ligne, elle fonctionnera sans rien faire.';
       bloc.appendChild(note);
     });
