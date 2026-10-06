@@ -117,6 +117,11 @@ a { color: inherit; text-decoration: none; }
 /* Hierarchie : le titre fait environ deux fois le texte courant, et le
    resserrement des lettres aux grandes tailles lui donne sa densite. */
 h1, h2, h3 { color: var(--ink); line-height: 1.2; margin: 0 0 .4em; }
+/* Retours a la ligne : titres equilibres, paragraphes sans mot orphelin
+   (« BIM. » seul en derniere ligne de l'accueil, 07/10/2026). Un navigateur
+   qui ne connait pas ces valeurs coupe comme avant. */
+h1, h2, h3, h4 { text-wrap: balance; }
+p, li, dd, figcaption, blockquote { text-wrap: pretty; }
 h1 { font-size: clamp(2rem, 4.4vw, 2.9rem); font-weight: 700; letter-spacing: -.03em; }
 h2 { font-size: clamp(1.7rem, 3.8vw, 2.6rem); font-weight: 700; letter-spacing: -.025em; }
 h3 { font-size: 1.25rem; font-weight: 700; letter-spacing: -.01em; }
