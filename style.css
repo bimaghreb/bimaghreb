@@ -391,14 +391,27 @@ model-viewer:focus-visible {
   opacity: .04;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
 }
+/* Trame ISOMETRIQUE, celle de la carte de visite (lignes a 30, 90 et 150 deg) :
+   la geometrie du cube du logo. Remplace la trame carree (06/10/2026). */
 .hero-bg::after {
   content: ""; position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='55.426'%3E%3Cpath d='M0 0V55.426M0 0L48 27.713M0 27.713L48 55.426M0 27.713L48 0M0 55.426L48 27.713' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 48px 55.426px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 78%);
+}
+/* La meme trame en orange, visible seulement autour d'un point qui suit la
+   souris (script.js) : la grille s'allume sous le curseur. Sans souris, ou si
+   le visiteur a coupe les animations, la lueur reste en haut a droite. */
+.hero-lueur {
+  position: absolute; inset: 0; z-index: 1;
+  opacity: .55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='55.426'%3E%3Cpath d='M0 0V55.426M0 0L48 27.713M0 27.713L48 55.426M0 27.713L48 0M0 55.426L48 27.713' fill='none' stroke='%23ED7D31' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 48px 55.426px;
+  mask-image: radial-gradient(circle 240px at var(--mx, 78%) var(--my, 24%), #000, transparent);
+  -webkit-mask-image: radial-gradient(circle 240px at var(--mx, 78%) var(--my, 24%), #000, transparent);
+  pointer-events: none;
 }
 .hero-inner { max-width: var(--max); margin: 0 auto; }
 

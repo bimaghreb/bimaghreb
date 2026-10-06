@@ -214,3 +214,35 @@
     });
   });
 })();
+
+/* ============================================================
+   Accueil : la lueur de la trame suit la souris (06/10/2026)
+   ============================================================ */
+(function () {
+  var hero = document.querySelector('.hero');
+  var lueur = document.querySelector('.hero-lueur');
+  if (!hero || !lueur) return;
+  // pas de souris (telephone) ou animations coupees : la lueur reste fixe
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var cible = null, x = 0, y = 0, enCours = false;
+  function pas() {
+    // la lueur rattrape le curseur par 12 % a chaque image : un glissement doux
+    x += (cible.x - x) * 0.12;
+    y += (cible.y - y) * 0.12;
+    lueur.style.setProperty('--mx', x.toFixed(1) + 'px');
+    lueur.style.setProperty('--my', y.toFixed(1) + 'px');
+    if (Math.abs(cible.x - x) > 0.5 || Math.abs(cible.y - y) > 0.5) {
+      requestAnimationFrame(pas);
+    } else {
+      enCours = false;
+    }
+  }
+  hero.addEventListener('pointermove', function (e) {
+    var r = hero.getBoundingClientRect();
+    if (cible === null) { x = r.width * 0.78; y = r.height * 0.24; }
+    cible = { x: e.clientX - r.left, y: e.clientY - r.top };
+    if (!enCours) { enCours = true; requestAnimationFrame(pas); }
+  });
+})();
