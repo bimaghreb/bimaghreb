@@ -216,23 +216,103 @@
 })();
 
 /* ============================================================
-   Accueil : la lueur de la trame suit la souris (06/10/2026)
+   Accueil : trame isometrique calee sur le cube du logo (06/10/2026)
+   Meme regle que la carte de visite : la trame passe par le sommet avant
+   du losange et son pas vaut la demi-largeur du cube / 3.
+   Geometrie de logo-icon-white.svg (faire_logo.py) : viewBox 400,
+   demi-largeur 120, sommet avant du losange en (200, 200).
    ============================================================ */
 (function () {
-  var hero = document.querySelector('.hero');
-  var lueur = document.querySelector('.hero-lueur');
-  if (!hero || !lueur) return;
-  // pas de souris (telephone) ou animations coupees : la lueur reste fixe
+  var fond = document.querySelector('.hero .hero-bg');
+  var cube = document.querySelector('.hero .hero-mark');
+  if (!fond || !cube) return;
+  var NS = 'http://www.w3.org/2000/svg';
+  var MAILLES = 3;
+
+  function calque(classe, couleur, id) {
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('class', classe);
+    var defs = document.createElementNS(NS, 'defs');
+    var motif = document.createElementNS(NS, 'pattern');
+    motif.setAttribute('id', id);
+    motif.setAttribute('patternUnits', 'userSpaceOnUse');
+    // deux traits : la maille fine, et la maille principale (un cube)
+    var fin = document.createElementNS(NS, 'path');
+    fin.setAttribute('fill', 'none');
+    fin.setAttribute('stroke', couleur);
+    fin.setAttribute('stroke-width', '1');
+    fin.setAttribute('stroke-opacity', '.45');
+    var fort = document.createElementNS(NS, 'path');
+    fort.setAttribute('fill', 'none');
+    fort.setAttribute('stroke', couleur);
+    fort.setAttribute('stroke-width', '1.25');
+    motif.appendChild(fin);
+    motif.appendChild(fort);
+    defs.appendChild(motif);
+    svg.appendChild(defs);
+    var aplat = document.createElementNS(NS, 'rect');
+    aplat.setAttribute('width', '100%');
+    aplat.setAttribute('height', '100%');
+    aplat.setAttribute('fill', 'url(#' + id + ')');
+    svg.appendChild(aplat);
+    fond.appendChild(svg);
+    return { svg: svg, motif: motif, fin: fin, fort: fort };
+  }
+  var trame = calque('hero-trame', '#ffffff', 'trame-iso');
+  var lueur = calque('hero-lueur', '#ED7D31', 'trame-iso-lueur');
+
+  // Une maille isometrique de pas d : tuile de 2 d sur 2 d / tan... (hauteur
+  // h = 2 d / racine 3), deux colonnes car les noeuds d'une colonne sur deux
+  // sont decales d'une demi-maille (une tuile d'un seul pas dessine des chevrons).
+  function maille(d, ox, oy) {
+    var h = 2 * d / Math.sqrt(3);
+    return 'M' + ox + ' ' + oy + 'v' + h + 'M' + (ox + d) + ' ' + oy + 'v' + h +
+           'M' + (ox + 2 * d) + ' ' + oy + 'v' + h +
+           'M' + ox + ' ' + oy + 'l' + 2 * d + ' ' + h +
+           'M' + ox + ' ' + (oy + h) + 'l' + 2 * d + ' ' + (-h);
+  }
+  // Le motif couvre UN cube : la maille principale (pas = demi-largeur du
+  // cube) et, dedans, 3 x 3 mailles fines. Le cube du logo est exactement un
+  // losange de la maille principale.
+  function caler() {
+    var rf = fond.getBoundingClientRect();
+    var rc = cube.getBoundingClientRect();
+    if (!rc.width) return;
+    var k = rc.width / 400;
+    var a = 120 * k;
+    var d = a / MAILLES;
+    var hf = 2 * d / Math.sqrt(3);
+    var x = rc.left - rf.left + 200 * k;
+    var y = rc.top - rf.top + 200 * k;
+    var fin = '';
+    for (var i = 0; i < MAILLES; i++) {
+      for (var j = 0; j < MAILLES; j++) fin += maille(d, i * 2 * d, j * hf);
+    }
+    var fort = maille(a, 0, 0);
+    [trame, lueur].forEach(function (c) {
+      c.motif.setAttribute('width', 2 * a);
+      c.motif.setAttribute('height', 2 * a / Math.sqrt(3));
+      c.motif.setAttribute('x', x);
+      c.motif.setAttribute('y', y);
+      c.fin.setAttribute('d', fin);
+      c.fort.setAttribute('d', fort);
+    });
+  }
+  caler();
+  window.addEventListener('resize', caler);
+  cube.addEventListener('load', caler);
+
+  // la lueur suit la souris ; fixe sans souris, ou si les animations sont coupees
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
+  var hero = document.querySelector('.hero');
   var cible = null, x = 0, y = 0, enCours = false;
   function pas() {
     // la lueur rattrape le curseur par 12 % a chaque image : un glissement doux
     x += (cible.x - x) * 0.12;
     y += (cible.y - y) * 0.12;
-    lueur.style.setProperty('--mx', x.toFixed(1) + 'px');
-    lueur.style.setProperty('--my', y.toFixed(1) + 'px');
+    lueur.svg.style.setProperty('--mx', x.toFixed(1) + 'px');
+    lueur.svg.style.setProperty('--my', y.toFixed(1) + 'px');
     if (Math.abs(cible.x - x) > 0.5 || Math.abs(cible.y - y) > 0.5) {
       requestAnimationFrame(pas);
     } else {
