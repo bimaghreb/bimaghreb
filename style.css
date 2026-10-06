@@ -172,7 +172,10 @@ model-viewer:focus-visible {
   display: flex; align-items: center; justify-content: space-between;
   gap: var(--e-6);
 }
-.nav-logo img { height: 36px; width: auto; }
+/* le SVG du logo garde une marge de protection autour du dessin : a 36 px
+   de haut, « ENGINEERING » faisait 2 px et devenait illisible (07/10/2026) */
+.nav-logo img { height: 46px; width: auto; }
+@media (max-width: 860px) { .nav-logo img { height: 42px; } }
 /* FR | EN : a l'extreme droite ; sur telephone, face au logo (le menu y est
    remplace par les onglets du bas). La langue courante est la plus foncee. */
 .nav-inner > .nav-links { margin-left: auto; }
@@ -268,20 +271,8 @@ model-viewer:focus-visible {
 .nav-links .nav-page + .nav-cta { margin-left: 0; }
 .nav-links .nav-page + .nav-cta::before { content: none; }
 
-/* Barre de lecture : progression dans la page, en CSS pur. Les navigateurs
-   qui ne connaissent pas les chronologies de defilement ne l'affichent pas. */
-@supports (animation-timeline: scroll()) {
-  .nav::after {
-    content: "";
-    position: absolute; left: 0; right: 0; bottom: -1px;
-    height: 2px;
-    background: var(--orange);
-    transform: scaleX(0); transform-origin: 0 50%;
-    animation: lecture linear both;
-    animation-timeline: scroll(root block);
-  }
-}
-@keyframes lecture { to { transform: scaleX(1); } }
+/* Barre de lecture sous le menu : RETIREE le 07/10/2026 (choix de Mohamed :
+   un gadget de blog, pas a sa place sur un site de bureau d'etudes). */
 
 /* ============================================================
    NAVIGATION — telephone : barre d'onglets
@@ -453,6 +444,19 @@ model-viewer:focus-visible {
 .section { padding: var(--e-24) var(--e-6); }
 .section-alt { background: var(--bg-alt); }
 .section-dark { background: var(--bg-dark); color: #fff; }
+/* Contact : la trame de l'accueil (meme pas, deux niveaux) remplit la moitie
+   droite, vide sur grand ecran ; fondu vers la gauche, ou est le texte */
+#contact { position: relative; isolation: isolate; overflow: hidden; }
+#contact::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  opacity: .08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72.000' height='41.569'%3E%3Cg fill='none' stroke='%23ffffff'%3E%3Cpath d='M0 0v13.856M12 0v13.856M24 0v13.856M0 0l24 13.856M0 13.856l24 -13.856M0 13.856v13.856M12 13.856v13.856M24 13.856v13.856M0 13.856l24 13.856M0 27.713l24 -13.856M0 27.713v13.856M12 27.713v13.856M24 27.713v13.856M0 27.713l24 13.856M0 41.569l24 -13.856M24 0v13.856M36 0v13.856M48 0v13.856M24 0l24 13.856M24 13.856l24 -13.856M24 13.856v13.856M36 13.856v13.856M48 13.856v13.856M24 13.856l24 13.856M24 27.713l24 -13.856M24 27.713v13.856M36 27.713v13.856M48 27.713v13.856M24 27.713l24 13.856M24 41.569l24 -13.856M48 0v13.856M60 0v13.856M72 0v13.856M48 0l24 13.856M48 13.856l24 -13.856M48 13.856v13.856M60 13.856v13.856M72 13.856v13.856M48 13.856l24 13.856M48 27.713l24 -13.856M48 27.713v13.856M60 27.713v13.856M72 27.713v13.856M48 27.713l24 13.856M48 41.569l24 -13.856' stroke-opacity='.45'/%3E%3Cpath d='M0 0v41.569M36 0v41.569M72 0v41.569M0 0l72 41.569M0 41.569l72 -41.569' stroke-width='1.25'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 72.000px 41.569px;
+  background-position: right top;
+  mask-image: linear-gradient(90deg, transparent 35%, #000 85%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 35%, #000 85%);
+}
+@media (max-width: 860px) { #contact::before { opacity: .05; } }
 .section-dark h2 { color: #fff; }
 .section-inner { max-width: var(--max); margin: 0 auto; }
 
@@ -648,7 +652,7 @@ model-viewer:focus-visible {
   display: grid; grid-template-columns: 1.5fr 1fr 1fr;
   gap: var(--e-8); align-items: start;
 }
-.footer-brand img { filter: brightness(1.1); margin-bottom: var(--e-3); }
+.footer-brand img { height: 44px; width: auto; filter: brightness(1.1); margin-bottom: var(--e-3); }
 .footer-brand p { margin: 0; font-size: .85rem; color: rgba(255,255,255,.65); }
 .footer-links { display: flex; flex-direction: column; gap: var(--e-3); }
 .footer-links a { color: rgba(255,255,255,.75); transition: color var(--survol) var(--deplacer); }
@@ -1021,7 +1025,6 @@ model-viewer:focus-visible {
   }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
-  .nav::after { display: none; }
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) { animation: none !important; }
