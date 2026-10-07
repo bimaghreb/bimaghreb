@@ -91,7 +91,10 @@
    ============================================================ */
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+@media (max-width: 860px) { html { scroll-padding-bottom: 72px; } }
+/* boutons et champs : la police du site, pas celle du systeme (Arial) */
+button, input, select, textarea { font: inherit; }
 
 /* Transition entre les deux pages ; ignoree sans dommage ailleurs. */
 @view-transition { navigation: auto; }
@@ -845,7 +848,9 @@ model-viewer:focus-visible {
 .calc-notations math { min-width: 2.2em; font-size: 1.1em; }
 
 @media (max-width: 900px) {
-  .calculateur { grid-template-columns: 1fr; }
+  /* minmax(0, 1fr) et non 1fr : une colonne « 1fr » refuse de devenir plus
+     etroite que son contenu (formules, lignes de resultat) et deborde */
+  .calculateur { grid-template-columns: minmax(0, 1fr); }
   .calc-menu { position: static; }
   .calc-panneau { padding: var(--e-6) var(--e-4); }
   /* au telephone : le calcul d'abord, ses formules, puis les autres calculs */

@@ -55,6 +55,8 @@
   // se lit comme une erreur.
   function formate(valeur, decimales) {
     if (typeof valeur !== 'number' || !isFinite(valeur)) return '—';
+    // un resultat qui s'arrondit a zero s'affiche 0,00 et non « -0,00 »
+    if (Math.abs(valeur) < 0.5 * Math.pow(10, -decimales)) valeur = 0;
     return new Intl.NumberFormat(LOCALE, {
       minimumFractionDigits: decimales,
       maximumFractionDigits: decimales
@@ -89,7 +91,11 @@
     var n = elt('span', classe);
     var m = /^(.*\s?:\s)(\S+)$/.exec(texte);
     if (!m) { n.textContent = texte; return n; }
-    n.appendChild(document.createTextNode(m[1]));
+    // « axe z-z : Iz » : espaces insecables autour du deux-points, pour que
+    // « : Iz » ne tombe jamais seul en debut de ligne (audit 07/10/2026)
+    n.appendChild(document.createTextNode(m[1].replace(/\s?:\s$/, function (x) {
+      return (x.charAt(0) === ':' ? '' : ' ') + ': ';
+    })));
     var symbole = elt('span', 'calc-symbole');
     var parts = m[2].split('_');
     morceaux(symbole, parts[0]);
@@ -102,11 +108,27 @@
     return n;
   }
 
+  /* Lecture d'un nombre saisi (07/10/2026). Avant, « 3,831 » sur une page
+     anglaise devenait 3,831 au lieu de 3 831 : un résultat 1000 fois faux,
+     sans alerte. Règles :
+     - espaces (y compris insécables) ignorés : « 3 831 » = 3831 ;
+     - en anglais, une virgule suivie de groupes de 3 chiffres sépare les
+       milliers (« 3,831 », « 12,500.5 ») ; une virgule isolée ailleurs
+       (« 12,5 ») est prise pour une virgule décimale ;
+     - en français, la virgule ET le point sont décimaux ;
+     - tout le reste (« 0x10 », « 1e3 », « 1,2,3 ») est refusé : NaN. */
+  function lireNombre(valeur) {
+    var t = String(valeur).replace(/[\s  ]/g, '');
+    if (EN && /^[+-]?\d{1,3}(,\d{3})+(\.\d+)?$/.test(t)) t = t.replace(/,/g, '');
+    t = t.replace(',', '.');
+    return /^[+-]?(\d+\.?\d*|\.\d+)$/.test(t) ? Number(t) : NaN;
+  }
+
   /* Un champ hors de son domaine rend le résultat inutilisable : on refuse
      de calculer plutôt que d'afficher un nombre qui aurait l'air valable. */
   function controle(champ, valeur) {
     if (valeur === '' || valeur === null) return T.vide;
-    var x = Number(String(valeur).replace(',', '.'));
+    var x = lireNombre(valeur);
     if (!isFinite(x)) return T.nombre;
     if (champ.min !== null && champ.min !== undefined && x <= champ.min) {
       return T.superieur + formate(champ.min, 0) + '.';
@@ -205,7 +227,7 @@
         if (message) {
           refus = true;
         } else {
-          valeurs[c.def.cle] = Number(String(c.saisie.value).replace(',', '.'));
+          valeurs[c.def.cle] = lireNombre(c.saisie.value);
         }
       });
 
