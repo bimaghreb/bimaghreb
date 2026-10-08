@@ -18,7 +18,7 @@ Des familles paramétriques de poteaux et de poutres en béton armé, préconfig
 
 [Télécharger la bibliothèque (FAMILLES-BA.rar)](https://drive.google.com/file/d/1YVq7gOMjg-mBlQVdNsN5nqHbw0RWJPUK/view){: .btn .btn-primary}
 
-> **Versions testées** : Revit 2025 et Robot Structural Analysis 2025. Sur une version antérieure, vérifier les familles avant de les utiliser en production.
+> **Versions testées** : Revit 2025 et Robot Structural Analysis 2025. Les familles demandent Revit 2025 au minimum ; sur une version plus récente, les vérifier avant de les utiliser en production.
 
 ## Installation
 

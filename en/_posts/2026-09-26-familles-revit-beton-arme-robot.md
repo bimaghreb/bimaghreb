@@ -18,7 +18,7 @@ Parametric reinforced concrete column and beam families, preconfigured for Robot
 
 [Download the library (FAMILLES-BA.rar)](https://drive.google.com/file/d/1YVq7gOMjg-mBlQVdNsN5nqHbw0RWJPUK/view){: .btn .btn-primary}
 
-> **Tested versions**: Revit 2025 and Robot Structural Analysis 2025. On an earlier version, check the families before using them in production.
+> **Tested versions**: Revit 2025 and Robot Structural Analysis 2025. The families require Revit 2025 or later; on a newer version, check them before using them in production.
 
 ## Installation
 
