@@ -128,6 +128,12 @@ p, li, dd, figcaption, blockquote { text-wrap: pretty; }
 h1 { font-size: clamp(2rem, 4.4vw, 2.9rem); font-weight: 700; letter-spacing: -.03em; }
 h2 { font-size: clamp(1.7rem, 3.8vw, 2.6rem); font-weight: 700; letter-spacing: -.025em; }
 h3 { font-size: 1.25rem; font-weight: 700; letter-spacing: -.01em; }
+
+/* Ce que le navigateur dessine aussi porte la marque : selection de texte
+   et curseur de saisie dans l'orange du site (texte fonce : 9,9:1 sur la teinte). */
+::selection { background: #F6D3BA; color: var(--ink); }
+.section-dark ::selection, .footer ::selection { background: var(--orange-texte); color: #fff; }
+input, textarea { caret-color: var(--orange-texte); }
 p  { margin: 0 0 1em; }
 
 /* Focus clavier : 2 px, decale, contraste au-dela de 3:1 sur tous les fonds.
@@ -135,6 +141,7 @@ p  { margin: 0 0 1em; }
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
+summary:focus-visible,
 model-viewer:focus-visible {
   outline: 2px solid var(--orange-texte);
   outline-offset: 3px;
@@ -464,26 +471,18 @@ model-viewer:focus-visible {
 .section-inner { max-width: var(--max); margin: 0 auto; }
 
 .section-head { max-width: 760px; margin: 0 0 var(--e-12); }
-.eyebrow {
-  display: inline-block;
-  margin-bottom: var(--e-3);
-  font-size: .78rem; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--text-soft);
-}
-.eyebrow-light { color: rgba(255,255,255,.6); }
 .section-lead { margin: var(--e-3) 0 0; font-size: 1.05rem; color: var(--text-soft); }
 
-/* Apparitions : 300 ms, deceleration, et cascade de 50 ms dans un groupe.
-   --rang est pose par le script selon la place de l'element parmi ses freres. */
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity var(--entree-duree) var(--entree),
-              transform var(--entree-duree) var(--entree);
-  transition-delay: calc(var(--rang, 0) * 50ms);
+/* Un seul moment anime sur tout le site : l'arrivee du titre d'accueil.
+   Le texte est lisible des la premiere image (l'opacite ne bouge pas) ;
+   seules les lignes montent de 14 px, en cascade de 70 ms, et se posent. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-inner > * { animation: hero-monte 900ms var(--entree) both; }
+  .hero-inner > :nth-child(2) { animation-delay: 70ms; }
+  .hero-inner > :nth-child(3) { animation-delay: 140ms; }
+  .hero-inner > :nth-child(4) { animation-delay: 210ms; }
 }
-.reveal.visible { opacity: 1; transform: none; }
+@keyframes hero-monte { from { transform: translateY(14px); } }
 
 /* ============================================================
    TRAVAUX
@@ -564,41 +563,54 @@ model-viewer:focus-visible {
 /* ============================================================
    DEMARCHE
    ============================================================ */
-.why-grid {
+.section-split .section-inner {
   display: grid;
-  /* cinq points : 3 + 2 sur grand ecran (a 260 px on tombait a 4 + 1) */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--e-8) var(--e-10);
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--e-16);
+  align-items: start;
 }
-.why-num {
-  display: block;
-  margin-bottom: var(--e-3);
-  font-size: .85rem; font-weight: 600;
-  letter-spacing: .08em;
-  font-variant-numeric: tabular-nums;
-  color: var(--text-soft);
+.section-split .split-gauche,
+.section-split .section-inner > .section-head { position: sticky; top: var(--e-24); margin: 0; }
+.split-gauche .section-head { margin: 0 0 var(--e-8); }
+/* photo d'illustration (libre de droits) : jamais a cote d'un projet */
+.split-photo { margin: 0; max-width: 420px; }
+.split-photo img, .domaine-photo img {
+  display: block; width: 100%; height: auto;
+  border-radius: var(--r-m);
+  background: var(--line);
 }
+.split-photo img { aspect-ratio: 4 / 5; object-fit: cover; }
+/* ecran bas : la colonne de gauche ne tiendrait pas, elle defile avec la page */
+@media (max-height: 820px) { .section-split .split-gauche { position: static; } }
+.why-grid, .domaines { border-top: 1px solid var(--line); }
+.why-item, .domaine { padding: var(--e-6) 0; border-bottom: 1px solid var(--line); }
 .why-item h3 { margin-bottom: var(--e-2); }
-.why-item p { margin: 0; font-size: .95rem; color: var(--text-soft); }
+.why-item p { margin: 0; color: var(--text-soft); max-width: 62ch; }
+@media (max-width: 860px) {
+  .section-split .section-inner { grid-template-columns: 1fr; gap: var(--e-10); }
+  .section-split .split-gauche,
+  .section-split .section-inner > .section-head { position: static; }
+  .split-photo { max-width: none; }
+  .split-photo img { aspect-ratio: 3 / 2; }
+}
 
 /* --- Ouvrages traites : deux domaines -------------------------------------- */
-.domaines {
+.domaine-avec-photo {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
   gap: var(--e-6);
+  align-items: start;
 }
-.domaine {
-  padding: var(--e-8);
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
-  border-radius: var(--r-l);
+.domaine-photo { margin: 0; }
+.domaine-photo img { aspect-ratio: 4 / 3; object-fit: cover; }
+@media (max-width: 560px) {
+  .domaine-avec-photo { grid-template-columns: 1fr; gap: var(--e-4); }
 }
-.domaine h3 { margin-bottom: var(--e-2); font-size: 1.15rem; }
-.domaine p { margin: 0; color: var(--text-soft); }
+.domaine h3 { margin-bottom: var(--e-2); }
+.domaine p { margin: 0; color: var(--text-soft); max-width: 62ch; }
 /* livrables d'un domaine : ce que le client recoit, sous la description */
 .domaine .domaine-livrables {
-  margin-top: var(--e-4); padding-top: var(--e-3);
-  border-top: 1px solid var(--line);
+  margin-top: var(--e-4);
   font-size: .9rem; line-height: 1.55;
 }
 .domaine-livrables-titre {
@@ -607,12 +619,52 @@ model-viewer:focus-visible {
   color: var(--text);
 }
 
+/* --- Articles et outils (accueil) : deux colonnes egales -------------------- */
+.ressources-grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--e-16);
+  align-items: start;
+}
+.ressources-bloc h2 { margin-bottom: var(--e-6); }
+.ressources-bloc .billets { margin: 0; padding: 0; list-style: none; }
+.ressources-bloc .billet a { padding: var(--e-5) 0; }
+.ressources-bloc .billet h3 { margin: 0 0 var(--e-2); font-size: 1.15rem; }
+.ressources-tout { display: inline-flex; margin-top: var(--e-5); color: var(--orange-texte);
+  text-decoration-color: rgba(183,84,16,.35); }
+.ressources-texte { margin: 0 0 var(--e-6); color: var(--text-soft); max-width: 60ch; }
+/* le menu des outils, reutilise : ici une simple liste en deux colonnes */
+.section-ressources .calc-menu {
+  position: static; padding: 0; background: none; border: 0; border-radius: 0;
+  display: grid; grid-auto-flow: column; grid-template-rows: auto auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--e-8);
+  border-top: 1px solid var(--line); padding-top: var(--e-4);
+}
+.section-ressources .calc-groupe { margin: 0 0 var(--e-2); }
+.section-ressources .calc-menu ul { margin: 0; }
+.section-ressources .calc-menu a {
+  display: flex; align-items: center; min-height: 36px; padding: 0;
+  border: 0; color: var(--text); font-size: .92rem;
+}
+@media (max-width: 860px) {
+  .ressources-grille { grid-template-columns: 1fr; gap: var(--e-12); }
+}
+@media (max-width: 520px) {
+  .section-ressources .calc-menu { grid-auto-flow: row; grid-template-columns: 1fr; grid-template-rows: none; }
+  .section-ressources .calc-menu ul + .calc-groupe { margin-top: var(--e-4); }
+}
+@media (pointer: coarse) { .section-ressources .calc-menu a { min-height: 44px; } }
+@media (hover: hover) {
+  .section-ressources .calc-menu a:hover { background: none; color: var(--orange-texte); }
+}
+
 /* ============================================================
    CONTACT
    Une seule action mise en avant — le courriel. Ce qui ne se clique
    pas ne prend pas l'allure d'un bouton.
    ============================================================ */
 .contact-grid { display: grid; grid-template-columns: 1fr; max-width: 680px; }
+.contact-intro { margin: calc(-1 * var(--e-2)) 0 var(--e-8); color: rgba(255,255,255,.78); max-width: 52ch; }
 .contact-text h2 { color: #fff; margin-bottom: var(--e-8); }
 
 .contact-info { display: flex; flex-direction: column; gap: var(--e-3); }
@@ -659,6 +711,10 @@ model-viewer:focus-visible {
 .footer-brand p { margin: 0; font-size: .85rem; color: rgba(255,255,255,.65); }
 .footer-links { display: flex; flex-direction: column; gap: var(--e-3); }
 .footer-links a { color: rgba(255,255,255,.75); transition: color var(--survol) var(--deplacer); }
+@media (pointer: coarse) {
+  .footer-links { gap: 0; }
+  .footer-links a { display: flex; align-items: center; min-height: 44px; }
+}
 .footer-meta { text-align: right; font-size: .82rem; color: rgba(255,255,255,.6); }
 
 @media (max-width: 760px) {
@@ -823,6 +879,8 @@ model-viewer:focus-visible {
 }
 .calc-valeur small { margin-left: var(--e-1); font-size: .76rem; font-weight: 400; color: var(--text-soft); }
 .calc-vide { margin: 0; padding: var(--e-5) 0; font-size: .9rem; font-style: italic; color: var(--text-soft); }
+/* poutres : valeurs absolues, et quelle fibre est tendue */
+.calc-convention { margin: var(--e-2) 0 0; font-size: .8rem; line-height: 1.45; color: var(--text-soft); }
 
 /* Page propre a un calcul : les formules sous le calculateur, la liste des
    autres calculs a gauche sur toute la hauteur. */
@@ -1029,7 +1087,6 @@ model-viewer:focus-visible {
     scroll-behavior: auto !important;
   }
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; }
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) { animation: none !important; }

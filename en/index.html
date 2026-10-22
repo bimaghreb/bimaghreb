@@ -1,4 +1,6 @@
-<!-- FICHIER GENERE le 2026-10-08 par construire.py — NE PAS MODIFIER ICI.
+---
+---
+<!-- FICHIER GENERE le 2026-10-22 par construire.py — NE PAS MODIFIER ICI.
      Le texte de cette page se trouve dans site_source/en/pages/accueil.html
      La navigation et le pied de page sont dans site_source/gabarit.html -->
 <!doctype html>
@@ -36,7 +38,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="../assets/logo-icon.svg?v=1ea5dbb9">
-<link rel="stylesheet" href="../style.css?v=9fc8d441">
+<link rel="stylesheet" href="../style.css?v=40207e60">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -90,7 +92,7 @@
       <a href="../en/blog/" class="nav-page">Articles</a>
       <a href="../en/tools/simply-supported-beam-distributed-load/" class="nav-cta">Calculation tools</a>
     </nav>
-    <details class="langues"><summary aria-label="Site language : English">EN<svg viewBox="0 0 12 12" aria-hidden="true" width="12" height="12"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></summary><ul><li><a href="../" hreflang="fr" lang="fr">Français<span>FR</span></a></li></ul></details>
+    <details class="langues"><summary aria-label="EN, Site language : English">EN<svg viewBox="0 0 12 12" aria-hidden="true" width="12" height="12"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></summary><ul><li><a href="../" hreflang="fr" lang="fr">Français<span>FR</span></a></li></ul></details>
   </div>
 </header>
 
@@ -113,8 +115,8 @@
       <span class="hero-accent">from concept to construction drawings.</span>
     </h1>
     <p class="hero-sub">
-      Structural engineering for reinforced concrete and steel buildings:
-      design, member sizing and construction drawings, all developed on the BIM model.
+      Structural engineering for reinforced concrete and steel buildings,
+      developed on the BIM model, for building owners and engineering consultancies.
     </p>
     <div class="hero-cta">
       <a href="#travaux" class="btn btn-primary">View projects</a>
@@ -126,7 +128,6 @@
 <section class="section" id="travaux">
   <div class="section-inner">
     <div class="section-head">
-      <span class="eyebrow">Projects</span>
       <h2>Selected projects.</h2>
     </div>
     <article class="work work-3d">
@@ -149,9 +150,10 @@
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
                 touch-action="pan-y"
-                shadow-intensity="1"
+                shadow-intensity="1.5"
                 shadow-softness="0.75"
-                exposure="0.95"
+                exposure="0.8"
+                tone-mapping="aces"
                 environment-image="neutral"
                 loading="eager"
                 reveal="auto"></model-viewer>
@@ -180,9 +182,10 @@
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
                 touch-action="pan-y"
-                shadow-intensity="1"
+                shadow-intensity="1.5"
                 shadow-softness="0.75"
-                exposure="0.95"
+                exposure="0.8"
+                tone-mapping="aces"
                 environment-image="neutral"
                 loading="eager"
                 reveal="auto"></model-viewer>
@@ -211,9 +214,10 @@
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
                 touch-action="pan-y"
-                shadow-intensity="1"
+                shadow-intensity="1.5"
                 shadow-softness="0.75"
-                exposure="0.95"
+                exposure="0.8"
+                tone-mapping="aces"
                 environment-image="neutral"
                 loading="eager"
                 reveal="auto"></model-viewer>
@@ -242,9 +246,10 @@
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
                 touch-action="pan-y"
-                shadow-intensity="1"
+                shadow-intensity="1.5"
                 shadow-softness="0.75"
-                exposure="0.95"
+                exposure="0.8"
+                tone-mapping="aces"
                 environment-image="neutral"
                 loading="eager"
                 reveal="auto"></model-viewer>
@@ -255,16 +260,17 @@
   </div>
 </section>
 
-<section class="section section-alt" id="demarche">
+<section class="section section-alt section-split" id="demarche">
   <div class="section-inner">
-    <div class="section-head">
-      <span class="eyebrow">Approach</span>
-      <h2>Calculation and drawing handled as one workflow.</h2>
+    <div class="split-gauche">
+      <div class="section-head">
+        <h2>Calculation and drawing handled as one workflow.</h2>
+      </div>
+      <figure class="split-photo"><img src="../assets/photos/ferraillage-ligatures-480.webp" srcset="../assets/photos/ferraillage-ligatures-480.webp 480w, ../assets/photos/ferraillage-ligatures-960.webp 960w" sizes="(max-width: 860px) 100vw, 420px" width="480" height="600" alt="Tying the bars of a reinforcement cage with pliers." loading="lazy" decoding="async"></figure>
     </div>
 
     <div class="why-grid">
       <div class="why-item">
-        <div class="why-num">01</div>
         <h3>Model and calculations developed together</h3>
         <p>
           The BIM model and the calculation report draw on the same data. This
@@ -273,7 +279,6 @@
         </p>
       </div>
       <div class="why-item">
-        <div class="why-num">02</div>
         <h3>Quantities and cost estimate</h3>
         <p>
           Preliminary quantities at design stage, detailed quantity take-off
@@ -281,7 +286,6 @@
         </p>
       </div>
       <div class="why-item">
-        <div class="why-num">03</div>
         <h3>The clause, always cited</h3>
         <p>
           Every check carries the reference of the clause it relies on. A
@@ -290,7 +294,6 @@
         </p>
       </div>
       <div class="why-item">
-        <div class="why-num">04</div>
         <h3>Explicit assumptions</h3>
         <p>
           Allowable bearing pressure, concrete class, concrete cover, seismic category:
@@ -298,7 +301,6 @@
         </p>
       </div>
       <div class="why-item">
-        <div class="why-num">05</div>
         <h3>Traceability</h3>
         <p>
           Dated revisions, recorded assumptions, readable calculation sheets.
@@ -310,31 +312,88 @@
   </div>
 </section>
 
-<section class="section" id="elements">
+<section class="section section-split" id="elements">
   <div class="section-inner">
     <div class="section-head">
-      <span class="eyebrow">Scope</span>
       <h2>Reinforced concrete and structural steelwork.</h2>
     </div>
 
     <div class="domaines">
-      <div class="domaine">
-        <h3>Reinforced concrete</h3>
-        <p>
-          Residential and office buildings, public facilities and places of
-          worship, underground structures and tanks. From basement to roof,
-          foundations included.
-        </p>
-        <p class="domaine-livrables"><span class="domaine-livrables-titre">Deliverables</span>Calculation reports · General arrangement and reinforcement drawings · Bar bending schedules · Quantity take-off</p>
+      <div class="domaine domaine-avec-photo">
+        <figure class="domaine-photo"><img src="../assets/photos/beton-arme-cage-armatures-640.webp" srcset="../assets/photos/beton-arme-cage-armatures-640.webp 640w, ../assets/photos/beton-arme-cage-armatures-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 280px" width="640" height="480" alt="Reinforcement cage of a concrete column, seen from below before casting." loading="lazy" decoding="async"></figure>
+        <div class="domaine-texte">
+          <h3>Reinforced concrete</h3>
+          <p>
+            Residential and office buildings, public facilities and places of
+            worship, underground structures and tanks. From basement to roof,
+            foundations included.
+          </p>
+          <p class="domaine-livrables"><span class="domaine-livrables-titre">Deliverables</span>Calculation reports · General arrangement and reinforcement drawings · Bar bending schedules · Quantity take-off</p>
+        </div>
       </div>
-      <div class="domaine">
-        <h3>Structural steelwork</h3>
-        <p>
-          Industrial buildings, warehouses and long-span roofs, as well as hybrid
-          structures combining a steel frame with a concrete structure.
-        </p>
-        <p class="domaine-livrables"><span class="domaine-livrables-titre">Deliverables</span>Calculation reports · General arrangement and detail drawings · Schedules · Quantity take-off</p>
+      <div class="domaine domaine-avec-photo">
+        <figure class="domaine-photo"><img src="../assets/photos/charpente-metallique-ossature-640.webp" srcset="../assets/photos/charpente-metallique-ossature-640.webp 640w, ../assets/photos/charpente-metallique-ossature-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 280px" width="640" height="480" alt="Steel frame of a building during erection: columns, beams and bracing." loading="lazy" decoding="async"></figure>
+        <div class="domaine-texte">
+          <h3>Structural steelwork</h3>
+          <p>
+            Industrial buildings, warehouses and long-span roofs, as well as hybrid
+            structures combining a steel frame with a concrete structure.
+          </p>
+          <p class="domaine-livrables"><span class="domaine-livrables-titre">Deliverables</span>Calculation reports · General arrangement and detail drawings · Schedules · Quantity take-off</p>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt section-ressources" id="ressources">
+  <!-- Latest articles (built by Jekyll) and the fourteen calculations (the
+       tools menu generated by faire_calculateur.py, reused as is). -->
+  <div class="section-inner ressources-grille">
+    <div class="ressources-bloc">
+      <h2>Latest articles.</h2>
+      <ol class="billets">
+{% assign billets = site.posts | where: "lang", "en" %}{% for post in billets limit:3 %}
+        <li class="billet">
+          <a href="{{ post.url }}">
+            <h3>{{ post.title | smartify }}</h3>
+            <span class="lien-fleche">Read the article</span>
+          </a>
+        </li>
+{% endfor %}
+      </ol>
+      <a class="lien-fleche ressources-tout" href="../en/blog/">All articles</a>
+    </div>
+
+    <div class="ressources-bloc">
+      <h2>Calculation tools.</h2>
+      <p class="ressources-texte">
+        Fourteen strength-of-materials calculations, online: reactions, bending
+        moments, shear forces and deflections of beams, section properties. Each
+        page shows its formulas and prints as a calculation note.
+      </p>
+<nav class="calc-menu" id="calc-menu" aria-label="Calculations">
+  <p class="calc-groupe">Beams</p>
+  <ul>
+    <li><a href="../en/tools/simply-supported-beam-distributed-load/" data-module="rdm_poutres_poutre_rotule_rotule_charge_repartie">Simply supported · distributed</a></li>
+    <li><a href="../en/tools/simply-supported-beam-point-load/" data-module="rdm_poutres_poutre_rotule_rotule_charge_ponctuelle">Simply supported · point load</a></li>
+    <li><a href="../en/tools/fixed-pinned-beam-distributed-load/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_repartie">Fixed-pinned · distributed</a></li>
+    <li><a href="../en/tools/fixed-pinned-beam-point-load/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_ponctuelle">Fixed-pinned · point load</a></li>
+    <li><a href="../en/tools/fixed-fixed-beam-distributed-load/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_repartie">Fixed-fixed · distributed</a></li>
+    <li><a href="../en/tools/fixed-fixed-beam-point-load/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_ponctuelle">Fixed-fixed · point load</a></li>
+    <li><a href="../en/tools/cantilever-distributed-load/" data-module="rdm_poutres_poutre_encastrement_libre_charge_repartie">Cantilever · distributed</a></li>
+    <li><a href="../en/tools/cantilever-point-load/" data-module="rdm_poutres_poutre_encastrement_libre_charge_ponctuelle">Cantilever · point load</a></li>
+  </ul>
+  <p class="calc-groupe">Sections</p>
+  <ul>
+    <li><a href="../en/tools/rectangular-section/" data-module="rdm_sections_section_rectangulaire">Solid rectangle</a></li>
+    <li><a href="../en/tools/circular-section/" data-module="rdm_sections_section_circulaire">Solid circle</a></li>
+    <li><a href="../en/tools/i-section/" data-module="rdm_sections_section_I">I-section</a></li>
+    <li><a href="../en/tools/channel-section/" data-module="rdm_sections_section_U">Channel (U)</a></li>
+    <li><a href="../en/tools/rectangular-hollow-section/" data-module="rdm_sections_tube_rectangulaire">Rectangular hollow</a></li>
+    <li><a href="../en/tools/circular-hollow-section/" data-module="rdm_sections_tube_circulaire">Circular hollow</a></li>
+  </ul>
+</nav>
     </div>
   </div>
 </section>
@@ -343,8 +402,8 @@
   <div class="section-inner">
     <div class="contact-grid contact-single">
       <div class="contact-text">
-        <span class="eyebrow eyebrow-light">Contact</span>
         <h2>Get in touch.</h2>
+        <p class="contact-intro">For a structure to be designed, describe the project, its location and the current design stage.</p>
 
         <div class="contact-info">
           <a href="mailto:bimaghreb@outlook.com" class="contact-row contact-principal">
@@ -414,6 +473,6 @@
 </footer>
 
 <script type="module" src="../assets/model-viewer.min.js?v=283b0672"></script>
-<script src="../script.js?v=3c6a29dd"></script>
+<script src="../script.js?v=5e8113bb"></script>
 </body>
 </html>

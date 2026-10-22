@@ -15,32 +15,9 @@
   const mouvementReduit = window.matchMedia
     && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // --- Apparitions au defilement --------------------------------------------
-  // Les elements d'un meme groupe arrivent en cascade, 50 ms d'ecart : a 30 ms
-  // ils se fondent en un bloc, a 100 ms la liste se traine.
-  const cibles = mouvementReduit ? [] : Array.from(document.querySelectorAll(
-    '.section-head, .work, .why-item, .domaine'
-  ));
-  cibles.forEach((el) => {
-    const freres = Array.from(el.parentElement.children)
-      .filter((f) => f.classList.contains(el.classList[0]));
-    el.style.setProperty('--rang', String(Math.max(0, freres.indexOf(el))));
-    el.classList.add('reveal');
-  });
-
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    cibles.forEach((el) => io.observe(el));
-  } else {
-    cibles.forEach((el) => el.classList.add('visible'));
-  }
+  // (22/10/2026 : plus d'apparition au defilement. Le contenu masque tant
+  // qu'on n'avait pas defile sortait vide a l'impression ; le seul mouvement
+  // d'entree est celui du titre d'accueil, en CSS.)
 
   // --- Section en cours -----------------------------------------------------
   // Sur la page d'accueil, toutes les entrees du menu sont des ancres : sans ce

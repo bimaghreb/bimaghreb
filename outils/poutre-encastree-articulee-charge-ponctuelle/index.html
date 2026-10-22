@@ -1,4 +1,4 @@
-<!-- FICHIER GENERE le 2026-10-08 par construire.py — NE PAS MODIFIER ICI.
+<!-- FICHIER GENERE le 2026-10-22 par construire.py — NE PAS MODIFIER ICI.
      Le texte de cette page se trouve dans site_source/calculs/poutre-encastree-articulee-charge-ponctuelle.html
      La navigation et le pied de page sont dans site_source/gabarit.html -->
 <!doctype html>
@@ -36,7 +36,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="../../assets/logo-icon.svg?v=1ea5dbb9">
-<link rel="stylesheet" href="../../style.css?v=9fc8d441">
+<link rel="stylesheet" href="../../style.css?v=40207e60">
 
 </head>
 <body>
@@ -56,7 +56,7 @@
       <a href="../../blog/" class="nav-page">Articles</a>
       <a href="../../outils/poutre-bi-articulee-charge-repartie/" class="nav-cta" aria-current="page">Outils de calcul</a>
     </nav>
-    <details class="langues"><summary aria-label="Langue du site : français">FR<svg viewBox="0 0 12 12" aria-hidden="true" width="12" height="12"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></summary><ul><li><a href="../../en/tools/fixed-pinned-beam-point-load/" hreflang="en" lang="en">English<span>EN</span></a></li></ul></details>
+    <details class="langues"><summary aria-label="FR, langue du site : français">FR<svg viewBox="0 0 12 12" aria-hidden="true" width="12" height="12"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></summary><ul><li><a href="../../en/tools/fixed-pinned-beam-point-load/" hreflang="en" lang="en">English<span>EN</span></a></li></ul></details>
   </div>
 </header>
 
@@ -73,7 +73,6 @@
 <section class="section" id="calculateur">
   <div class="section-inner">
     <div class="section-head">
-      <span class="eyebrow">Outils de calcul · Poutres</span>
       <h1>Poutre encastrée-articulée sous charge ponctuelle</h1>
       <p class="section-lead">Résultats immédiats : flèche, moment fléchissant et effort tranchant. Les formules utilisées figurent sous le calculateur.</p>
     </div>
@@ -107,27 +106,28 @@
 
       <div class="calc-formules">
         <h2>Formules</h2>
+        <p class="calc-convention">Valeurs absolues : en travée, fibre inférieure tendue ; à l’encastrement, fibre supérieure tendue.</p>
         <dl>
         <dt>Flèche maximale</dt>
         <dd class="calc-cond">si <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>&lt;</mo><mn>0,586</mn><mi>L</mi></mrow><annotation encoding="application/x-tex">\alpha  &lt; 0{,}586 L</annotation></semantics></math></dd>
         <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>δ</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><mo stretchy="false">(</mo><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">(</mo><mn>2</mn><mtext> </mtext><mi>L</mi><mtext> </mtext><mi>α</mi><mo>−</mo><msup><mi>α</mi><mn>2</mn></msup><msup><mo stretchy="false">)</mo><mn>3</mn></msup></mrow><mrow><mn>3</mn><mtext> </mtext><mi>E</mi><mtext> </mtext><mi>I</mi><mtext> </mtext><mo stretchy="false">(</mo><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mtext> </mtext><mi>L</mi><mtext> </mtext><mi>α</mi><mo>−</mo><msup><mi>α</mi><mn>2</mn></msup><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">\delta_{\mathrm{max}} = \frac{P\ (L - \alpha)\ (2\ L\ \alpha - \alpha^2)^3}{3\ E\ I\ (2\ L^2 + 2\ L\ \alpha - \alpha^2)^2}</annotation></semantics></math></dd>
         <dd class="calc-cond">sinon</dd>
         <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>δ</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><mo stretchy="false">(</mo><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mtext> </mtext><msup><mi>α</mi><mn>2</mn></msup></mrow><mrow><mn>6</mn><mtext> </mtext><mi>E</mi><mtext> </mtext><mi>I</mi></mrow></mfrac><mtext> </mtext><msqrt><mfrac><mrow><mi>L</mi><mo>−</mo><mi>α</mi></mrow><mrow><mn>3</mn><mtext> </mtext><mi>L</mi><mo>−</mo><mi>α</mi></mrow></mfrac></msqrt></mrow><annotation encoding="application/x-tex">\delta_{\mathrm{max}} = \frac{P\ (L - \alpha)\ \alpha^2}{6\ E\ I}\ \sqrt{\frac{L - \alpha}{3\ L - \alpha}}</annotation></semantics></math></dd>
-        <dt>Moment fléchissant maximal</dt>
-        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>M</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><mo stretchy="false">(</mo><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">(</mo><mn>2</mn><mtext> </mtext><mi>L</mi><mtext> </mtext><mi>α</mi><mo>−</mo><msup><mi>α</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">M_{\mathrm{max}} = \frac{P\ (L - \alpha)\ (2\ L\ \alpha - \alpha^2)}{2\ L^2}</annotation></semantics></math></dd>
-        <dt>Moment fléchissant minimal</dt>
-        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>M</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow></msub><mo>=</mo><mo>−</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><msup><mi>α</mi><mn>2</mn></msup><mtext> </mtext><mo stretchy="false">(</mo><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">(</mo><mn>3</mn><mtext> </mtext><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>3</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">M_{\mathrm{min}} = - \frac{P\ \alpha^2\ (L - \alpha)\ (3\ L - \alpha)}{2\ L^3}</annotation></semantics></math></dd>
-        <dt>Effort tranchant maximal</dt>
-        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>V</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">x</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><mo stretchy="false">(</mo><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">(</mo><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mtext> </mtext><mi>L</mi><mtext> </mtext><mi>α</mi><mo>−</mo><msup><mi>α</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>3</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">V_{\mathrm{max}} = \frac{P\ (L - \alpha)\ (2\ L^2 + 2\ L\ \alpha - \alpha^2)}{2\ L^3}</annotation></semantics></math></dd>
-        <dt>Effort tranchant minimal</dt>
-        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>V</mi><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">n</mi></mrow></msub><mo>=</mo><mo>−</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><msup><mi>α</mi><mn>2</mn></msup><mtext> </mtext><mo stretchy="false">(</mo><mn>3</mn><mtext> </mtext><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>3</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">V_{\mathrm{min}} = - \frac{P\ \alpha^2\ (3\ L - \alpha)}{2\ L^3}</annotation></semantics></math></dd>
+        <dt>Moment à l’encastrement</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>M</mi><mi>a</mi></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><mo stretchy="false">(</mo><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">(</mo><mn>2</mn><mtext> </mtext><mi>L</mi><mtext> </mtext><mi>α</mi><mo>−</mo><msup><mi>α</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>2</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">M_{a} = \frac{P\ (L - \alpha)\ (2\ L\ \alpha - \alpha^2)}{2\ L^2}</annotation></semantics></math></dd>
+        <dt>Moment en travée</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>M</mi><mi>t</mi></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><msup><mi>α</mi><mn>2</mn></msup><mtext> </mtext><mo stretchy="false">(</mo><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">(</mo><mn>3</mn><mtext> </mtext><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>3</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">M_{t} = \frac{P\ \alpha^2\ (L - \alpha)\ (3\ L - \alpha)}{2\ L^3}</annotation></semantics></math></dd>
+        <dt>Effort tranchant à l’encastrement</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>V</mi><mi>A</mi></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><mo stretchy="false">(</mo><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo><mtext> </mtext><mo stretchy="false">(</mo><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mtext> </mtext><mi>L</mi><mtext> </mtext><mi>α</mi><mo>−</mo><msup><mi>α</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>3</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">V_{A} = \frac{P\ (L - \alpha)\ (2\ L^2 + 2\ L\ \alpha - \alpha^2)}{2\ L^3}</annotation></semantics></math></dd>
+        <dt>Effort tranchant à l’appui articulé</dt>
+        <dd><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>V</mi><mi>B</mi></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mtext> </mtext><msup><mi>α</mi><mn>2</mn></msup><mtext> </mtext><mo stretchy="false">(</mo><mn>3</mn><mtext> </mtext><mi>L</mi><mo>−</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><mrow><mn>2</mn><mtext> </mtext><msup><mi>L</mi><mn>3</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">V_{B} = \frac{P\ \alpha^2\ (3\ L - \alpha)}{2\ L^3}</annotation></semantics></math></dd>
         </dl>
         <h2>Notations</h2>
         <ul class="calc-notations">
-        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math><span>module d'élasticité longitudinale, en GPa</span></li>
-        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math><span>moment d'inertie de flexion de la section transversale, en cm⁴</span></li>
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi></mrow><annotation encoding="application/x-tex">E</annotation></semantics></math><span>module d’élasticité longitudinale, en GPa</span></li>
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi></mrow><annotation encoding="application/x-tex">I</annotation></semantics></math><span>moment d’inertie de flexion de la section transversale, en cm⁴</span></li>
         <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math><span>portée de calcul, en cm</span></li>
-        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha </annotation></semantics></math><span>position de la charge ponctuelle, en cm</span></li>
+        <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha </annotation></semantics></math><span>distance de la charge à l’encastrement, en cm</span></li>
         <li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math><span>charge ponctuelle, en kN</span></li>
         </ul>
       </div>
@@ -156,8 +156,8 @@
   </div>
 </footer>
 
-<script src="../../calculs-rdm.js?v=10d78097"></script>
-<script src="../../calculateur.js?v=6fde6e00"></script>
-<script src="../../script.js?v=3c6a29dd"></script>
+<script src="../../calculs-rdm.js?v=3c1d7456"></script>
+<script src="../../calculateur.js?v=5533ce4e"></script>
+<script src="../../script.js?v=5e8113bb"></script>
 </body>
 </html>

@@ -25,6 +25,7 @@
     nombre: 'Enter a number, for example 12.5.',
     superieur: 'Enter a value greater than ',
     auPlus: 'Enter a value no greater than ',
+    inferieur: 'Enter a value less than ',
     completez: 'Complete the input to get the results.',
     echec: 'The calculation fails with these values: check the input.',
     imprimer: 'Print the calculation sheet',
@@ -38,6 +39,7 @@
     nombre: 'Saisissez un nombre, par exemple 12,5.',
     superieur: 'Saisissez une valeur supérieure à ',
     auPlus: 'Saisissez une valeur au plus égale à ',
+    inferieur: 'Saisissez une valeur inférieure à ',
     completez: 'Complétez les données pour obtenir les résultats.',
     echec: "Le calcul n'aboutit pas avec ces valeurs : vérifiez les données saisies.",
     imprimer: 'Imprimer la note de calcul',
@@ -66,7 +68,8 @@
   function elt(balise, classe, texte) {
     var n = document.createElement(balise);
     if (classe) n.className = classe;
-    if (texte !== undefined) n.textContent = texte;
+    // apostrophe typographique, comme dans le reste des pages (construire.py)
+    if (texte !== undefined) n.textContent = String(texte).replace(/(\p{L})'(\p{L})/gu, '$1’$2');
     return n;
   }
 
@@ -139,6 +142,30 @@
     return null;
   }
 
+  /* Liens entre champs (21/10/2026) : α au plus égale à L, t_f < h/2... Avant,
+     une géométrie impossible donnait des résultats d'apparence valable. Seules
+     deux valeurs déjà recevables sont comparées ; si un champ dépasse plusieurs
+     limites, la plus petite est citée, pour qu'une seule correction suffise. */
+  function controleLiens(module, valeurs) {
+    var pire = {};
+    (module.liens || []).forEach(function (l) {
+      if (!(l.champ in valeurs) || !(l.borne in valeurs)) return;
+      var limite = l.facteur * valeurs[l.borne];
+      var x = valeurs[l.champ];
+      if (l.stricte ? x < limite : x <= limite) return;
+      if (!pire[l.champ] || limite < pire[l.champ].limite) pire[l.champ] = { lien: l, limite: limite };
+    });
+    var messages = {};
+    Object.keys(pire).forEach(function (cle) {
+      var p = pire[cle];
+      var borne = module.entrees.filter(function (c) { return c.cle === p.lien.borne; })[0];
+      messages[cle] = (p.lien.stricte ? T.inferieur : T.auPlus) + p.lien.nom + ' = ' +
+        new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 2 }).format(p.limite) +
+        (borne && borne.unite ? ' ' + unite(borne.unite) : '') + '.';
+    });
+    return messages;
+  }
+
   function construire(cle) {
     var module = CALCULS_RDM[cle];
     if (!module) return;
@@ -206,16 +233,27 @@
 
     function recalcule() {
       var valeurs = {};
+      var propres = {};
       var refus = false;
+
+      champs.forEach(function (c) {
+        propres[c.def.cle] = controle(c.def, c.saisie.value);
+        if (!propres[c.def.cle]) valeurs[c.def.cle] = lireNombre(c.saisie.value);
+      });
+      var parLien = controleLiens(module, valeurs);
 
       // « Recompenser tot, sanctionner tard » : une erreur CORRIGEE s'efface des
       // la frappe, mais une erreur NOUVELLE n'est signalee qu'a la sortie du
       // champ. Sinon, effacer « 210 » pour taper « 200 » afficherait « valeur
       // manquante » a quelqu'un qui n'a rien fait de faux : il ecrivait.
       champs.forEach(function (c) {
-        var message = controle(c.def, c.saisie.value);
+        var lien = !propres[c.def.cle] && parLien[c.def.cle];
+        var message = propres[c.def.cle] || lien || null;
         var dejaSignale = c.saisie.classList.contains('en-faute');
-        if (!message || c.quitte || dejaSignale) {
+        // une limite venue d'un AUTRE champ (L raccourcie sous α) se signale
+        // tout de suite : personne n'est en train d'ecrire dans ce champ-la
+        var parAutreChamp = lien && document.activeElement !== c.saisie;
+        if (!message || c.quitte || dejaSignale || parAutreChamp) {
           c.alerte.textContent = message || '';
           c.saisie.classList.toggle('en-faute', Boolean(message));
           c.saisie.setAttribute('aria-invalid', message ? 'true' : 'false');
@@ -224,11 +262,7 @@
         // un champ qui a deja ete en erreur est suivi en direct : sa correction
         // est confirmee sur place, la ou le regard se trouve deja
         c.saisie.classList.toggle('confirme', Boolean(c.aErre && !message));
-        if (message) {
-          refus = true;
-        } else {
-          valeurs[c.def.cle] = lireNombre(c.saisie.value);
-        }
+        if (message) refus = true;
       });
 
       zone.textContent = '';
@@ -246,16 +280,30 @@
         zone.appendChild(elt('p', 'calc-vide', T.echec));
         return;
       }
+      // dernier filet : une aire, une inertie ou un module négatif, ou un
+      // nombre non fini, ne s'affiche jamais comme un résultat
+      var absurde = module.sorties.some(function (s) {
+        var v = sortie[s.cle];
+        return typeof v !== 'number' || !isFinite(v) || (s.positif && v < 0);
+      });
+      if (absurde) {
+        zone.appendChild(elt('p', 'calc-vide', T.echec));
+        return;
+      }
 
       module.sorties.forEach(function (s) {
         var ligne = elt('div', 'calc-ligne');
         ligne.appendChild(libelle('calc-nom', texteLibelle(s)));
         var val = elt('span', 'calc-valeur');
-        val.appendChild(document.createTextNode(formate(sortie[s.cle], s.decimales)));
+        var v = s.absolu ? Math.abs(sortie[s.cle]) : sortie[s.cle];
+        val.appendChild(document.createTextNode(formate(v, s.decimales)));
         if (s.unite) val.appendChild(elt('small', null, unite(s.unite)));
         ligne.appendChild(val);
         zone.appendChild(ligne);
       });
+      if (module.convention) {
+        zone.appendChild(elt('p', 'calc-convention', EN ? module.convention.en : module.convention.fr));
+      }
       imprimer.disabled = false;
     }
 

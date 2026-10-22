@@ -1,4 +1,6 @@
-<!-- FICHIER GENERE le 2026-10-08 par construire.py — NE PAS MODIFIER ICI.
+---
+---
+<!-- FICHIER GENERE le 2026-10-22 par construire.py — NE PAS MODIFIER ICI.
      Le texte de cette page se trouve dans site_source/pages/accueil.html
      La navigation et le pied de page sont dans site_source/gabarit.html -->
 <!doctype html>
@@ -36,7 +38,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="assets/logo-icon.svg?v=1ea5dbb9">
-<link rel="stylesheet" href="style.css?v=9fc8d441">
+<link rel="stylesheet" href="style.css?v=40207e60">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -90,7 +92,7 @@
       <a href="blog/" class="nav-page">Articles</a>
       <a href="outils/poutre-bi-articulee-charge-repartie/" class="nav-cta">Outils de calcul</a>
     </nav>
-    <details class="langues"><summary aria-label="Langue du site : français">FR<svg viewBox="0 0 12 12" aria-hidden="true" width="12" height="12"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></summary><ul><li><a href="en/" hreflang="en" lang="en">English<span>EN</span></a></li></ul></details>
+    <details class="langues"><summary aria-label="FR, langue du site : français">FR<svg viewBox="0 0 12 12" aria-hidden="true" width="12" height="12"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></summary><ul><li><a href="en/" hreflang="en" lang="en">English<span>EN</span></a></li></ul></details>
   </div>
 </header>
 
@@ -110,11 +112,11 @@
     <img src="assets/logo-icon-white.svg?v=1dfc02c9" alt="" class="hero-mark" width="120" height="120">
     <h1>
       <span class="hero-line">Calcul de structures &amp; modélisation BIM</span><br>
-      <span class="hero-accent">de la conception aux plans d'exécution.</span>
+      <span class="hero-accent">de la conception aux plans d’exécution.</span>
     </h1>
     <p class="hero-sub">
-      Études de structures en béton armé et en charpente métallique :
-      conception, dimensionnement et plans d'exécution, menés sur la maquette BIM.
+      Études de structures en béton armé et en charpente métallique, menées
+      sur la maquette BIM, pour les maîtres d’ouvrage et les bureaux d’études.
     </p>
     <div class="hero-cta">
       <a href="#travaux" class="btn btn-primary">Voir les travaux</a>
@@ -126,7 +128,6 @@
 <section class="section" id="travaux">
   <div class="section-inner">
     <div class="section-head">
-      <span class="eyebrow">Travaux</span>
       <h2>Ouvrages étudiés.</h2>
     </div>
     <article class="work work-3d">
@@ -134,10 +135,10 @@
         <div class="work-content">
           <div class="work-head">
             <h3>Complexe résidentiel</h3>
-            <p class="work-meta">Habitat collectif · près de 1 100 m² au sol · jusqu'à R+5</p>
+            <p class="work-meta">Habitat collectif · près de 1 100 m² au sol · jusqu’à R+5</p>
           </div>
-          <p>Ossatures en béton armé de deux immeubles d'habitation mitoyens, l'un en R+4, l'autre en R+5 avec mezzanine, chacun sur sous‑sol.</p>
-          <p class="work-mission"><span class="work-mission-titre">Mission</span>Études d'exécution de la structure : conception du contreventement, descente de charges, dimensionnement des fondations et de l'ossature ; plans de coffrage et de ferraillage avec nomenclatures, métré détaillé et estimation.</p>
+          <p>Ossatures en béton armé de deux immeubles d’habitation mitoyens, l’un en R+4, l’autre en R+5 avec mezzanine, chacun sur sous‑sol.</p>
+          <p class="work-mission"><span class="work-mission-titre">Mission</span>Études d’exécution de la structure : conception du contreventement, descente de charges, dimensionnement des fondations et de l’ossature ; plans de coffrage et de ferraillage avec nomenclatures, métré détaillé et estimation.</p>
         </div>
 
         <div class="work-visual">
@@ -149,9 +150,10 @@
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
                 touch-action="pan-y"
-                shadow-intensity="1"
+                shadow-intensity="1.5"
                 shadow-softness="0.75"
-                exposure="0.95"
+                exposure="0.8"
+                tone-mapping="aces"
                 environment-image="neutral"
                 loading="eager"
                 reveal="auto"></model-viewer>
@@ -167,8 +169,8 @@
             <h3>Hangar métallique</h3>
             <p class="work-meta">Bâtiment industriel · plus de 800 m² au sol · 20 m de portée</p>
           </div>
-          <p>Charpente métallique d'un hangar de vingt mètres de portée sur une quarantaine de mètres de long, à sept mètres au faîtage : portiques, contreventements et assemblages boulonnés, jusqu'aux pieds de poteaux.</p>
-          <p class="work-mission"><span class="work-mission-titre">Mission</span>Études d'exécution de la charpente : conception des portiques et des contreventements, dimensionnement des éléments et des assemblages ; plans d'ensemble et de détail, nomenclatures et métré.</p>
+          <p>Charpente métallique d’un hangar de vingt mètres de portée sur une quarantaine de mètres de long, à sept mètres au faîtage : portiques, contreventements et assemblages boulonnés, jusqu’aux pieds de poteaux.</p>
+          <p class="work-mission"><span class="work-mission-titre">Mission</span>Études d’exécution de la charpente : conception des portiques et des contreventements, dimensionnement des éléments et des assemblages ; plans d’ensemble et de détail, nomenclatures et métré.</p>
         </div>
 
         <div class="work-visual">
@@ -180,9 +182,10 @@
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
                 touch-action="pan-y"
-                shadow-intensity="1"
+                shadow-intensity="1.5"
                 shadow-softness="0.75"
-                exposure="0.95"
+                exposure="0.8"
+                tone-mapping="aces"
                 environment-image="neutral"
                 loading="eager"
                 reveal="auto"></model-viewer>
@@ -198,8 +201,8 @@
             <h3>Équipement public</h3>
             <p class="work-meta">Établissement recevant du public · près de 900 m² au sol · trois niveaux</p>
           </div>
-          <p>Ossature en béton armé d'un bâtiment public de près de cinquante mètres de long, en R+2.</p>
-          <p class="work-mission"><span class="work-mission-titre">Mission</span>Études de structure : conception et dimensionnement de l'ossature et des fondations ; plans de coffrage et de ferraillage.</p>
+          <p>Ossature en béton armé d’un bâtiment public de près de cinquante mètres de long, en R+2.</p>
+          <p class="work-mission"><span class="work-mission-titre">Mission</span>Études de structure : conception et dimensionnement de l’ossature et des fondations ; plans de coffrage et de ferraillage.</p>
         </div>
 
         <div class="work-visual">
@@ -211,9 +214,10 @@
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
                 touch-action="pan-y"
-                shadow-intensity="1"
+                shadow-intensity="1.5"
                 shadow-softness="0.75"
-                exposure="0.95"
+                exposure="0.8"
+                tone-mapping="aces"
                 environment-image="neutral"
                 loading="eager"
                 reveal="auto"></model-viewer>
@@ -229,8 +233,8 @@
             <h3>Mosquée avec minaret</h3>
             <p class="work-meta">Lieu de culte · environ 500 m² au sol · minaret de près de 20 m</p>
           </div>
-          <p>Ossature en béton armé d'une mosquée sur trois niveaux, dont un sous‑sol, couronnée d'une coupole, et d'un minaret culminant à près de vingt mètres.</p>
-          <p class="work-mission"><span class="work-mission-titre">Mission</span>Études de structure de l'ossature, de la coupole et du minaret : conception, dimensionnement, plans d'exécution.</p>
+          <p>Ossature en béton armé d’une mosquée sur trois niveaux, dont un sous‑sol, couronnée d’une coupole, et d’un minaret culminant à près de vingt mètres.</p>
+          <p class="work-mission"><span class="work-mission-titre">Mission</span>Études de structure de l’ossature, de la coupole et du minaret : conception, dimensionnement, plans d’exécution.</p>
         </div>
 
         <div class="work-visual">
@@ -242,9 +246,10 @@
                 auto-rotate
                 camera-orbit="45deg 65deg auto"
                 touch-action="pan-y"
-                shadow-intensity="1"
+                shadow-intensity="1.5"
                 shadow-softness="0.75"
-                exposure="0.95"
+                exposure="0.8"
+                tone-mapping="aces"
                 environment-image="neutral"
                 loading="eager"
                 reveal="auto"></model-viewer>
@@ -255,16 +260,17 @@
   </div>
 </section>
 
-<section class="section section-alt" id="demarche">
+<section class="section section-alt section-split" id="demarche">
   <div class="section-inner">
-    <div class="section-head">
-      <span class="eyebrow">Démarche</span>
-      <h2>Le calcul et le dessin traités comme une seule chaîne.</h2>
+    <div class="split-gauche">
+      <div class="section-head">
+        <h2>Le calcul et le dessin traités comme une seule chaîne.</h2>
+      </div>
+      <figure class="split-photo"><img src="assets/photos/ferraillage-ligatures-480.webp" srcset="assets/photos/ferraillage-ligatures-480.webp 480w, assets/photos/ferraillage-ligatures-960.webp 960w" sizes="(max-width: 860px) 100vw, 420px" width="480" height="600" alt="Ligature à la pince des armatures d'une cage de ferraillage." loading="lazy" decoding="async"></figure>
     </div>
 
     <div class="why-grid">
       <div class="why-item">
-        <div class="why-num">01</div>
         <h3>Maquette et calcul menés ensemble</h3>
         <p>
           La maquette et la note de calcul procèdent des mêmes données. Cette
@@ -273,24 +279,21 @@
         </p>
       </div>
       <div class="why-item">
-        <div class="why-num">02</div>
         <h3>Métrés et estimation</h3>
         <p>
           Avant-métré dès les études, métré détaillé à partir des plans
-          d'exécution, nomenclatures, puis estimation du projet.
+          d’exécution, nomenclatures, puis estimation du projet.
         </p>
       </div>
       <div class="why-item">
-        <div class="why-num">03</div>
-        <h3>L'article cité, toujours</h3>
+        <h3>L’article cité, toujours</h3>
         <p>
-          Chaque vérification porte la référence de l'article qui la fonde.
+          Chaque vérification porte la référence de l’article qui la fonde.
           Une note de calcul doit pouvoir être relue et contestée article par
           article.
         </p>
       </div>
       <div class="why-item">
-        <div class="why-num">04</div>
         <h3>Hypothèses explicites</h3>
         <p>
           Contrainte de sol, classe de béton, enrobage, catégorie sismique :
@@ -298,11 +301,10 @@
         </p>
       </div>
       <div class="why-item">
-        <div class="why-num">05</div>
         <h3>Traçabilité</h3>
         <p>
           Versions datées, hypothèses conservées, feuilles de calcul lisibles.
-          Un calcul que l'on ne peut pas reprendre six mois plus tard n'a
+          Un calcul que l’on ne peut pas reprendre six mois plus tard n’a
           aucune valeur.
         </p>
       </div>
@@ -310,32 +312,91 @@
   </div>
 </section>
 
-<section class="section" id="elements">
+<section class="section section-split" id="elements">
   <div class="section-inner">
     <div class="section-head">
-      <span class="eyebrow">Ouvrages traités</span>
       <h2>Béton armé et charpente métallique.</h2>
     </div>
 
     <div class="domaines">
-      <div class="domaine">
-        <h3>Béton armé</h3>
-        <p>
-          Bâtiments d'habitation et immeubles de bureaux, équipements publics
-          et lieux de culte, ouvrages enterrés et réservoirs. Du sous-sol à la
-          terrasse, fondations comprises.
-        </p>
-        <p class="domaine-livrables"><span class="domaine-livrables-titre">Livrables</span>Notes de calcul · Plans de coffrage et de ferraillage · Nomenclatures · Métrés</p>
+      <div class="domaine domaine-avec-photo">
+        <figure class="domaine-photo"><img src="assets/photos/beton-arme-cage-armatures-640.webp" srcset="assets/photos/beton-arme-cage-armatures-640.webp 640w, assets/photos/beton-arme-cage-armatures-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 280px" width="640" height="480" alt="Cage d'armatures d'un poteau en béton armé, vue de dessous avant le coulage." loading="lazy" decoding="async"></figure>
+        <div class="domaine-texte">
+          <h3>Béton armé</h3>
+          <p>
+            Bâtiments d’habitation et immeubles de bureaux, équipements publics
+            et lieux de culte, ouvrages enterrés et réservoirs. Du sous-sol à la
+            terrasse, fondations comprises.
+          </p>
+          <p class="domaine-livrables"><span class="domaine-livrables-titre">Livrables</span>Notes de calcul · Plans de coffrage et de ferraillage · Nomenclatures · Métrés</p>
+        </div>
       </div>
-      <div class="domaine">
-        <h3>Charpente métallique</h3>
-        <p>
-          Halls industriels, hangars et couvertures de grande portée, ainsi que
-          les ouvrages mixtes associant une ossature métallique à une structure
-          en béton.
-        </p>
-        <p class="domaine-livrables"><span class="domaine-livrables-titre">Livrables</span>Notes de calcul · Plans d'ensemble et de détail · Nomenclatures · Métrés</p>
+      <div class="domaine domaine-avec-photo">
+        <figure class="domaine-photo"><img src="assets/photos/charpente-metallique-ossature-640.webp" srcset="assets/photos/charpente-metallique-ossature-640.webp 640w, assets/photos/charpente-metallique-ossature-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 280px" width="640" height="480" alt="Ossature en acier d'un bâtiment en cours de montage : poteaux, poutres et contreventements." loading="lazy" decoding="async"></figure>
+        <div class="domaine-texte">
+          <h3>Charpente métallique</h3>
+          <p>
+            Halls industriels, hangars et couvertures de grande portée, ainsi que
+            les ouvrages mixtes associant une ossature métallique à une structure
+            en béton.
+          </p>
+          <p class="domaine-livrables"><span class="domaine-livrables-titre">Livrables</span>Notes de calcul · Plans d’ensemble et de détail · Nomenclatures · Métrés</p>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt section-ressources" id="ressources">
+  <!-- Ce que le site partage : les derniers articles (liste construite par
+       Jekyll) et les quatorze calculs (le menu des outils, genere par
+       faire_calculateur.py, reutilise tel quel). Ajoute le 22/10/2026 :
+       l'accueil ne menait ni aux articles ni aux outils. -->
+  <div class="section-inner ressources-grille">
+    <div class="ressources-bloc">
+      <h2>Derniers articles.</h2>
+      <ol class="billets">
+{% assign billets = site.posts | where: "lang", "fr" %}{% for post in billets limit:3 %}
+        <li class="billet">
+          <a href="{{ post.url }}">
+            <h3>{{ post.title | smartify }}</h3>
+            <span class="lien-fleche">Lire l’article</span>
+          </a>
+        </li>
+{% endfor %}
+      </ol>
+      <a class="lien-fleche ressources-tout" href="blog/">Tous les articles</a>
+    </div>
+
+    <div class="ressources-bloc">
+      <h2>Outils de calcul.</h2>
+      <p class="ressources-texte">
+        Quatorze calculs de résistance des matériaux, en ligne : réactions,
+        moments, efforts tranchants et flèches des poutres, caractéristiques des
+        sections. Chaque page affiche ses formules et s’imprime en note de calcul.
+      </p>
+<nav class="calc-menu" id="calc-menu" aria-label="Modules de calcul">
+  <p class="calc-groupe">Poutres</p>
+  <ul>
+    <li><a href="outils/poutre-bi-articulee-charge-repartie/" data-module="rdm_poutres_poutre_rotule_rotule_charge_repartie">Bi-articulée · charge répartie</a></li>
+    <li><a href="outils/poutre-bi-articulee-charge-ponctuelle/" data-module="rdm_poutres_poutre_rotule_rotule_charge_ponctuelle">Bi-articulée · charge ponctuelle</a></li>
+    <li><a href="outils/poutre-encastree-articulee-charge-repartie/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_repartie">Encastrée-articulée · répartie</a></li>
+    <li><a href="outils/poutre-encastree-articulee-charge-ponctuelle/" data-module="rdm_poutres_poutre_encastrement_rotule_charge_ponctuelle">Encastrée-articulée · ponctuelle</a></li>
+    <li><a href="outils/poutre-bi-encastree-charge-repartie/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_repartie">Bi-encastrée · charge répartie</a></li>
+    <li><a href="outils/poutre-bi-encastree-charge-ponctuelle/" data-module="rdm_poutres_poutre_encastrement_encastrement_charge_ponctuelle">Bi-encastrée · charge ponctuelle</a></li>
+    <li><a href="outils/console-charge-repartie/" data-module="rdm_poutres_poutre_encastrement_libre_charge_repartie">Console · charge répartie</a></li>
+    <li><a href="outils/console-charge-ponctuelle/" data-module="rdm_poutres_poutre_encastrement_libre_charge_ponctuelle">Console · charge ponctuelle</a></li>
+  </ul>
+  <p class="calc-groupe">Sections</p>
+  <ul>
+    <li><a href="outils/section-rectangulaire/" data-module="rdm_sections_section_rectangulaire">Rectangle plein</a></li>
+    <li><a href="outils/section-circulaire/" data-module="rdm_sections_section_circulaire">Rond plein</a></li>
+    <li><a href="outils/profil-en-i/" data-module="rdm_sections_section_I">Profil en I</a></li>
+    <li><a href="outils/profil-en-u/" data-module="rdm_sections_section_U">Profil en U</a></li>
+    <li><a href="outils/tube-rectangulaire/" data-module="rdm_sections_tube_rectangulaire">Tube rectangulaire</a></li>
+    <li><a href="outils/tube-circulaire/" data-module="rdm_sections_tube_circulaire">Tube circulaire</a></li>
+  </ul>
+</nav>
     </div>
   </div>
 </section>
@@ -344,8 +405,8 @@
   <div class="section-inner">
     <div class="contact-grid contact-single">
       <div class="contact-text">
-        <span class="eyebrow eyebrow-light">Contact</span>
         <h2>Prendre contact.</h2>
+        <p class="contact-intro">Pour un ouvrage à étudier, décrivez le projet, sa localisation et la phase d’études en cours.</p>
 
         <div class="contact-info">
           <a href="mailto:bimaghreb@outlook.com" class="contact-row contact-principal">
@@ -415,6 +476,6 @@
 </footer>
 
 <script type="module" src="assets/model-viewer.min.js?v=283b0672"></script>
-<script src="script.js?v=3c6a29dd"></script>
+<script src="script.js?v=5e8113bb"></script>
 </body>
 </html>
