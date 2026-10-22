@@ -619,44 +619,12 @@ model-viewer:focus-visible {
   color: var(--text);
 }
 
-/* --- Articles et outils (accueil) : deux colonnes egales -------------------- */
-.ressources-grille {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--e-16);
-  align-items: start;
-}
-.ressources-bloc h2 { margin-bottom: var(--e-6); }
+/* --- Derniers articles (accueil) : meme mise en page que la Demarche ------- */
 .ressources-bloc .billets { margin: 0; padding: 0; list-style: none; }
 .ressources-bloc .billet a { padding: var(--e-5) 0; }
 .ressources-bloc .billet h3 { margin: 0 0 var(--e-2); font-size: 1.15rem; }
 .ressources-tout { display: inline-flex; margin-top: var(--e-5); color: var(--orange-texte);
   text-decoration-color: rgba(183,84,16,.35); }
-.ressources-texte { margin: 0 0 var(--e-6); color: var(--text-soft); max-width: 60ch; }
-/* le menu des outils, reutilise : ici une simple liste en deux colonnes */
-.section-ressources .calc-menu {
-  position: static; padding: 0; background: none; border: 0; border-radius: 0;
-  display: grid; grid-auto-flow: column; grid-template-rows: auto auto;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--e-8);
-  border-top: 1px solid var(--line); padding-top: var(--e-4);
-}
-.section-ressources .calc-groupe { margin: 0 0 var(--e-2); }
-.section-ressources .calc-menu ul { margin: 0; }
-.section-ressources .calc-menu a {
-  display: flex; align-items: center; min-height: 36px; padding: 0;
-  border: 0; color: var(--text); font-size: .92rem;
-}
-@media (max-width: 860px) {
-  .ressources-grille { grid-template-columns: 1fr; gap: var(--e-12); }
-}
-@media (max-width: 520px) {
-  .section-ressources .calc-menu { grid-auto-flow: row; grid-template-columns: 1fr; grid-template-rows: none; }
-  .section-ressources .calc-menu ul + .calc-groupe { margin-top: var(--e-4); }
-}
-@media (pointer: coarse) { .section-ressources .calc-menu a { min-height: 44px; } }
-@media (hover: hover) {
-  .section-ressources .calc-menu a:hover { background: none; color: var(--orange-texte); }
-}
 
 /* ============================================================
    CONTACT
