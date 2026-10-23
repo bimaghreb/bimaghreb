@@ -486,33 +486,45 @@ model-viewer:focus-visible {
 
 /* ============================================================
    OUVRAGES (refonte 23/10/2026)
-   Deux cartes par rangee : l'accueil est le sommaire, les quatre ouvrages se
-   voient d'un coup d'oeil. Image fixe tiree de la maquette ; la Mission et la
-   3D sont sur la page de l'ouvrage.
+   Accueil : une carte par ouvrage, sur le modele voulu par Mohamed (abet.ma) :
+   photo, ligne de categorie, titre qui dit l'ouvrage et la mission. Toute la
+   carte mene a la page de l'ouvrage (fiche, livrables, maquette 3D).
+   Quatre cartes sur une ligne en grand ecran, deux en moyen.
    ============================================================ */
 .ouvrages {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--e-16) var(--e-10);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--e-10) var(--e-6);
 }
-.ouvrage { display: flex; flex-direction: column; gap: var(--e-6); }
-/* le lien « Voir la maquette 3D » s'aligne au pied des deux cartes d'une rangee */
-.ouvrage-texte { display: flex; flex-direction: column; flex: 1; }
-.ouvrage-texte .ouvrage-lien { align-self: flex-start; margin-top: auto; }
+@media (max-width: 1100px) {
+  .ouvrages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* la carte entiere est cliquable : le lien du titre s'etend sur elle */
+.ouvrage { position: relative; display: flex; flex-direction: column; }
 .ouvrage-image {
-  display: block;
-  background: var(--bg-alt);
-  border: 1px solid var(--line);
+  margin: 0 0 var(--e-4);
   border-radius: var(--r-l);
   overflow: hidden;
+  background: var(--bg-alt);
 }
 .ouvrage-image img {
   display: block; width: 100%; height: auto;
+  aspect-ratio: 3 / 2; object-fit: cover;
   transition: transform 400ms var(--entree);
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .ouvrage:has(a:hover) .ouvrage-image img { transform: scale(1.02); }
+  .ouvrage:hover .ouvrage-image img { transform: scale(1.03); }
 }
+.ouvrage-categorie {
+  margin: 0 0 var(--e-2);
+  font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-soft);
+}
+.ouvrages .ouvrage h3 { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
+.ouvrages .ouvrage h3 a::after { content: ""; position: absolute; inset: 0; }
+.ouvrages .ouvrage:hover h3 a { color: var(--orange-texte); }
+/* les photos sont des illustrations : on le dit, sobrement */
+.ouvrages-note { margin: var(--e-8) 0 0; font-size: .8rem; color: var(--text-soft); }
 
 /* numero de planche : le seul orange de la planche */
 .ouvrage-num {
@@ -546,10 +558,6 @@ model-viewer:focus-visible {
   font-size: 1rem; font-weight: 700; line-height: 1.3;
   color: var(--ink); font-variant-numeric: tabular-nums;
 }
-@media (min-width: 901px) {
-  .ouvrages .ouvrage-fiche { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .ouvrages .ouvrage-fiche > div + div { padding-left: var(--e-3); border-left: 1px solid var(--line); }
-}
 
 .ouvrage-mission p { margin: 0 0 var(--e-3); font-size: .92rem; line-height: 1.55; color: var(--text); }
 .ouvrage-etiquette {
@@ -581,8 +589,7 @@ model-viewer:focus-visible {
     scrollbar-width: none;
   }
   .ouvrages::-webkit-scrollbar { display: none; }
-  .ouvrage { flex: 0 0 min(88%, 440px); scroll-snap-align: start; gap: var(--e-4); }
-  .ouvrage h3 { font-size: 1.25rem; }
+  .ouvrage { flex: 0 0 min(80%, 360px); scroll-snap-align: start; }
 }
 @media (max-width: 600px) {
   .ouvrages {
