@@ -492,8 +492,8 @@ model-viewer:focus-visible {
 /* ============================================================
    OUVRAGES (refonte 23/10/2026)
    Accueil : une carte par ouvrage, sur le modele voulu par Mohamed (abet.ma) :
-   photo, ligne de categorie, titre qui dit l'ouvrage et la mission. Toute la
-   carte mene a la page de l'ouvrage (fiche, livrables, maquette 3D).
+   photo, ligne de categorie, titre qui dit l'ouvrage et la mission. Sans
+   lien : l'accueil parle des ouvrages en general (pages par ouvrage retirees).
    Quatre cartes sur une ligne en grand ecran, deux en moyen.
    ============================================================ */
 .ouvrages {
@@ -504,7 +504,6 @@ model-viewer:focus-visible {
 @media (max-width: 1100px) {
   .ouvrages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-/* la carte entiere est cliquable : le lien du titre s'etend sur elle */
 .ouvrage { position: relative; display: flex; flex-direction: column; }
 .ouvrage-image {
   margin: 0 0 var(--e-4);
@@ -517,17 +516,12 @@ model-viewer:focus-visible {
   aspect-ratio: 3 / 2; object-fit: cover;
   transition: transform 400ms var(--entree);
 }
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .ouvrage:hover .ouvrage-image img { transform: scale(1.03); }
-}
 .ouvrage-categorie {
   margin: 0 0 var(--e-2);
   font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
   color: var(--text-soft);
 }
 .ouvrages .ouvrage h3 { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
-.ouvrages .ouvrage h3 a::after { content: ""; position: absolute; inset: 0; }
-.ouvrages .ouvrage:hover h3 a { color: var(--orange-texte); }
 
 /* numero de planche : le seul orange de la planche */
 .ouvrage-num {
