@@ -38,7 +38,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="assets/logo-icon.svg?v=1ea5dbb9">
-<link rel="stylesheet" href="style.css?v=adc230ea">
+<link rel="stylesheet" href="style.css?v=32cf10c7">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -97,7 +97,6 @@
 </header>
 
 <nav class="onglets" aria-label="Navigation principale (mobile)">
-  <a href="#hero"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span>Accueil</span></a>
   <a href="#travaux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5Z"/><path d="M4 7.5v9L12 21l8-4.5v-9"/><path d="M12 12v9"/></svg><span>Travaux</span></a>
   <a href="#demarche"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="12" r="2"/><path d="M8 6h3a3 3 0 0 1 3 3v1"/><path d="M8 18h3a3 3 0 0 0 3-3v-1"/></svg><span>Démarche</span></a>
   <a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Contact</span></a>
@@ -107,6 +106,9 @@
 
 <main id="contenu">
 <section class="hero" id="hero">
+  <picture class="hero-photo" aria-hidden="true">
+    <img src="assets/en-tete-chantier-1600.webp?v=8cce06da" srcset="assets/en-tete-chantier-960.webp?v=f49bf28a 960w, assets/en-tete-chantier-1600.webp?v=8cce06da 1600w, assets/en-tete-chantier-2400.webp?v=3336c1ee 2400w" sizes="100vw" alt="" width="2400" height="1600" fetchpriority="high" decoding="async">
+  </picture>
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-inner">
     <img src="assets/logo-icon-white.svg?v=1dfc02c9" alt="" class="hero-mark" width="120" height="120">
@@ -128,6 +130,7 @@
 <section class="section" id="travaux">
   <div class="section-inner">
     <div class="section-head">
+      <p class="surtitre">Réalisations</p>
       <h2>Ouvrages étudiés.</h2>
     </div>
     <div class="ouvrages">
@@ -178,6 +181,7 @@
   <div class="section-inner">
     <div class="split-gauche">
       <div class="section-head">
+        <p class="surtitre">Démarche</p>
         <h2>Le calcul et le dessin traités comme une seule chaîne.</h2>
       </div>
       <figure class="split-photo"><img src="assets/photos/ferraillage-ligatures-480.webp" srcset="assets/photos/ferraillage-ligatures-480.webp 480w, assets/photos/ferraillage-ligatures-960.webp 960w" sizes="(max-width: 860px) 100vw, 420px" width="480" height="600" alt="Ligature à la pince des armatures d'une cage de ferraillage." loading="lazy" decoding="async"></figure>
@@ -229,7 +233,8 @@
 <section class="section section-split" id="elements">
   <div class="section-inner">
     <div class="section-head">
-      <h2>Béton armé et charpente métallique.</h2>
+      <p class="surtitre">Domaines</p>
+        <h2>Béton armé et charpente métallique.</h2>
     </div>
 
     <div class="domaines">
@@ -267,7 +272,8 @@
        de calcul, essaye a cote, a ete retire a sa demande le 23/10. -->
   <div class="section-inner">
     <div class="section-head">
-      <h2>Derniers articles.</h2>
+      <p class="surtitre">Articles</p>
+        <h2>Derniers articles.</h2>
     </div>
     <div class="ressources-bloc">
       <ol class="billets">
@@ -289,6 +295,7 @@
   <div class="section-inner">
     <div class="contact-grid contact-single">
       <div class="contact-text">
+        <p class="surtitre">Contact</p>
         <h2>Prendre contact.</h2>
         <p class="contact-intro">Pour un ouvrage à étudier, décrivez le projet, sa localisation et la phase d’études en cours.</p>
 
@@ -353,6 +360,10 @@
       <a href="blog/">Articles</a>
       <a href="outils/poutre-bi-articulee-charge-repartie/">Outils de calcul</a>
     </nav>
+    <div class="footer-contact">
+      <a href="mailto:bimaghreb@outlook.com">bimaghreb@outlook.com</a>
+      <a href="tel:+212719488717">+212 7 19 48 87 17</a>
+    </div>
     <div class="footer-meta">
       <span>&copy; 2026 BIMaghreb.</span>
     </div>
