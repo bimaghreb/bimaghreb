@@ -361,10 +361,12 @@ model-viewer:focus-visible {
   display: inline-flex; align-items: center; gap: var(--e-2);
   min-height: 44px;
   color: #fff; font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: rgba(255,255,255,.4);
-  text-underline-offset: 5px;
-  transition: text-decoration-color var(--survol) var(--deplacer);
+  /* UN trait sous le texte ET la fleche (23/10/2026) : un soulignement de
+     texte s'interrompait dans l'ecart entre les deux. Trace a 0,8 em sous le
+     milieu de la ligne, quelle que soit la hauteur de la zone tactile. */
+  --souligne: rgba(255,255,255,.4);
+  text-decoration: none;
+  background: linear-gradient(var(--souligne), var(--souligne)) no-repeat 0 calc(50% + .8em) / 100% 1px;
 }
 .lien-fleche::after {
   content: "→";
@@ -496,13 +498,15 @@ model-viewer:focus-visible {
    lien : l'accueil parle des ouvrages en general (pages par ouvrage retirees).
    Quatre cartes sur une ligne en grand ecran, deux en moyen.
    ============================================================ */
+/* flex et non grille : une derniere rangee incomplete se CENTRE (souhait de
+   Mohamed, 23/10/2026), au lieu de rester calee a gauche */
 .ouvrages {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex; flex-wrap: wrap; justify-content: center;
   gap: var(--e-10) var(--e-6);
 }
+.ouvrage { flex: 0 0 calc((100% - 3 * var(--e-6)) / 4); min-width: 0; }
 @media (max-width: 1100px) {
-  .ouvrages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ouvrage { flex-basis: calc((100% - var(--e-6)) / 2); }
 }
 .ouvrage { position: relative; display: flex; flex-direction: column; }
 .ouvrage-image {
@@ -577,6 +581,7 @@ model-viewer:focus-visible {
 @media (max-width: 900px) {
   .ouvrages {
     display: flex; gap: var(--e-4);
+    flex-wrap: nowrap; justify-content: flex-start;
     overflow-x: auto; overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
     /* la rangee va d'un bord de l'ecran a l'autre */
@@ -756,7 +761,7 @@ model-viewer:focus-visible {
 .ressources-bloc .billet a { padding: var(--e-5) 0; }
 .ressources-bloc .billet h3 { margin: 0 0 var(--e-2); font-size: 1.15rem; }
 .ressources-tout { display: inline-flex; margin-top: var(--e-5); color: var(--orange-texte);
-  text-decoration-color: rgba(183,84,16,.35); }
+  --souligne: rgba(183,84,16,.35); }
 
 /* ============================================================
    CONTACT
@@ -1064,7 +1069,7 @@ model-viewer:focus-visible {
 .billet-suite-titre { margin: 0 0 var(--e-4); font-size: 1.1rem; }
 .billet p { margin: 0 0 var(--e-2); color: var(--text-soft); }
 .billet .lien-fleche { min-height: 0; color: var(--orange-texte);
-  text-decoration-color: rgba(183,84,16,.35); }
+  --souligne: rgba(183,84,16,.35); }
 
 .billet-page { padding-top: var(--e-12); }
 /* Aligne a gauche, sur la marge du site (et non centre) ; le sommaire prend
@@ -1159,9 +1164,11 @@ model-viewer:focus-visible {
   .nav-links .nav-cta:hover { background: var(--orange-texte-survol); color: #fff; box-shadow: var(--lueur-bouton); }
   .btn-primary:hover { background: var(--orange-texte-survol); box-shadow: var(--lueur-bouton); }
   .btn-secondaire:hover { background: var(--orange-texte); color: #fff; }
-  .lien-fleche:hover { text-decoration-color: #fff; }
+  .lien-fleche:hover { --souligne: #fff; }
+  /* sur fond clair, le trait passe a l'orange (blanc, il disparaissait) */
+  .ressources-tout:hover { --souligne: var(--orange-texte); }
   .billet a:hover h2, .billet a:hover h3 { color: var(--orange-texte); }
-  .billet a:hover .lien-fleche { text-decoration-color: var(--orange-texte); }
+  .billet a:hover .lien-fleche { --souligne: var(--orange-texte); }
   .billet-retour:hover { color: var(--ink); }
   .billet-sommaire a:hover { color: var(--ink); }
   .prose a:not(.btn):hover { text-decoration-color: var(--orange-texte); }
