@@ -523,8 +523,6 @@ model-viewer:focus-visible {
 .ouvrages .ouvrage h3 { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.4; }
 .ouvrages .ouvrage h3 a::after { content: ""; position: absolute; inset: 0; }
 .ouvrages .ouvrage:hover h3 a { color: var(--orange-texte); }
-/* les photos sont des illustrations : on le dit, sobrement */
-.ouvrages-note { margin: var(--e-8) 0 0; font-size: .8rem; color: var(--text-soft); }
 
 /* numero de planche : le seul orange de la planche */
 .ouvrage-num {
