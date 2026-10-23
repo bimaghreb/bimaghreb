@@ -400,9 +400,9 @@ model-viewer:focus-visible {
 /* Trame ISOMETRIQUE de la carte de visite (30, 90, 150 deg), CALEE sur le
    cube du logo : elle passe par le sommet avant du losange et son pas vaut
    la demi-largeur du cube / 3, donc chaque arete du cube tombe sur une ligne.
-   Deux calques SVG poses par script.js (qui mesure le cube a l'ecran) :
-   la trame blanche, et la meme en orange visible autour de la souris. */
-.hero-trame, .hero-lueur {
+   Un calque SVG pose par script.js (qui mesure le cube a l'ecran). La lueur
+   orange qui suivait la souris est retiree le 23/10/2026 (choix de Mohamed). */
+.hero-trame {
   position: absolute; inset: 0; width: 100%; height: 100%;
   pointer-events: none;
 }
@@ -412,19 +412,6 @@ model-viewer:focus-visible {
      autour du logo et s'efface vers les bords */
   mask-image: radial-gradient(ellipse 85% 110% at 22% 38%, #000 30%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse 85% 110% at 22% 38%, #000 30%, transparent 80%);
-}
-.hero-lueur {
-  opacity: .55;
-  mask-image: radial-gradient(circle 240px at var(--mx, 78%) var(--my, 24%), #000, transparent);
-  -webkit-mask-image: radial-gradient(circle 240px at var(--mx, 78%) var(--my, 24%), #000, transparent);
-}
-/* telephone : l'ecran est etroit, une lueur de 240 px couvrirait le texte */
-@media (max-width: 860px) {
-  .hero-lueur {
-    opacity: .35;
-    mask-image: radial-gradient(circle 140px at 88% 10%, #000, transparent);
-    -webkit-mask-image: radial-gradient(circle 140px at 88% 10%, #000, transparent);
-  }
 }
 .hero-inner { max-width: var(--max); margin: 0 auto; }
 

@@ -267,8 +267,9 @@
     fond.appendChild(svg);
     return { svg: svg, motif: motif, fin: fin, fort: fort };
   }
+  // 23/10/2026 : la lueur orange qui suivait la souris est retiree (choix de
+  // Mohamed) ; seule reste la trame.
   var trame = calque('hero-trame', '#ffffff', 'trame-iso');
-  var lueur = calque('hero-lueur', '#ED7D31', 'trame-iso-lueur');
 
   // Une maille isometrique de pas d : tuile de 2 d sur 2 d / tan... (hauteur
   // h = 2 d / racine 3), deux colonnes car les noeuds d'une colonne sur deux
@@ -298,40 +299,14 @@
       for (var j = 0; j < MAILLES; j++) fin += maille(d, i * 2 * d, j * hf);
     }
     var fort = maille(a, 0, 0);
-    [trame, lueur].forEach(function (c) {
-      c.motif.setAttribute('width', 2 * a);
-      c.motif.setAttribute('height', 2 * a / Math.sqrt(3));
-      c.motif.setAttribute('x', x);
-      c.motif.setAttribute('y', y);
-      c.fin.setAttribute('d', fin);
-      c.fort.setAttribute('d', fort);
-    });
+    trame.motif.setAttribute('width', 2 * a);
+    trame.motif.setAttribute('height', 2 * a / Math.sqrt(3));
+    trame.motif.setAttribute('x', x);
+    trame.motif.setAttribute('y', y);
+    trame.fin.setAttribute('d', fin);
+    trame.fort.setAttribute('d', fort);
   }
   caler();
   window.addEventListener('resize', caler);
   cube.addEventListener('load', caler);
-
-  // la lueur suit la souris ; fixe sans souris, ou si les animations sont coupees
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var hero = document.querySelector('.hero');
-  var cible = null, x = 0, y = 0, enCours = false;
-  function pas() {
-    // la lueur rattrape le curseur par 12 % a chaque image : un glissement doux
-    x += (cible.x - x) * 0.12;
-    y += (cible.y - y) * 0.12;
-    lueur.svg.style.setProperty('--mx', x.toFixed(1) + 'px');
-    lueur.svg.style.setProperty('--my', y.toFixed(1) + 'px');
-    if (Math.abs(cible.x - x) > 0.5 || Math.abs(cible.y - y) > 0.5) {
-      requestAnimationFrame(pas);
-    } else {
-      enCours = false;
-    }
-  }
-  hero.addEventListener('pointermove', function (e) {
-    var r = hero.getBoundingClientRect();
-    if (cible === null) { x = r.width * 0.78; y = r.height * 0.24; }
-    cible = { x: e.clientX - r.left, y: e.clientY - r.top };
-    if (!enCours) { enCours = true; requestAnimationFrame(pas); }
-  });
 })();
