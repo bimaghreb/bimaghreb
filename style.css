@@ -560,11 +560,31 @@ model-viewer:focus-visible {
 .ouvrage-lien:hover { color: var(--orange-texte-survol); }
 .ouvrage-lien::after { content: " \2192"; }
 
+/* Telephone et tablette (23/10/2026) : une rangee qui defile au pouce. La
+   section tient en un ecran au lieu de six ; le bord de la carte suivante,
+   qui depasse, dit qu'il y a une suite. Sur ordinateur, la grille montre
+   tout sans geste : la souris ne fait pas defiler de cote. */
 @media (max-width: 900px) {
-  /* en colonne : l'image d'abord, c'est elle qui arrete le pouce */
-  .ouvrages { grid-template-columns: minmax(0, 1fr); gap: var(--e-16); }
-  .ouvrage { gap: var(--e-5); }
-  .ouvrage h3 { font-size: 1.35rem; }
+  .ouvrages {
+    display: flex; gap: var(--e-4);
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    /* la rangee va d'un bord de l'ecran a l'autre */
+    margin-inline: calc(-1 * var(--e-6));
+    padding: 0 var(--e-6) var(--e-2);
+    scroll-padding-inline: var(--e-6);
+    scrollbar-width: none;
+  }
+  .ouvrages::-webkit-scrollbar { display: none; }
+  .ouvrage { flex: 0 0 min(88%, 440px); scroll-snap-align: start; gap: var(--e-4); }
+  .ouvrage h3 { font-size: 1.25rem; }
+}
+@media (max-width: 600px) {
+  .ouvrages {
+    margin-inline: calc(-1 * var(--e-5));
+    padding-inline: var(--e-5);
+    scroll-padding-inline: var(--e-5);
+  }
 }
 
 /* texte lu par les lecteurs d'ecran seulement */
