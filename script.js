@@ -55,6 +55,38 @@
     });
   }
 
+  // Page d'un ouvrage : la rotation s'arrete des que le visiteur prend la
+  // maquette en main (elle ne lui echappe plus) ; « Recentrer » rend la vue
+  // de depart ; « Plein ecran » n'apparait que si le navigateur le permet
+  // (pas sur iPhone). Sans JavaScript, les deux boutons restent caches.
+  document.querySelectorAll('.viewer-grand').forEach((bloc) => {
+    const vue = bloc.querySelector('model-viewer');
+    if (!vue) return;
+    const orbite = vue.getAttribute('camera-orbit');
+    vue.addEventListener('camera-change', (e) => {
+      if (e.detail && e.detail.source === 'user-interaction') vue.autoRotate = false;
+    });
+    const recentrer = bloc.querySelector('[data-vue="recentrer"]');
+    if (recentrer) {
+      recentrer.hidden = false;
+      recentrer.addEventListener('click', () => {
+        vue.cameraOrbit = orbite;
+        vue.cameraTarget = 'auto';
+        vue.fieldOfView = 'auto';
+        if (typeof vue.resetTurntableRotation === 'function') vue.resetTurntableRotation(0);
+        vue.autoRotate = !mouvementReduit;
+      });
+    }
+    const plein = bloc.querySelector('[data-vue="plein-ecran"]');
+    if (plein && document.fullscreenEnabled) {
+      plein.hidden = false;
+      plein.addEventListener('click', () => {
+        if (document.fullscreenElement) document.exitFullscreen();
+        else bloc.requestFullscreen();
+      });
+    }
+  });
+
   // Page ouverte par double-clic (file://) : le navigateur interdit le module et
   // le modele, le cadre resterait vide sans rien expliquer. En ligne, en https,
   // ce cas ne se presente jamais.

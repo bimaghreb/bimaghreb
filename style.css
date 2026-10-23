@@ -485,52 +485,128 @@ model-viewer:focus-visible {
 @keyframes hero-monte { from { transform: translateY(14px); } }
 
 /* ============================================================
-   TRAVAUX
-   Pres = lie, loin = separe : le titre colle a sa ligne de contexte,
-   les projets s'ecartent nettement les uns des autres.
+   OUVRAGES (refonte 23/10/2026)
+   Une planche par ouvrage, comme un jeu de plans : l'image a gauche, le
+   cartouche a droite, toujours au meme endroit. Le lecteur sait ou chercher
+   des la deuxieme planche. Image fixe tiree de la maquette ; la 3D est sur
+   la page de l'ouvrage.
    ============================================================ */
-.work { padding: var(--e-12) 0; border-top: 1px solid var(--line); }
-.work:first-of-type { border-top: 0; padding-top: 0; }
-
-.work-head { margin-bottom: var(--e-4); }
-.work-head h3 { font-size: 1.35rem; margin-bottom: var(--e-1); }
-.work-meta { margin: 0; font-size: .86rem; line-height: 1.5; color: var(--text-soft); }
-.work-content > p { max-width: 62ch; margin: 0; color: var(--text); }
-/* Mission : le role tenu sur l'ouvrage, sous sa description ; discret */
-.work-content > .work-mission {
-  margin-top: var(--e-5); padding-top: var(--e-4);
-  border-top: 1px solid var(--line);
-  font-size: .9rem; line-height: 1.55; color: var(--text-soft);
-}
-.work-mission-titre {
-  display: block; margin-bottom: var(--e-1);
-  font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--text);
-}
-
-/* Proportion d'or : 38 % au texte, 62 % a la maquette, qui est la preuve. */
-.work-layout {
+.ouvrages { display: grid; gap: var(--e-20); }
+.ouvrage {
   display: grid;
-  grid-template-columns: minmax(0, 38fr) minmax(0, 62fr);
-  gap: var(--e-10);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--e-12);
   align-items: center;
 }
-/* Zigzag : un projet sur deux place la maquette a gauche. Trois blocs cales
-   pareil se lisent en diagonale ; l'alternance rend chacun distinct. */
-.work-3d:nth-of-type(even) .work-layout { grid-template-columns: minmax(0, 62fr) minmax(0, 38fr); }
-.work-3d:nth-of-type(even) .work-content { order: 2; }
-.work-3d:nth-of-type(even) .work-visual { order: 1; }
+.ouvrage-image {
+  display: block;
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+  overflow: hidden;
+}
+.ouvrage-image img {
+  display: block; width: 100%; height: auto;
+  transition: transform 400ms var(--entree);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .ouvrage:has(a:hover) .ouvrage-image img { transform: scale(1.02); }
+}
+
+/* numero de planche : le seul orange de la planche */
+.ouvrage-num {
+  margin: 0 0 var(--e-3);
+  font-size: .8rem; font-weight: 700; letter-spacing: .12em;
+  color: var(--orange-texte); font-variant-numeric: tabular-nums;
+}
+.ouvrage-num span { margin-left: .4em; font-weight: 400; color: var(--text-soft); }
+.ouvrage h3 { font-size: 1.6rem; margin: 0 0 var(--e-1); }
+.ouvrage h3 a { color: inherit; text-decoration: none; }
+.ouvrage h3 a:hover { color: var(--orange-texte); }
+.ouvrage-type { margin: 0 0 var(--e-4); font-size: .9rem; color: var(--text-soft); }
+.ouvrage-desc { margin: 0 0 var(--e-6); color: var(--text); max-width: 52ch; }
+
+/* fiche technique : quatre cases, trait fort en tete comme un cartouche */
+.ouvrage-fiche {
+  display: grid; grid-template-columns: 1fr 1fr;
+  margin: 0 0 var(--e-6);
+  border-top: 1px solid var(--ink);
+}
+.ouvrage-fiche > div { padding: var(--e-3) var(--e-3) var(--e-3) 0; border-bottom: 1px solid var(--line); }
+.ouvrage-fiche > div:nth-child(even) { padding-left: var(--e-4); border-left: 1px solid var(--line); }
+.ouvrage-fiche dt {
+  margin-bottom: 2px;
+  font-size: .75rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--text-soft);
+}
+.ouvrage-fiche dd {
+  margin: 0;
+  font-size: 1.2rem; font-weight: 700; line-height: 1.3; letter-spacing: -.01em;
+  color: var(--ink); font-variant-numeric: tabular-nums;
+}
+
+.ouvrage-mission p { margin: 0 0 var(--e-3); font-size: .92rem; line-height: 1.55; color: var(--text); }
+.ouvrage-etiquette {
+  display: block; margin-bottom: 2px;
+  font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink);
+}
+.ouvrage-lien {
+  display: inline-block; margin-top: var(--e-2);
+  font-weight: 600; color: var(--orange-texte);
+  text-decoration: none; border-bottom: 1px solid currentColor;
+}
+.ouvrage-lien:hover { color: var(--orange-texte-survol); }
+.ouvrage-lien::after { content: " \2192"; }
 
 @media (max-width: 900px) {
-  .work-layout,
-  .work-3d:nth-of-type(even) .work-layout { grid-template-columns: 1fr; gap: var(--e-5); }
-  /* en colonne unique, on lit avant de voir */
-  .work-3d:nth-of-type(even) .work-content,
-  .work-3d:nth-of-type(even) .work-visual { order: 0; }
+  .ouvrages { gap: var(--e-16); }
+  /* en colonne : l'image d'abord, c'est elle qui arrete le pouce */
+  .ouvrage { grid-template-columns: minmax(0, 1fr); gap: var(--e-5); }
+  .ouvrage h3 { font-size: 1.35rem; }
 }
-@media (max-width: 640px) {
-  .work { padding: var(--e-8) 0; }
-  .work-head h3 { font-size: 1.15rem; }
+
+/* texte lu par les lecteurs d'ecran seulement */
+.visuellement-cache {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* --- Page d'un ouvrage ------------------------------------------------------ */
+.ouvrage-page { padding-top: var(--e-12); }
+.ouvrage-retour { margin: 0 0 var(--e-8); font-size: .9rem; }
+.ouvrage-retour a { color: var(--text-soft); text-decoration: none; }
+.ouvrage-retour a::before { content: "\2190  "; }
+.ouvrage-retour a:hover { color: var(--orange-texte); }
+.ouvrage-page-tete { margin-bottom: var(--e-8); }
+.ouvrage-page-tete h1 { margin: 0 0 var(--e-1); }
+.ouvrage-page-tete .ouvrage-type { margin: 0; font-size: 1rem; }
+
+.ouvrage-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--e-12);
+  margin-top: var(--e-10);
+  align-items: start;
+}
+.ouvrage-detail .ouvrage-desc { font-size: 1.05rem; }
+.ouvrage-detail .ouvrage-fiche { margin: 0; }
+
+.ouvrage-voisins {
+  display: flex; justify-content: space-between; gap: var(--e-6);
+  margin-top: var(--e-16); padding-top: var(--e-6);
+  border-top: 1px solid var(--line);
+}
+.ouvrage-voisins a { display: block; font-weight: 600; color: var(--ink); text-decoration: none; }
+.ouvrage-voisins a:hover { color: var(--orange-texte); }
+.ouvrage-voisins span {
+  display: block; margin-bottom: 2px;
+  font-size: .75rem; font-weight: 400; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--text-soft);
+}
+.ouvrage-suivant { margin-left: auto; text-align: right; }
+@media (max-width: 900px) {
+  .ouvrage-detail { grid-template-columns: minmax(0, 1fr); gap: var(--e-8); margin-top: var(--e-6); }
 }
 
 /* --- Maquettes 3D ---------------------------------------------------------
@@ -542,22 +618,46 @@ model-viewer:focus-visible {
   width: 100%;
   /* le composant impose height:150px ; sans height:auto, aspect-ratio est ignore */
   height: auto;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   min-height: 320px;
   background: var(--bg-alt);
   border: 1px solid var(--line);
   border-radius: var(--r-l);
-  box-shadow: var(--ombre-posee);
   --poster-color: var(--bg-alt);
   --progress-bar-color: var(--orange);
   --progress-bar-height: 3px;
 }
 .viewer-erreur { margin-top: var(--e-3); font-size: .86rem; color: var(--orange-texte); }
 
-/* min-height + aspect-ratio imposent une LARGEUR : 320 x 4/3 = 427 px, plus
+/* sous la maquette : le mode d'emploi a gauche, les deux boutons a droite */
+.viewer-barre {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--e-3) var(--e-6);
+  margin-top: var(--e-3);
+}
+.viewer-aide { font-size: .8rem; color: var(--text-soft); }
+.viewer-boutons { display: flex; gap: var(--e-2); }
+.viewer-bouton {
+  padding: var(--e-2) var(--e-4);
+  font-size: .85rem; font-weight: 600; color: var(--ink);
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-m);
+  cursor: pointer;
+  transition: border-color var(--survol), color var(--survol);
+}
+.viewer-bouton:hover { border-color: var(--ink); }
+.viewer-bouton[hidden] { display: none; }
+
+/* plein ecran : la figure entiere (maquette + boutons) occupe l'ecran */
+.viewer:fullscreen {
+  display: flex; flex-direction: column;
+  padding: var(--e-4); background: var(--bg-alt);
+}
+.viewer:fullscreen model-viewer { flex: 1; aspect-ratio: auto; border: 0; }
+
+/* min-height + aspect-ratio imposent une LARGEUR : 320 x 16/9 = 569 px, plus
    que l'ecran d'un iPhone. En etroit, on libere le plancher. */
 @media (max-width: 640px) {
-  .viewer model-viewer { aspect-ratio: 4 / 3; min-height: 0; }
+  .viewer model-viewer { aspect-ratio: 1 / 1; min-height: 0; }
 }
 
 /* ============================================================
