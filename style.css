@@ -393,7 +393,7 @@ model-viewer:focus-visible {
 .hero-bg {
   position: absolute; inset: 0; z-index: -1;
   background:
-    radial-gradient(ellipse at 80% 10%, rgba(237,125,49,.14), transparent 55%),
+    /* voile NEUTRE seulement (revue du 24/10/2026 : le halo orange retire) */
     linear-gradient(90deg, rgba(20,20,20,.95) 0%, rgba(20,20,20,.84) 42%, rgba(20,20,20,.40) 100%);
 }
 /* telephone : le texte couvre toute la largeur, le voile aussi */
@@ -717,10 +717,19 @@ model-viewer:focus-visible {
 .split-photo img { aspect-ratio: 4 / 5; object-fit: cover; }
 /* ecran bas : la colonne de gauche ne tiendrait pas, elle defile avec la page */
 @media (max-height: 820px) { .section-split .split-gauche { position: static; } }
+/* Demarche (revue du 24/10/2026) : le titre etait sur 3 lignes dans la colonne
+   etroite. Il passe en tete, sur toute la largeur ; photo a gauche, liste a droite. */
+@media (min-width: 861px) {
+  #demarche .split-gauche { display: contents; }
+  #demarche .split-gauche > .section-head { grid-column: 1 / -1; position: static; margin: 0; }
+  #demarche .split-photo { grid-column: 1; align-self: start; }
+  #demarche .why-grid { grid-column: 2; }
+}
 .why-grid, .domaines { border-top: 1px solid var(--line); }
 .why-item, .domaine { padding: var(--e-6) 0; border-bottom: 1px solid var(--line); }
 .why-item h3 { margin-bottom: var(--e-2); }
-.why-item p { margin: 0; color: var(--text-soft); max-width: 62ch; }
+/* texte courant dans l'encre pleine (revue du 24/10/2026 : le gris faisait inacheve) */
+.why-item p { margin: 0; color: var(--text); max-width: 62ch; }
 @media (max-width: 860px) {
   .section-split .section-inner { grid-template-columns: 1fr; gap: var(--e-10); }
   .section-split .split-gauche,
@@ -744,7 +753,7 @@ model-viewer:focus-visible {
   .domaine-photo img { aspect-ratio: 16 / 9; }
 }
 .domaine h3 { margin-bottom: var(--e-2); }
-.domaine p { margin: 0; color: var(--text-soft); max-width: 62ch; }
+.domaine p { margin: 0; color: var(--text); max-width: 62ch; }
 /* livrables d'un domaine : ce que le client recoit, sous la description */
 .domaine .domaine-livrables {
   margin-top: var(--e-4);
@@ -769,6 +778,20 @@ model-viewer:focus-visible {
    pas ne prend pas l'allure d'un bouton.
    ============================================================ */
 .contact-grid { display: grid; grid-template-columns: 1fr; max-width: 680px; }
+/* Revue du 24/10/2026 : tout etait a gauche, 860 px de vide a droite. Sur
+   grand ecran, le titre et la phrase a gauche, les coordonnees a droite. */
+@media (min-width: 901px) {
+  .contact-grid { max-width: none; }
+  .contact-text {
+    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: var(--e-16); align-items: start;
+    /* sur-titre et titre a leur hauteur ; la phrase prend le reste : rien ne s'ecarte */
+    grid-template-rows: auto auto 1fr;
+  }
+  .contact-text > .surtitre, .contact-text > h2, .contact-text > .contact-intro { grid-column: 1; }
+  .contact-text > .contact-info { grid-column: 2; grid-row: 1 / span 3; }
+  .contact-text > .contact-lieu { grid-column: 2; }
+}
 .contact-intro { margin: calc(-1 * var(--e-2)) 0 var(--e-8); color: rgba(255,255,255,.78); max-width: 52ch; }
 .contact-text h2 { color: #fff; margin-bottom: var(--e-8); }
 
