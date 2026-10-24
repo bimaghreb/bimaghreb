@@ -317,7 +317,9 @@ button { font: inherit; color: inherit; }
 /* ---------- tablette et téléphone ---------- */
 @media (max-width: 1099px) {
   .hero { grid-template-columns: 1fr; }
-  .hero__photo { order: -1; height: 46svh; min-height: 300px; z-index: 0; }
+  /* 24/10/2026 (remarque de Mohamed) : sur tablette et telephone, le logo et le
+     titre d'abord, la photo ensuite ; une photo muette en tete faisait attendre */
+  .hero__photo { position: relative; top: auto; height: 46svh; min-height: 300px; z-index: 0; }
   .hero__sheet { position: relative; z-index: 1; min-height: 0; padding: 28px 32px 36px; grid-template-rows: auto; row-gap: 28px; }
   .hero__text { grid-row: auto; }
   .hero h1 { font-size: var(--fs-display); }
