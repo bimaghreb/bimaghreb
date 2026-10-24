@@ -312,7 +312,10 @@ button { font: inherit; color: inherit; }
 @media (hover: hover) and (pointer: fine) { .foot a:hover { color: var(--on-dark); text-decoration: underline; text-underline-offset: 0.22em; } }
 .foot__mark { grid-row: 2; padding-top: 112px; }
 .foot__mark svg { width: 100%; height: auto; fill: var(--accent-dark); }
-.foot__legal { grid-row: 3; margin-top: 20px; }
+.foot__legal { grid-row: 3; margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+/* la langue : un choix a part, pas une rubrique du menu (la langue courante en blanc, l'autre en lien) */
+.foot__lang { display: flex; gap: 20px; }
+.foot__lang [aria-current] { color: var(--on-dark); }
 
 /* ---------- tablette et téléphone ---------- */
 @media (max-width: 1099px) {
