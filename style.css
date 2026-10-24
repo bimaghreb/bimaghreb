@@ -391,7 +391,8 @@ button { font: inherit; color: inherit; }
   .sheet__items { margin-top: 40px; gap: 32px; }
   .sheet__all { margin-top: 40px; }
 
-  .visit { height: auto; min-height: 0; overflow: visible; background: var(--bg); }
+  /* un blanc sous la fiche : le bouton orange ne touche plus le pied noir (remarque de Mohamed, 24/10/2026) */
+  .visit { height: auto; min-height: 0; overflow: visible; background: var(--bg); padding-bottom: 72px; }
   .visit__photo { position: relative; height: 70svh; }
   .visit__card { position: relative; top: auto; right: auto; width: auto; margin: -80px var(--margin) 0; padding: 26px 22px 0; }
   .button--card { margin: 24px -22px 0; min-height: 56px; }
