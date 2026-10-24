@@ -1,8 +1,8 @@
 ---
 ---
-<!-- FICHIER GENERE le 2026-09-19 par construire.py — NE PAS MODIFIER ICI.
+<!-- FICHIER GENERE le 2026-10-24 par construire.py — NE PAS MODIFIER ICI.
      Le texte de cette page se trouve dans site_source/en/pages/accueil.html
-     La navigation et le pied de page sont dans site_source/gabarit.html -->
+     Le pied de page : site_source/fragments/pied.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,7 +38,9 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" type="image/svg+xml" href="../assets/logo-icon.svg?v=1ea5dbb9">
-<link rel="stylesheet" href="../style.css?v=d04bccdb">
+<link rel="preload" href="../assets/polices/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/polices/ibm-plex-sans-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../style.css?v=12f94118">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -76,326 +78,270 @@
 </script>
 </head>
 <body>
+<!-- Gabarit de TOUTES les pages (24/10/2026 : l'accueil refondu et les pages
+     Articles partagent la meme charte). Chaque page ecrit son en-tete : la
+     photo de l'accueil, ou la feuille grise des autres pages
+     (fragments/navigation.html) ; le pied est commun (fragments/pied.html). -->
+<a class="skip" href="#contenu">Skip to content</a>
 
-<a class="evitement" href="#contenu">Skip to content</a>
+<!-- HOME (redesign of 24/10/2026, variant A; template: gabarit.html).
+     The projects section is GENERATED: faire_travaux.py, from site_source/projets/. -->
 
-<header class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="../en/" class="nav-logo" aria-label="BIMaghreb — home">
-      <img src="../assets/logo-horizontal.svg?v=f19e288e" alt="BIMaghreb" width="150" height="36">
-    </a>
-    <nav class="nav-links" id="nav-links" aria-label="Main navigation">
-      <a href="#hero">Home</a>
-      <a href="#travaux">Projects</a>
-      <a href="#demarche">Approach</a>
-      <a href="#contact">Contact</a>
-      <a href="../en/blog/" class="nav-page">Articles</a>
-    </nav>
-    <details class="langues"><summary aria-label="EN, Site language : English">EN<svg viewBox="0 0 12 12" aria-hidden="true" width="12" height="12"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></summary><ul><li><a href="../" hreflang="fr" lang="fr">Français<span>FR</span></a></li></ul></details>
-  </div>
-</header>
+  <header class="hero" id="hero">
+    <div class="hero__sheet">
+      <nav class="hero__nav" aria-label="Main navigation">
+        <ul class="hero__links hero__links--start">
+          <li><a href="#travaux">Projects</a></li>
+          <li><a href="#demarche">Approach</a></li>
+        </ul>
+        <a class="hero__logo" href="#hero"><img src="../assets/logo-horizontal.svg?v=f19e288e" width="720" height="220" alt="BIMaghreb Engineering, home"></a>
+        <ul class="hero__links hero__links--end">
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="../" hreflang="fr" lang="fr" aria-label="Français">FR</a></li>
+        </ul>
+      </nav>
 
-<nav class="onglets" aria-label="Main navigation (mobile)">
-  <a href="#travaux"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7.5 12 12 4 7.5Z"/><path d="M4 7.5v9L12 21l8-4.5v-9"/><path d="M12 12v9"/></svg><span>Projects</span></a>
-  <a href="#demarche"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="12" r="2"/><path d="M8 6h3a3 3 0 0 1 3 3v1"/><path d="M8 18h3a3 3 0 0 0 3-3v-1"/></svg><span>Approach</span></a>
-  <a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Contact</span></a>
-  <a href="../en/blog/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg><span>Articles</span></a>
-</nav>
-
-<main id="contenu">
-<section class="hero" id="hero">
-  <picture class="hero-photo" aria-hidden="true">
-    <img src="../assets/en-tete-chantier-1600.webp?v=8cce06da" srcset="../assets/en-tete-chantier-960.webp?v=f49bf28a 960w, ../assets/en-tete-chantier-1600.webp?v=8cce06da 1600w, ../assets/en-tete-chantier-2400.webp?v=3336c1ee 2400w" sizes="100vw" alt="" width="2400" height="1600" fetchpriority="high" decoding="async">
-  </picture>
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <img src="../assets/logo-icon-white.svg?v=1dfc02c9" alt="" class="hero-mark" width="120" height="120">
-    <h1>
-      <span class="hero-line">Structural design &amp; BIM modelling</span><br>
-      <span class="hero-accent">from concept to construction drawings.</span>
-    </h1>
-    <p class="hero-sub">
-      Structural engineering for reinforced concrete and steel buildings,
-      developed on the BIM model, for building owners and engineering consultancies.
-    </p>
-    <div class="hero-cta">
-      <a href="#travaux" class="btn btn-primary">View projects</a>
-      <a href="#contact" class="lien-fleche">Get in touch</a>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="travaux">
-  <div class="section-inner">
-    <div class="section-head">
-      <p class="surtitre">Projects</p>
-      <h2>Selected projects.</h2>
-    </div>
-    <div class="ouvrages">
-      <article class="ouvrage">
-        <div class="ouvrage-image"><img
-          src="../assets/ouvrages/complexe-residentiel-1200.webp?v=efd55792"
-          srcset="../assets/ouvrages/complexe-residentiel-600.webp?v=34d89ab3 600w, ../assets/ouvrages/complexe-residentiel-1200.webp?v=efd55792 1200w"
-          sizes="(max-width: 600px) 85vw, (max-width: 1100px) 50vw, 300px" width="1200" height="800"
-          alt="" loading="lazy" decoding="async"></div>
-        <p class="ouvrage-categorie">Reinforced concrete</p>
-        <h3>Apartment buildings: detailed structural design</h3>
-      </article>
-
-      <article class="ouvrage">
-        <div class="ouvrage-image"><img
-          src="../assets/ouvrages/villa-1200.webp?v=91c6c490"
-          srcset="../assets/ouvrages/villa-600.webp?v=449b6607 600w, ../assets/ouvrages/villa-1200.webp?v=91c6c490 1200w"
-          sizes="(max-width: 600px) 85vw, (max-width: 1100px) 50vw, 300px" width="1200" height="800"
-          alt="" loading="lazy" decoding="async"></div>
-        <p class="ouvrage-categorie">Reinforced concrete</p>
-        <h3>Villas: structural design and construction drawings</h3>
-      </article>
-
-      <article class="ouvrage">
-        <div class="ouvrage-image"><img
-          src="../assets/ouvrages/maison-individuelle-1200.webp?v=932122dd"
-          srcset="../assets/ouvrages/maison-individuelle-600.webp?v=d1e2964f 600w, ../assets/ouvrages/maison-individuelle-1200.webp?v=932122dd 1200w"
-          sizes="(max-width: 600px) 85vw, (max-width: 1100px) 50vw, 300px" width="1200" height="800"
-          alt="" loading="lazy" decoding="async"></div>
-        <p class="ouvrage-categorie">Reinforced concrete</p>
-        <h3>Detached houses: frame, foundations and reinforcement drawings</h3>
-      </article>
-
-      <article class="ouvrage">
-        <div class="ouvrage-image"><img
-          src="../assets/ouvrages/immeuble-bureaux-1200.webp?v=f384a6c2"
-          srcset="../assets/ouvrages/immeuble-bureaux-600.webp?v=1477fbaf 600w, ../assets/ouvrages/immeuble-bureaux-1200.webp?v=f384a6c2 1200w"
-          sizes="(max-width: 600px) 85vw, (max-width: 1100px) 50vw, 300px" width="1200" height="800"
-          alt="" loading="lazy" decoding="async"></div>
-        <p class="ouvrage-categorie">Reinforced concrete</p>
-        <h3>Office and retail buildings: structural design</h3>
-      </article>
-
-      <article class="ouvrage">
-        <div class="ouvrage-image"><img
-          src="../assets/ouvrages/hangar-metallique-1200.webp?v=57104744"
-          srcset="../assets/ouvrages/hangar-metallique-600.webp?v=7100c4a1 600w, ../assets/ouvrages/hangar-metallique-1200.webp?v=57104744 1200w"
-          sizes="(max-width: 600px) 85vw, (max-width: 1100px) 50vw, 300px" width="1200" height="800"
-          alt="" loading="lazy" decoding="async"></div>
-        <p class="ouvrage-categorie">Structural steel</p>
-        <h3>Industrial buildings and halls: steel portal frames</h3>
-      </article>
-
-      <article class="ouvrage">
-        <div class="ouvrage-image"><img
-          src="../assets/ouvrages/centre-culturel-1200.webp?v=13d23577"
-          srcset="../assets/ouvrages/centre-culturel-600.webp?v=2d434dd5 600w, ../assets/ouvrages/centre-culturel-1200.webp?v=13d23577 1200w"
-          sizes="(max-width: 600px) 85vw, (max-width: 1100px) 50vw, 300px" width="1200" height="800"
-          alt="" loading="lazy" decoding="async"></div>
-        <p class="ouvrage-categorie">Reinforced concrete</p>
-        <h3>Public buildings: structural design</h3>
-      </article>
-
-      <article class="ouvrage">
-        <div class="ouvrage-image"><img
-          src="../assets/ouvrages/mosquee-1200.webp?v=62afbeda"
-          srcset="../assets/ouvrages/mosquee-600.webp?v=0d5dd333 600w, ../assets/ouvrages/mosquee-1200.webp?v=62afbeda 1200w"
-          sizes="(max-width: 600px) 85vw, (max-width: 1100px) 50vw, 300px" width="1200" height="800"
-          alt="" loading="lazy" decoding="async"></div>
-        <p class="ouvrage-categorie">Reinforced concrete</p>
-        <h3>Mosques: frame, dome and minaret</h3>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="section section-alt section-split" id="demarche">
-  <div class="section-inner">
-    <div class="split-gauche">
-      <div class="section-head">
-        <p class="surtitre">Approach</p>
-        <h2>Calculation and drawing handled as one workflow.</h2>
-      </div>
-      <figure class="split-photo"><img src="../assets/photos/ferraillage-ligatures-480.webp" srcset="../assets/photos/ferraillage-ligatures-480.webp 480w, ../assets/photos/ferraillage-ligatures-960.webp 960w" sizes="(max-width: 860px) 100vw, 420px" width="480" height="600" alt="Tying the bars of a reinforcement cage with pliers." loading="lazy" decoding="async"></figure>
-    </div>
-
-    <div class="why-grid">
-      <div class="why-item">
-        <h3>Model and calculations developed together</h3>
-        <p>
-          The BIM model and the calculation report draw on the same data. This
-          common basis removes any gap between the model, the calculations and
-          the drawings issued to site.
-        </p>
-      </div>
-      <div class="why-item">
-        <h3>Quantities and cost estimate</h3>
-        <p>
-          Preliminary quantities at design stage, detailed quantity take-off
-          from the construction drawings, schedules, then the cost estimate.
-        </p>
-      </div>
-      <div class="why-item">
-        <h3>The clause, always cited</h3>
-        <p>
-          Every check carries the reference of the clause it relies on. A
-          calculation report must be open to review and challenge, clause by
-          clause.
-        </p>
-      </div>
-      <div class="why-item">
-        <h3>Explicit assumptions</h3>
-        <p>
-          Allowable bearing pressure, concrete class, concrete cover, seismic category:
-          the assumptions are stated at the top of the report.
-        </p>
-      </div>
-      <div class="why-item">
-        <h3>Traceability</h3>
-        <p>
-          Dated revisions, recorded assumptions, readable calculation sheets.
-          A calculation that cannot be picked up again six months later has
-          no value.
+      <div class="hero__text">
+        <h1>From concept to<br> construction drawings</h1>
+        <p class="hero__lead">Structural engineering for reinforced concrete and steel buildings, developed on the BIM model, for building owners and engineering consultancies.</p>
+        <p class="hero__actions">
+          <a class="button" href="#contact">Get in touch</a>
+          <a class="link" href="#travaux">View projects</a>
         </p>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="section section-split" id="elements">
-  <div class="section-inner">
-    <div class="section-head">
-      <p class="surtitre">Expertise</p>
-        <h2>Reinforced concrete and structural steelwork.</h2>
+    <div class="hero__photo">
+      <div class="hero__frames">
+        <img class="is-on" data-frame="chantier" src="../assets/en-tete-chantier-1600.webp?v=8cce06da" srcset="../assets/en-tete-chantier-960.webp?v=f49bf28a 960w, ../assets/en-tete-chantier-1600.webp?v=8cce06da 1600w, ../assets/en-tete-chantier-2400.webp?v=3336c1ee 2400w" sizes="(max-width: 1099px) 100vw, 50vw" width="2400" height="1600" fetchpriority="high" decoding="async" alt="Cranes above buildings under construction, at dusk">
+        <img data-frame="beton" src="../assets/accueil/attentes-poteaux-dalle-1000.webp?v=84f72968" srcset="../assets/accueil/attentes-poteaux-dalle-1000.webp?v=84f72968 1000w, ../assets/accueil/attentes-poteaux-dalle-2000.webp?v=75c7d713 2000w" sizes="(max-width: 1099px) 100vw, 50vw" width="2000" height="1125" decoding="async" alt="Column starter bars above a concrete slab, on a roof">
+        <img data-frame="charpente" src="../assets/accueil/poutres-acier-chantier-1200.webp?v=049e9940" srcset="../assets/accueil/poutres-acier-chantier-1000.webp?v=8d3120e5 1000w, ../assets/accueil/poutres-acier-chantier-1200.webp?v=049e9940 1200w" sizes="(max-width: 1099px) 100vw, 50vw" width="1200" height="797" decoding="async" alt="Steel girders and trusses of a building under construction, shadows on the floor">
+      </div>
     </div>
+  </header>
 
-    <div class="domaines">
-      <div class="domaine domaine-avec-photo">
-        <figure class="domaine-photo"><img src="../assets/photos/beton-arme-cage-armatures-640.webp" srcset="../assets/photos/beton-arme-cage-armatures-640.webp 640w, ../assets/photos/beton-arme-cage-armatures-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 280px" width="640" height="480" alt="Reinforcement cage of a concrete column, seen from below before casting." loading="lazy" decoding="async"></figure>
-        <div class="domaine-texte">
-          <h3>Reinforced concrete</h3>
-          <p>
-            Residential and office buildings, public facilities and places of
-            worship, underground structures and tanks. From basement to roof,
-            foundations included.
-          </p>
-          <p class="domaine-livrables"><span class="domaine-livrables-titre">Deliverables</span>Calculation reports · General arrangement and reinforcement drawings · Bar bending schedules · Quantity take-off</p>
+  <main id="contenu">
+    <section class="work" id="travaux" aria-labelledby="travaux-titre">
+      <div class="work__intro wrap grid">
+        <h2 id="travaux-titre" data-reveal>Selected projects</h2>
+        <p data-reveal style="--d: 90ms">Seven types of structures in reinforced concrete and structural steel, from housing to places of assembly.</p>
+      </div>
+
+        <article class="plate plate--wide" style="--pos: 50% 72%">
+          <img src="../assets/accueil/ouvrages/complexe-residentiel-1000.webp?v=70ad28ad" srcset="../assets/accueil/ouvrages/complexe-residentiel-1000.webp?v=70ad28ad 1000w, ../assets/accueil/ouvrages/complexe-residentiel-2000.webp?v=e0a7b0d6 2000w" sizes="100vw" width="2000" height="2427" loading="lazy" decoding="async" alt="Apartment building under construction, reinforced concrete floors and columns under a blue sky">
+          <div class="plate__row">
+            <p class="plate__cat">Residential · Reinforced concrete</p>
+            <h3 class="plate__title">Apartment buildings</h3>
+            <p class="plate__fact">Detailed structural design</p>
+          </div>
+        </article>
+      <div class="work__grid wrap">
+        <article class="plate" style="--pos: 50% 62%">
+          <img src="../assets/accueil/ouvrages/villa-1000.webp?v=8037fb6b" srcset="../assets/accueil/ouvrages/villa-1000.webp?v=8037fb6b 1000w, ../assets/accueil/ouvrages/villa-2000.webp?v=64da3e79 2000w" sizes="(max-width: 1099px) 100vw, 50vw" width="2000" height="1540" loading="lazy" decoding="async" alt="Villa at shell stage, bare concrete frame and large openings">
+          <div class="plate__row">
+            <p class="plate__cat">Residential · Reinforced concrete</p>
+            <h3 class="plate__title">Villas</h3>
+            <p class="plate__fact">Structural design and construction drawings</p>
+          </div>
+        </article>
+        <article class="plate" style="--pos: 55% 60%">
+          <img src="../assets/accueil/ouvrages/maison-individuelle-1000.webp?v=2488228c" srcset="../assets/accueil/ouvrages/maison-individuelle-1000.webp?v=2488228c 1000w, ../assets/accueil/ouvrages/maison-individuelle-2000.webp?v=62a50359 2000w" sizes="(max-width: 1099px) 100vw, 50vw" width="2000" height="1505" loading="lazy" decoding="async" alt="Two-storey detached house, reinforced concrete columns and slabs">
+          <div class="plate__row">
+            <p class="plate__cat">Residential · Reinforced concrete</p>
+            <h3 class="plate__title">Detached houses</h3>
+            <p class="plate__fact">Frame, foundations and reinforcement drawings</p>
+          </div>
+        </article>
+        <article class="plate" style="--pos: 50% 30%">
+          <img src="../assets/accueil/ouvrages/immeuble-bureaux-1000.webp?v=4d2a4907" srcset="../assets/accueil/ouvrages/immeuble-bureaux-1000.webp?v=4d2a4907 1000w, ../assets/accueil/ouvrages/immeuble-bureaux-2000.webp?v=f1b55a80 2000w" sizes="(max-width: 1099px) 100vw, 50vw" width="2000" height="3000" loading="lazy" decoding="async" alt="Corner of a building under construction, stacked reinforced concrete floors">
+          <div class="plate__row">
+            <p class="plate__cat">Offices and retail · Reinforced concrete</p>
+            <h3 class="plate__title">Office and retail buildings</h3>
+            <p class="plate__fact">Structural design</p>
+          </div>
+        </article>
+        <article class="plate" style="--pos: 50% 36%">
+          <img src="../assets/accueil/ouvrages/hangar-metallique-1000.webp?v=638b3bdd" srcset="../assets/accueil/ouvrages/hangar-metallique-1000.webp?v=638b3bdd 1000w, ../assets/accueil/ouvrages/hangar-metallique-2000.webp?v=7b7fb739 2000w" sizes="(max-width: 1099px) 100vw, 50vw" width="2000" height="3000" loading="lazy" decoding="async" alt="Steel portal frames of an industrial building seen from below, against the sky">
+          <div class="plate__row">
+            <p class="plate__cat">Industry and storage · Structural steel</p>
+            <h3 class="plate__title">Industrial buildings and halls</h3>
+            <p class="plate__fact">Steel portal frames</p>
+          </div>
+        </article>
+        <article class="plate plate--tall" style="--pos: 46% 55%">
+          <img src="../assets/accueil/ouvrages/centre-culturel-1000.webp?v=47190ae7" srcset="../assets/accueil/ouvrages/centre-culturel-1000.webp?v=47190ae7 1000w, ../assets/accueil/ouvrages/centre-culturel-2000.webp?v=3e0e25b8 2000w" sizes="(max-width: 1099px) 100vw, 50vw" width="2000" height="1328" loading="lazy" decoding="async" alt="Reinforcement mat before concreting, a worker walking across it, seen from above">
+          <div class="plate__row">
+            <p class="plate__cat">Places of assembly · Reinforced concrete</p>
+            <h3 class="plate__title">Public buildings</h3>
+            <p class="plate__fact">Structural design</p>
+          </div>
+        </article>
+        <article class="plate plate--tall" style="--pos: 42% 50%">
+          <img src="../assets/accueil/ouvrages/mosquee-1000.webp?v=798a7231" srcset="../assets/accueil/ouvrages/mosquee-1000.webp?v=798a7231 1000w, ../assets/accueil/ouvrages/mosquee-2000.webp?v=6fac9de5 2000w" sizes="(max-width: 1099px) 100vw, 50vw" width="2000" height="3000" loading="lazy" decoding="async" alt="Minaret of a mosque with ochre facades under a blue sky">
+          <div class="plate__row">
+            <p class="plate__cat">Places of assembly · Reinforced concrete</p>
+            <h3 class="plate__title">Mosques</h3>
+            <p class="plate__fact">Frame, dome and minaret</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="steps" id="demarche" aria-labelledby="demarche-titre">
+      <div class="steps__head wrap grid">
+        <h2 id="demarche-titre" data-reveal>Approach</h2>
+        <p class="steps__statement" data-reveal style="--d: 90ms">Calculation and drawing handled as one workflow.</p>
+        <div class="steps__controls" data-reveal style="--d: 180ms">
+          <button type="button" class="square" data-step="-1" aria-label="Previous principle" aria-controls="steps-row">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+          </button>
+          <button type="button" class="square" data-step="1" aria-label="Next principle" aria-controls="steps-row">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+          </button>
         </div>
       </div>
-      <div class="domaine domaine-avec-photo">
-        <figure class="domaine-photo"><img src="../assets/photos/charpente-metallique-ossature-640.webp" srcset="../assets/photos/charpente-metallique-ossature-640.webp 640w, ../assets/photos/charpente-metallique-ossature-1200.webp 1200w" sizes="(max-width: 860px) 100vw, 280px" width="640" height="480" alt="Steel frame of a building during erection: columns, beams and bracing." loading="lazy" decoding="async"></figure>
-        <div class="domaine-texte">
-          <h3>Structural steelwork</h3>
-          <p>
-            Industrial buildings, warehouses and long-span roofs, as well as hybrid
-            structures combining a steel frame with a concrete structure.
-          </p>
-          <p class="domaine-livrables"><span class="domaine-livrables-titre">Deliverables</span>Calculation reports · General arrangement and detail drawings · Schedules · Quantity take-off</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="steps__progress wrap" aria-hidden="true"><span class="steps__track"><span class="steps__fill"></span></span></div>
 
-<section class="section section-alt section-split section-ressources" id="ressources">
-  <!-- Latest articles (built by Jekyll). The calculation-tools block tried
-       beside it was removed at his request on 23/10/2026. -->
-  <div class="section-inner">
-    <div class="section-head">
-      <p class="surtitre">Articles</p>
-        <h2>Latest articles.</h2>
-    </div>
-    <div class="ressources-bloc">
-      <ol class="billets">
-{% assign billets = site.posts | where: "lang", "en" %}{% for post in billets limit:3 %}
-        <li class="billet">
-          <a href="{{ post.url }}">
-            <h3>{{ post.title | smartify }}</h3>
-            <span class="lien-fleche">Read the article</span>
-          </a>
+      <ol class="steps__row" id="steps-row" tabindex="0" aria-label="The five principles of our approach">
+        <li class="step" style="--space: 96px; --space-s: 40px" data-reveal>
+          <h3>Model and calculations developed together</h3>
+          <p>The BIM model and the calculation report draw on the same data. This common basis removes any gap between the model, the calculations and the drawings issued to site.</p>
+          <div class="step__pic"><img src="../assets/accueil/modelisation-3d-ecran-800.webp?v=19ae14f7" width="800" height="1000" loading="lazy" decoding="async" alt="Workstation: a structural frame modelled in 3D on screen"></div>
         </li>
-{% endfor %}
+        <li class="step" style="--space: 140px; --space-s: 64px; --d: 70ms" data-reveal>
+          <h3>Quantities and cost estimate</h3>
+          <p>Preliminary quantities at design stage, detailed quantity take-off from the construction drawings, schedules, then the cost estimate.</p>
+          <div class="step__pic"><img src="../assets/photos/ferraillage-ligatures-960.webp?v=1bc4abec" srcset="../assets/photos/ferraillage-ligatures-480.webp?v=92df1a3b 480w, ../assets/photos/ferraillage-ligatures-960.webp?v=1bc4abec 960w" sizes="(max-width: 599px) 72vw, 30vw" width="960" height="1200" loading="lazy" decoding="async" alt="Gloved hands tying reinforcing bars with pliers"></div>
+        </li>
+        <li class="step" style="--space: 80px; --space-s: 32px; --d: 140ms" data-reveal>
+          <h3>The clause, always cited</h3>
+          <p>Every check carries the reference of the clause it relies on. A calculation report must be open to review and challenge, clause by clause.</p>
+          <div class="step__pic"><img src="../assets/accueil/note-calcul-articles-800.webp?v=5d60c23e" width="800" height="1000" loading="lazy" decoding="async" alt="Excerpt from a reinforced concrete calculation report: every value with the reference of its clause"></div>
+        </li>
+        <li class="step" style="--space: 124px; --space-s: 52px; --d: 210ms" data-reveal>
+          <h3>Explicit assumptions</h3>
+          <p>Allowable bearing pressure, concrete class, concrete cover, seismic category: the assumptions are stated at the top of the report.</p>
+          <div class="step__pic"><img src="../assets/accueil/chantier-beton-arme-1910-800.webp?v=f57e2717" width="800" height="1000" loading="lazy" decoding="async" alt="Reinforced concrete frame during formwork, columns and beams, photograph from 1910"></div>
+        </li>
+        <li class="step" style="--space: 104px; --space-s: 44px; --d: 280ms" data-reveal>
+          <h3>Traceability</h3>
+          <p>Dated revisions, recorded assumptions, readable calculation sheets. A calculation that cannot be picked up again six months later has no value.</p>
+          <div class="step__pic"><img src="../assets/accueil/armatures-torsadees-1907-800.webp?v=7095d0ef" width="800" height="1000" loading="lazy" decoding="async" alt="Twisted reinforcing bars waiting in timber formwork, photograph from 1907"></div>
+        </li>
       </ol>
-      <a class="lien-fleche ressources-tout" href="../en/blog/">All articles</a>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="section section-dark" id="contact">
-  <div class="section-inner">
-    <div class="contact-grid contact-single">
-      <div class="contact-text">
-        <p class="surtitre">Contact</p>
-        <h2>Get in touch.</h2>
-        <p class="contact-intro">For a structure to be designed, describe the project, its location and the current design stage.</p>
-
-        <div class="contact-info">
-          <a href="mailto:bimaghreb@outlook.com" class="contact-row contact-principal">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="14" rx="2"/>
-              <path d="m3 7 9 6 9-6"/>
-            </svg>
-            <span>bimaghreb@outlook.com</span>
-          </a>
-          <a href="tel:+212719488717" class="contact-row">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-            <span>+212&nbsp;7&nbsp;19&nbsp;48&nbsp;87&nbsp;17</span>
-          </a>
-          <a href="https://www.linkedin.com/company/bimaghrebengineering/" class="contact-row" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M8 11v5"/>
-              <path d="M8 8v.01"/>
-              <path d="M12 16v-5"/>
-              <path d="M12 13a2.5 2.5 0 0 1 5 0v3"/>
-            </svg>
-            <span>LinkedIn</span>
-          </a>
-          <a href="https://www.instagram.com/bimaghreb/" class="contact-row" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <path d="M17.5 6.5v.01"/>
-            </svg>
-            <span>Instagram</span>
-          </a>
+    <section class="domains" id="domaines" aria-labelledby="domaines-titre">
+      <div class="domain wrap">
+        <div class="domain__text">
+          <h2 id="domaines-titre" data-reveal>Reinforced concrete and structural steelwork.</h2>
+          <h3 data-reveal>Reinforced concrete</h3>
+          <p data-reveal style="--d: 80ms">Residential and office buildings, public facilities and places of worship, underground structures and tanks.</p>
+          <div class="domain__deliver" data-reveal style="--d: 160ms">
+            <p class="domain__label">Deliverables</p>
+            <ul>
+              <li>Calculation reports</li>
+              <li>General arrangement and reinforcement drawings</li>
+              <li>Bar bending schedules</li>
+              <li>Quantity take-off</li>
+            </ul>
+          </div>
         </div>
-
-        <p class="contact-lieu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
-            <circle cx="12" cy="10" r="3"/>
-          </svg>
-          <span>Morocco</span>
-        </p>
+        <img class="domain__photo" data-reveal style="--d: 120ms; --crop: 50% 50%" src="../assets/photos/beton-arme-cage-armatures-1200.webp?v=5682dd5f" srcset="../assets/photos/beton-arme-cage-armatures-640.webp?v=5223291a 640w, ../assets/photos/beton-arme-cage-armatures-1200.webp?v=5682dd5f 1200w" sizes="(max-width: 1099px) 100vw, 45vw" width="1200" height="900" loading="lazy" decoding="async" alt="Steel reinforcement cage seen from inside, towards the sky">
       </div>
-    </div>
-  </div>
-</section>
-</main>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <img src="../assets/logo-horizontal.svg?v=f19e288e" alt="" width="133" height="32">
-      <p>Structural design &amp; BIM modelling — Morocco.</p>
+      <div class="domain wrap">
+        <div class="domain__text">
+          <h3 data-reveal>Structural steelwork</h3>
+          <p data-reveal style="--d: 80ms">Industrial buildings, warehouses and long-span roofs, as well as hybrid structures combining a steel frame with a concrete structure.</p>
+          <div class="domain__deliver" data-reveal style="--d: 160ms">
+            <p class="domain__label">Deliverables</p>
+            <ul>
+              <li>Calculation reports</li>
+              <li>General arrangement and detail drawings</li>
+              <li>Schedules</li>
+              <li>Quantity take-off</li>
+            </ul>
+          </div>
+        </div>
+        <img class="domain__photo" data-reveal style="--d: 120ms; --crop: 60% 45%" src="../assets/photos/charpente-metallique-ossature-1200.webp?v=e40ba6a3" srcset="../assets/photos/charpente-metallique-ossature-640.webp?v=7af9ab14 640w, ../assets/photos/charpente-metallique-ossature-1200.webp?v=e40ba6a3 1200w" sizes="(max-width: 1099px) 100vw, 45vw" width="1200" height="900" loading="lazy" decoding="async" alt="Steel frame, portal frames and bracing against a pale sky">
+      </div>
+    </section>
+
+    <section class="band" id="articles" aria-labelledby="articles-titre">
+      <div class="sheet">
+        <h2 id="articles-titre" data-reveal>Latest articles</h2>
+        <p class="sheet__note" data-reveal style="--d: 80ms">Methods and scripts between Revit and Robot Structural Analysis, both ways.</p>
+        <!-- les trois derniers articles de la langue, listes par Jekyll : un nouvel article apparait seul -->
+        <ul class="sheet__items">
+{% assign billets = site.posts | where: "lang", "en" %}{% for post in billets limit:3 %}
+          <li data-reveal>
+            <h3><a href="{{ post.url }}">{{ post.title | smartify }}</a></h3>
+            <p>{{ post.description | smartify }}</p>
+          </li>
+{% endfor %}
+        </ul>
+        <p class="sheet__all" data-reveal><a class="link" href="../en/blog/">All articles</a></p>
+      </div>
+    </section>
+
+    <section class="visit" id="contact" aria-labelledby="contact-titre">
+      <img class="visit__photo" src="../assets/accueil/ossature-acier-vue-aerienne-1000.webp?v=608120cd" srcset="../assets/accueil/ossature-acier-vue-aerienne-1000.webp?v=608120cd 1000w, ../assets/accueil/ossature-acier-vue-aerienne-2000.webp?v=70526da3 2000w" sizes="100vw" width="2000" height="1296" loading="lazy" decoding="async" alt="Steel frame of a building being erected on its plot, aerial view">
+      <div class="visit__card" data-reveal>
+        <h2 id="contact-titre">Get in touch</h2>
+        <p class="visit__intro">For a structure to be designed, describe the project, its location and the current design stage.</p>
+        <dl class="visit__rows">
+          <div><dt>Email</dt><dd><a href="mailto:bimaghreb@outlook.com">bimaghreb@outlook.com</a></dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:+212719488717">+212&nbsp;7&nbsp;19&nbsp;48&nbsp;87&nbsp;17</a></dd></div>
+          <div><dt>Social</dt><dd><a href="https://www.linkedin.com/company/bimaghrebengineering/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://www.instagram.com/bimaghreb/" target="_blank" rel="noopener">Instagram</a></dd></div>
+          <div><dt>Location</dt><dd>Morocco</dd></div>
+        </dl>
+        <a class="button button--card" href="mailto:bimaghreb@outlook.com?subject=Structural%20design&amp;body=Project%3A%20%0ALocation%3A%20%0ACurrent%20design%20stage%3A%20%0A">Write an email</a>
+      </div>
+    </section>
+  </main>
+
+<!-- Footer of EVERY page (gabarit.html). -->
+<footer class="foot">
+  <div class="foot__cols wrap grid">
+    <div class="foot__col" data-reveal>
+      <p class="foot__first">BIMaghreb Engineering</p>
+      <p>Structural engineering consultancy</p>
+      <p>Morocco</p>
     </div>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="#hero">Home</a>
-      <a href="#travaux">Projects</a>
-      <a href="#demarche">Approach</a>
-      <a href="#contact">Contact</a>
-      <a href="../en/blog/">Articles</a>
+    <nav class="foot__col" aria-label="Footer" data-reveal style="--d: 70ms">
+      <p class="foot__first">Navigation</p>
+      <ul>
+        <li><a href="../en/#travaux">Projects</a></li>
+        <li><a href="../en/#demarche">Approach</a></li>
+        <li><a href="../en/blog/">Articles</a></li>
+        <li><a href="../en/#contact">Contact</a></li>
+        <li><a href="../" hreflang="fr" lang="fr">Français</a></li>
+      </ul>
     </nav>
-    <div class="footer-contact">
-      <a href="mailto:bimaghreb@outlook.com">bimaghreb@outlook.com</a>
-      <a href="tel:+212719488717">+212 7 19 48 87 17</a>
+    <div class="foot__col" data-reveal style="--d: 140ms">
+      <p class="foot__first">Social</p>
+      <ul>
+        <li><a href="https://www.linkedin.com/company/bimaghrebengineering/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/bimaghreb/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
     </div>
-    <div class="footer-meta">
-      <span>&copy; 2026 BIMaghreb.</span>
+    <div class="foot__col" data-reveal style="--d: 210ms">
+      <p class="foot__first">Contact</p>
+      <ul>
+        <li><a href="mailto:bimaghreb@outlook.com">bimaghreb@outlook.com</a></li>
+        <li><a href="tel:+212719488717">+212&nbsp;7&nbsp;19&nbsp;48&nbsp;87&nbsp;17</a></li>
+      </ul>
     </div>
   </div>
+  <div class="foot__mark wrap">
+    <svg viewBox="225.236 67.18 326.356 64.736" role="img" aria-label="BIMaghreb"><path d="M225.24 117.5V70.04H248.29Q254.14 70.04 257.47 73.37Q260.8 76.7 260.8 82.21Q260.8 85.81 259.61 88.02Q258.42 90.23 256.41 91.25Q254.41 92.27 251.96 92.41V92.82Q253.66 92.82 255.5 93.43Q257.33 94.04 258.96 95.33Q260.6 96.62 261.62 98.77Q262.64 100.91 262.64 103.97Q262.64 107.71 261.04 110.77Q259.44 113.83 256.69 115.66Q253.93 117.5 250.4 117.5ZM235.57 97.92V108.8H247.47Q248.83 108.8 249.82 108.29Q250.8 107.78 251.35 106.82Q251.89 105.87 251.89 104.51V102.2Q251.89 100.84 251.35 99.89Q250.8 98.94 249.82 98.43Q248.83 97.92 247.47 97.92ZM235.57 78.74V89.48H245.84Q247.2 89.48 248.19 88.97Q249.17 88.46 249.68 87.48Q250.19 86.49 250.19 85.13V83.09Q250.19 81.73 249.68 80.75Q249.17 79.76 248.19 79.25Q247.2 78.74 245.84 78.74Z M290.33 117.5H267.76V109.27H273.88V78.26H267.76V70.04H290.33V78.26H284.21V109.27H290.33Z M297.97 117.5V70.04H308.92L315.24 82.14L320.54 92.27H320.68L325.92 82.14L332.17 70.04H343.19V117.5H333.46V93.7V86.36H333.26L329.79 93.29L320.54 110.09L311.5 93.36L307.9 85.88H307.69V93.7V117.5Z M381.76 117.5H378.7Q376.53 117.5 375.17 116.58Q373.81 115.66 373.2 114.03Q372.58 112.4 372.58 110.29V109.82L374.69 111.79H372.31Q371.22 114.98 368.54 116.65Q365.85 118.32 362.18 118.32Q356.6 118.32 353.51 115.46Q350.42 112.6 350.42 107.71Q350.42 104.38 352.05 102.1Q353.68 99.82 356.98 98.63Q360.28 97.44 365.38 97.44H372.31V93.97Q372.31 90.23 370.27 88.26Q368.23 86.29 364.02 86.29Q360.89 86.29 358.71 87.72Q356.54 89.14 355.11 91.52L351.84 88.46Q353.27 85.68 356.4 83.64Q359.53 81.6 364.29 81.6Q370.61 81.6 374.18 84.72Q377.75 87.85 377.75 93.43V112.74H381.76ZM372.31 101.52H365.1Q360.48 101.52 358.3 102.88Q356.13 104.24 356.13 106.82V108.25Q356.13 110.84 358.03 112.26Q359.94 113.69 363.06 113.69Q365.78 113.69 367.86 112.84Q369.93 111.99 371.12 110.53Q372.31 109.07 372.31 107.3Z M418.1 121.38Q418.1 124.98 416.19 127.33Q414.29 129.67 410.51 130.79Q406.74 131.92 401.1 131.92Q395.66 131.92 392.22 130.9Q388.79 129.88 387.22 127.94Q385.66 126 385.66 123.28Q385.66 120.42 387.16 118.79Q388.65 117.16 391.24 116.48V115.73Q389.74 114.98 388.92 113.79Q388.11 112.6 388.11 110.84Q388.11 108.18 389.81 106.79Q391.51 105.4 394.16 104.72V104.44Q391.03 102.95 389.3 100.16Q387.56 97.37 387.56 93.7Q387.56 90.1 389.2 87.38Q390.83 84.66 393.82 83.13Q396.81 81.6 400.76 81.6Q402.66 81.6 404.33 81.94Q405.99 82.28 407.42 82.96V82.34Q407.42 80.3 408.37 78.98Q409.32 77.65 411.5 77.65H416.74V82.41H410.07V84.66Q411.98 86.29 413.03 88.6Q414.08 90.91 414.08 93.7Q414.08 97.24 412.45 99.99Q410.82 102.74 407.83 104.27Q404.84 105.8 400.82 105.8Q399.94 105.8 399.06 105.7Q398.17 105.6 397.42 105.46Q395.72 105.94 394.26 106.86Q392.8 107.78 392.8 109.41Q392.8 110.97 394.3 111.52Q395.79 112.06 398.17 112.06H405.65Q412.18 112.06 415.14 114.54Q418.1 117.02 418.1 121.38ZM413 121.78Q413 119.68 411.4 118.42Q409.8 117.16 405.72 117.16H394.02Q392.32 117.91 391.54 119.1Q390.76 120.29 390.76 121.92Q390.76 124.23 392.49 125.86Q394.23 127.5 398.38 127.5H403.41Q407.96 127.5 410.48 126.07Q413 124.64 413 121.78ZM400.82 101.45Q404.29 101.45 406.33 99.79Q408.37 98.12 408.37 94.65V92.75Q408.37 89.28 406.33 87.61Q404.29 85.95 400.82 85.95Q397.36 85.95 395.32 87.61Q393.28 89.28 393.28 92.75V94.65Q393.28 98.12 395.32 99.79Q397.36 101.45 400.82 101.45Z M423.42 117.5V67.18H428.86V88.12H429.13Q430.42 85.13 432.77 83.36Q435.12 81.6 439.06 81.6Q444.5 81.6 447.66 85.1Q450.82 88.6 450.82 94.99V117.5H445.38V95.94Q445.38 91.25 443.38 88.87Q441.37 86.49 437.43 86.49Q435.25 86.49 433.28 87.21Q431.31 87.92 430.08 89.42Q428.86 90.91 428.86 93.16V117.5Z M466.48 117.5H461.04V82.41H466.48V88.87H466.82Q467.44 87.17 468.73 85.71Q470.02 84.25 472.06 83.33Q474.1 82.41 476.96 82.41H479.06V87.85H475.87Q472.94 87.85 470.84 88.63Q468.73 89.42 467.61 90.71Q466.48 92 466.48 93.7Z M498.19 118.32Q493.43 118.32 489.9 116.04Q486.36 113.76 484.39 109.65Q482.42 105.53 482.42 99.96Q482.42 94.38 484.39 90.27Q486.36 86.15 489.9 83.87Q493.43 81.6 498.19 81.6Q502.88 81.6 506.28 83.81Q509.68 86.02 511.52 89.89Q513.36 93.77 513.36 98.73V101.32H488.13V102.95Q488.13 107.5 490.88 110.53Q493.64 113.56 498.53 113.56Q501.86 113.56 504.35 111.99Q506.83 110.43 508.19 107.5L512.06 110.29Q510.36 113.83 506.76 116.07Q503.16 118.32 498.19 118.32ZM498.19 86.15Q495.27 86.15 492.99 87.51Q490.71 88.87 489.42 91.29Q488.13 93.7 488.13 96.76V97.24H507.51V96.49Q507.51 93.36 506.35 91.05Q505.2 88.74 503.09 87.44Q500.98 86.15 498.19 86.15Z M521.33 117.5V67.18H526.77V88.12H527.04Q528.4 84.79 531.06 83.19Q533.71 81.6 537.31 81.6Q541.73 81.6 544.93 83.84Q548.12 86.08 549.86 90.2Q551.59 94.31 551.59 99.96Q551.59 105.53 549.86 109.68Q548.12 113.83 544.93 116.07Q541.73 118.32 537.31 118.32Q533.71 118.32 531.16 116.68Q528.61 115.05 527.04 111.79H526.77V117.5ZM535.82 113.42Q540.44 113.42 543.09 110.53Q545.74 107.64 545.74 102.95V96.96Q545.74 92.27 543.09 89.38Q540.44 86.49 535.82 86.49Q533.37 86.49 531.29 87.38Q529.22 88.26 528 89.76Q526.77 91.25 526.77 93.22V106.28Q526.77 108.52 528 110.12Q529.22 111.72 531.29 112.57Q533.37 113.42 535.82 113.42Z"/></svg>
+  </div>
+  <p class="foot__legal wrap">© BIMaghreb Engineering</p>
 </footer>
 
 
-<script src="../script.js?v=9740f488"></script>
+<script src="../script.js?v=c952b6f7" defer></script>
 </body>
 </html>
